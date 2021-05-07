@@ -1,7 +1,12 @@
 <template>
   <section>
-    <QuizSettings @showQuiz="displayQuiz" v-if="!showQuiz" />
-    <MainQuiz v-if="showQuiz"/>
+    <QuizSettings @showQuiz="displayQuiz"
+                  v-if="!showQuiz"
+                  @setOperator="setOperator"
+                  @setDifficulty="setDifficulty" />
+    <MainQuiz v-if="showQuiz"
+              :difficulty="difficulty"
+              :operator="operator"/>
   </section>
 </template>
 
@@ -17,17 +22,25 @@ export default {
   },
   data() {
     return {
-      showQuiz: false
+      showQuiz: false,
+      //Difficulty och operator skickas vidare till MainQuiz
+      difficulty: "",
+      operator: ""
     };
   },
   methods: {
+    //Dessa tre metoder anropas vid event från QuizSettings och ställer in variabler
     displayQuiz() {
       this.showQuiz = true;
+    },
+    setOperator(operator) {
+      this.operator = operator;
+    },
+    setDifficulty(difficulty) {
+      this.difficulty = difficulty;
     }
   }
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
