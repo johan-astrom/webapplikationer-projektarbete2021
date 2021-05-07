@@ -1,43 +1,34 @@
 <template>
   <section>
-    <b-dropdown @click="setOperator('addition')">Addition
-      <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
-      <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
-    </b-dropdown>
-    <b-dropdown @click="setOperator('subtraction')">Subtraktion
-      <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
-      <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
-    </b-dropdown>
-    <b-dropdown @click="setOperator('division')">Division
-      <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
-      <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
-    </b-dropdown>
-    <b-dropdown @click="setOperator('multiplication')">Multiplikation
-      <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
-      <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
-    </b-dropdown>
-    <div>
-      <b-dropdown id="dropdown-1" text="Dropdown Button" class="m-md-2">
-        <b-dropdown-item>First Action</b-dropdown-item>
-        <b-dropdown-item>Second Action</b-dropdown-item>
-        <b-dropdown-item>Third Action</b-dropdown-item>
-        <b-dropdown-divider></b-dropdown-divider>
-        <b-dropdown-item active>Active action</b-dropdown-item>
-        <b-dropdown-item disabled>Disabled action</b-dropdown-item>
+    <article>
+      <b-dropdown text="Addition" @show="setOperator('addition')">
+        <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
+        <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
       </b-dropdown>
-    </div>
+      <b-dropdown text="Subtraktion" @show="setOperator('subtraction')">
+        <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
+        <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
+      </b-dropdown>
+      <b-dropdown text="Division" @show="setOperator('division')">
+        <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
+        <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
+      </b-dropdown>
+      <b-dropdown text="Multiplikation" @show="setOperator('multiplication')">
+        <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
+        <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
+      </b-dropdown>
+    </article>
+    <button @click="displayQuiz">Starta quiz!</button>
   </section>
 </template>
 
 <script>
-import { bootstrap } from 'bootstrap-vue';
-
 export default {
   name: "QuizSettings",
   data() {
     return {
       operator: "",
-      difficulty: ""
+      difficulty: "",
     };
   },
   methods: {
@@ -46,11 +37,12 @@ export default {
     },
     setDifficulty(difficulty) {
       this.difficulty = difficulty;
-    }
-  }
+    },
+    displayQuiz() {
+      this.$emit("showQuiz");
+    },
+  },
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
