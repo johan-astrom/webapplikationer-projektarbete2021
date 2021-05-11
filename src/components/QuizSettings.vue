@@ -1,19 +1,19 @@
 <template>
   <section>
     <article id="dropdowns">
-      <b-dropdown class="dropdown" text="Addition" @show="setOperator('addition')">
+      <b-dropdown class="dropdown" text="Addition" @show="setOperator('addition'), setSign('+')">
         <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
         <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
       </b-dropdown>
-      <b-dropdown class="dropdown" text="Subtraktion" @show="setOperator('subtraction')">
+      <b-dropdown class="dropdown" text="Subtraktion" @show="setOperator('subtraction'), setSign('-')">
         <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
         <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
       </b-dropdown>
-      <b-dropdown class="dropdown" text="Division" @show="setOperator('division')">
+      <b-dropdown class="dropdown" text="Division" @show="setOperator('division'), setSign('/')">
         <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
         <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
       </b-dropdown>
-      <b-dropdown class="dropdown" text="Multiplikation" @show="setOperator('multiplication')">
+      <b-dropdown class="dropdown" text="Multiplikation" @show="setOperator('multiplication'), setSign('x')">
         <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
         <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
       </b-dropdown>
@@ -34,6 +34,9 @@ export default {
     //Dessa tre metoder skickar event till Quiz-componenten, för att ställa in variabler i dess data-block
     setOperator(operator) {
       this.$emit("setOperator", operator);
+    },
+    setSign(sign){
+      this.$emit("setSign", sign);
     },
     setDifficulty(difficulty) {
       this.$emit("setDifficulty", difficulty);

@@ -3,10 +3,12 @@
     <QuizSettings @showQuiz="displayQuiz"
                   v-if="!showQuiz"
                   @setOperator="setOperator"
-                  @setDifficulty="setDifficulty" />
+                  @setSign="setSign"
+                  @setDifficulty="setDifficulty"/>
     <MainQuiz v-if="showQuiz"
               :difficulty="difficulty"
-              :operator="operator"/>
+              :operator="operator"
+              :sign="sign"/>
   </section>
 </template>
 
@@ -25,7 +27,8 @@ export default {
       showQuiz: false,
       //Difficulty och operator skickas vidare till MainQuiz
       difficulty: "",
-      operator: ""
+      operator: "",
+      sign: ""
     };
   },
   methods: {
@@ -35,6 +38,13 @@ export default {
     },
     setOperator(operator) {
       this.operator = operator;
+      /*   switch (operator){
+           case 'addition':*/
+      /* this.sign= operator*/
+      // }
+    },
+    setSign(sign) {
+      this.sign = sign;
     },
     setDifficulty(difficulty) {
       this.difficulty = difficulty;
