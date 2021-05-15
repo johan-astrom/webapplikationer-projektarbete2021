@@ -103,6 +103,7 @@ export default {
       </fieldset>
       <p>{{ message }}</p>
       <p> Your answers: {{guess }}</p>
+      <p>Right answers: {{answer}}</p>
 
     </form>
 
@@ -122,16 +123,14 @@ export default {
       x: [1,1,1,1,1],
       y:[1,1,1,1,1],
       message: "",
-      guess: ['','','','','']
-
-
+      guess: [],
+      answer: []
     }
   },
   props: {
-    //Dessa två får sina värden från Quiz-komponenten
+    //Dessa tre får sina värden från Quiz-komponenten
     operator: String,
     sign: String,
-
     difficulty: String
   },
   computed: {
@@ -148,6 +147,10 @@ export default {
   methods: {
   check: function () {
     if (this.operator == 'addition') {
+      this.answer=[];
+      for(let i=0; i<5; i++){
+        this.answer.push(this.xNumbers[i] + this.yNumbers[i]);
+      }
       for(let i=0; i<5; i++){
         if (this.xNumbers[i] + this.yNumbers[i] != this.guess[i]) {
           this.message = "wrong";
@@ -158,9 +161,12 @@ export default {
       }
 
     } else if (this.operator == 'subtraction') {
-
+      this.answer=[];
       for(let i=0; i<5; i++){
-        if (this.xNumbers[i] - this.yNumbers[i] != this.guess[i]) {
+        this.answer.push(this.xNumbers[i] - this.yNumbers[i]);
+      }
+      for(let i=0; i<5; i++){
+        if (this.xNumbers[i] + this.yNumbers[i] != this.guess[i]) {
           this.message = "wrong";
           break;
         } else {
@@ -169,6 +175,10 @@ export default {
       }
 
     } else if (this.operator == 'multiplication') {
+      this.answer=[];
+      for(let i=0; i<5; i++){
+        this.answer.push(this.xNumbers[i]*this.yNumbers[i]);
+      }
       for(let i=0; i<5; i++){
         if (this.xNumbers[i] * this.yNumbers[i] != this.guess[i]) {
           this.message = "wrong";
@@ -178,7 +188,11 @@ export default {
         }
       }
     } else {
+      this.answer=[];
       for(let i=0; i<5; i++){
+        this.answer.push(this.xNumbers[i] / this.yNumbers[i]);
+      }
+      for (let i=0; i<5;i++){
         if (this.xNumbers[i] / this.yNumbers[i] != this.guess[i]) {
           this.message = "wrong";
           break;
