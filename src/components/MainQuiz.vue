@@ -2,7 +2,7 @@
   <section>
     <h1>Quiz!!</h1>
     <h2>Du har valt {{ operator }} och svårighetsgrad {{ difficulty }}</h2>
-    <form @submit="check">
+    <form @submit.prevent="check">
       <fieldset>
         <ul>
           <li v-for="n in 5" :key="n">
