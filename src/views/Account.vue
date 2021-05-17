@@ -1,7 +1,11 @@
 <template>
+  <html>
+  <body>
 <section>
 
 </section>
+  </body>
+  </html>
 </template>
 
 <script>
