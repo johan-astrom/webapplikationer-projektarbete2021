@@ -1,92 +1,3 @@
-<!--
-<template>
-  <section>
-    <h1>Quiz!!</h1>
-    <h2>Du har valt {{ operator }} och svårighetsgrad {{ difficulty }}</h2>
-    <form @submit="check">
-      <fieldset>
-        <ul>
-          <li v-for="n  in 5 " :key="n">
-            {{n}}<p> {{ x[i] }} {{ sign }} {{ y[i] }} = </p>
-            <input v-model="guess"></li>
-        </ul>
-
-        <input type="submit" value="Calculate">
-      </fieldset>
-      <p>{{ message }}</p>
-
-    </form>
-
-
-  </section>
-</template>
-
-<script>
-import Quiz from "@/views/Quiz";
-
-export default {
-  name: "MainQuiz",
-  // eslint-disable-next-line vue/no-unused-components
-  components: {Quiz},
-  data() {
-    return {
-      /*x1: Math.round(Math.random() * 100),
-      y1: Math.round(Math.random() * 100),*/
-      i:0,
-      x:[],
-      y:[],
-      message: "",
-      guess: ''
-
-    }
-  },
-  props: {
-    //Dessa två får sina värden från Quiz-komponenten
-    operator: String,
-    sign: String,
-    difficulty: String
-  },
-  methods: {
-    check: function () {
-      if (this.operator == 'addition') {
-        if (this.x1 + this.y1 == this.guess) {
-          this.message = "right"
-        } else {
-          this.message = "wrong"
-        }
-      } else if (this.operator == 'subtraction') {
-
-        if (this.x1 - this.y1 == this.guess) {
-          this.message = "right"
-        } else {
-          this.message = "wrong"
-        }
-
-      }
-      else if(this.operator=='multiplication'){
-        if (this.x1 *this.y1 == this.guess) {
-          this.message = "right"
-        } else {
-          this.message = "wrong"
-        }
-      }
-      else {
-        if (this.x1 /this.y1 == this.guess) {
-          this.message = "right"
-        } else {
-          this.message = "wrong"
-        }
-      }
-    }
-  }
-};
-</script>
-
-<style scoped>
-
-</style>-->
-
-
 <template>
   <section>
     <h1>Quiz!!</h1>
@@ -95,19 +6,28 @@ export default {
       <fieldset>
         <ul>
           <li v-for="n in 5" :key="n">
-            <p> {{ xNumbers[n-1] }} {{ sign }} {{ yNumbers[n-1] }} </p>
-            <input v-model="guess[n-1]">
+            <p> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} </p>
+            <input
+                v-model="guess[n-1]"
+            >
           </li>
         </ul>
         <input type="submit" value="Calculate">
+
+        <!--      <p>{{ message }}</p>-->
+        <p> Din lösning:
+          <span
+              v-for="(guess,index) in guess1"
+              v-bind:key="index"
+              v-bind:number="guess.number"
+              v-bind:style="{color:resultColor[index]}"
+              v-bind:color="guess.color"
+
+          >{{ guess1[index].number }} </span>, poäng: {{ score }}</p>
+        <p>Korrekta svar:{{ results }}</p>
+        <p v-if="checked"> Test completed</p>
       </fieldset>
-      <p>{{ message }}</p>
-      <p> Your answers: {{guess }}</p>
-      <p>Right answers: {{answer}}</p>
-
     </form>
-
-
   </section>
 </template>
 
@@ -120,92 +40,128 @@ export default {
   components: {Quiz},
   data() {
     return {
-      x: [1,1,1,1,1],
-      y:[1,1,1,1,1],
+      x: [1, 1, 1, 1, 1],
+      y: [1, 1, 1, 1, 1],
       message: "",
-      guess: [],
-      answer: []
+      guess: ['', '', '', '', ''],
+      guess1: [],
+      results: [],
+      score: 0,
+      resultColor: [],
+      checked: false
     }
   },
   props: {
-    //Dessa tre får sina värden från Quiz-komponenten
+    //Dessa två får sina värden från Quiz-komponenten
     operator: String,
     sign: String,
     difficulty: String
   },
   computed: {
     xNumbers: function () {
-      return this.x.map((x)=> { return x*(Math.round(Math.random() * 100));
-      })
+
+      return this.x.map((x) => {
+        if (this.difficulty == 'lätt') {
+          return x * (Math.round(Math.random() * 10))
+        } else {
+          return x * (Math.round(Math.random() * 100))
+        }
+
+      });
     },
-    yNumbers: function (){
-      return this.y.map((y)=> {return y*(Math.round(Math.random() *100))
+    yNumbers: function () {
+      return this.y.map((y) => {
+
+        if (this.difficulty == 'lätt') {
+          return y * (Math.round(Math.random() * 10))
+        } else {
+          return y * (Math.round(Math.random() * 100))
+        }
       });
     }
   },
-
   methods: {
-  check: function () {
-    if (this.operator == 'addition') {
-      this.answer=[];
-      for(let i=0; i<5; i++){
-        this.answer.push(this.xNumbers[i] + this.yNumbers[i]);
-      }
-      for(let i=0; i<5; i++){
-        if (this.xNumbers[i] + this.yNumbers[i] != this.guess[i]) {
-          this.message = "wrong";
-          break;
-        } else {
-          this.message = "right"
-        }
-      }
+    check: function () {
+      if (this.checked == false) {
+        this.guess1 = []
+        this.results = []
+        if (this.operator == 'addition') {
+          let score = 0
 
-    } else if (this.operator == 'subtraction') {
-      this.answer=[];
-      for(let i=0; i<5; i++){
-        this.answer.push(this.xNumbers[i] - this.yNumbers[i]);
-      }
-      for(let i=0; i<5; i++){
-        if (this.xNumbers[i] + this.yNumbers[i] != this.guess[i]) {
-          this.message = "wrong";
-          break;
-        } else {
-          this.message = "right"
-        }
-      }
+          for (let i = 0; i < 5; i++) {
 
-    } else if (this.operator == 'multiplication') {
-      this.answer=[];
-      for(let i=0; i<5; i++){
-        this.answer.push(this.xNumbers[i]*this.yNumbers[i]);
-      }
-      for(let i=0; i<5; i++){
-        if (this.xNumbers[i] * this.yNumbers[i] != this.guess[i]) {
-          this.message = "wrong";
-          break;
+            if (this.xNumbers[i] + this.yNumbers[i] != this.guess[i]) {
+
+              this.resultColor[i] = "red"
+
+            } else {
+              this.resultColor[i] = "green"
+              score++
+            }
+            this.results.push(this.xNumbers[i] + this.yNumbers[i])
+            this.guess1.push({
+              number: this.guess[i],
+              color: this.resultColor[i]
+            })
+          }
+          this.score = score
+        } else if (this.operator == 'subtraktion') {
+          let score = 0
+          for (let i = 0; i < 5; i++) {
+
+            if (this.xNumbers[i] - this.yNumbers[i] != this.guess[i]) {
+              this.resultColor[i] = "red"
+            } else {
+              this.resultColor [i] = "green"
+              score++
+            }
+            this.results.push(this.xNumbers[i] - this.yNumbers[i])
+            this.guess1.push({
+              number: this.guess[i],
+              color: this.resultColor[i]
+            })
+          }
+          this.score = score;
+        } else if (this.operator == 'multiplikation') {
+          let score = 0;
+          for (let i = 0; i < 5; i++) {
+
+            if (this.xNumbers[i] * this.yNumbers[i] != this.guess[i]) {
+              this.resultColor [i] = "red"
+            } else {
+              this.resultColor [i] = "green"
+              score++
+            }
+            this.results.push(this.xNumbers[i] * this.yNumbers[i])
+            this.guess1.push({
+              number: this.guess[i],
+              color: this.resultColor[i]
+            })
+          }
+          this.score = score
         } else {
-          this.message = "right"
+          let score = 0;
+          for (let i = 0; i < 5; i++) {
+
+            if (this.xNumbers[i] / this.yNumbers[i] != this.guess[i]) {
+              this.resultColor [i] = "red"
+            } else {
+              this.resultColor [i] = "green"
+              score++
+            }
+            this.results.push(this.xNumbers[i] / this.yNumbers[i])
+            this.guess1.push({
+              number: this.guess[i],
+              color: this.resultColor[i]
+            })
+          }
+          this.score = score
         }
-      }
-    } else {
-      this.answer=[];
-      for(let i=0; i<5; i++){
-        this.answer.push(this.xNumbers[i] / this.yNumbers[i]);
-      }
-      for (let i=0; i<5;i++){
-        if (this.xNumbers[i] / this.yNumbers[i] != this.guess[i]) {
-          this.message = "wrong";
-          break;
-        } else {
-          this.message = "right"
-        }
+        this.checked = true
       }
     }
-  }
   }
 }
 </script>
 
-<style scoped>
 
-</style>
