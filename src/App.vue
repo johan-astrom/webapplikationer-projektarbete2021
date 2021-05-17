@@ -1,33 +1,144 @@
 <template>
+  <html>
   <div id="app">
+    <header>
+    <div class="header_container">
+      <h1>{{ title }}</h1>
+    </div>
+    </header>
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/quiz">Starta Quiz</router-link> |
-      <router-link to="/konto">Mitt konto</router-link>
+
+      <router-link to="/" class="grid-item1">Home</router-link>
+      <router-link to="/quiz" class="grid-item">Starta Quiz</router-link>
+      <router-link to="/konto" class="grid-item3">Mitt konto</router-link>
     </div>
     <router-view />
   </div>
+  <footer>
+      <div class="footer_list">
+    <ul>
+      <li><b>E-Mail: </b> info@info.se</li>
+      <li><b>Tel: </b> 08-000 000</li>
+      <li><b>Adress: </b> Stockholm, Sweden</li>
+    </ul>
+      </div>
+  </footer>
+  </html>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      title: 'Kunskapsquizet'
+    }
+  }
+}
+</script>
 
 <style>
+#app body{
+  background-color: lightblue;
+  padding: 30px;
+
+}
+.header_container{
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
+  width: 50%;
+  margin: auto;
+  background-color: #9f9ffa;
+}
+header{
+  background-color: lightblue;
+}
+
+ h1 {
+  grid-area: header;
+  font-family: "Comic Sans MS";
+  font-size: 34px;
+  color: black;
+  text-align: center;
+
+}
 #app {
   font-family: "Comic Sans MS";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
 
+}
 #nav {
-  padding: 30px;
-}
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: lightblue;
+  padding: 10px;
+  color: black;
 
-#nav a {
-  font-weight: bold;
+}
+.grid-item1{
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  background-color: #9f9ffa;
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+  border-color: black;
+  border-style: solid;
+  color: #2c3e50;
+}
+.grid-item3{
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+  background-color:#9f9ffa;
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+  border-color: black;
+  border-style: solid;
+  color: #2c3e50;
+}
+.grid-item {
+  background-color: #9f9ffa;
+
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+  border-color: black;
+  border-style: solid;
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+#nav a:hover {
+  background-color: yellow;
+  transition: all 0.3s ease 0s;
+  color: black;
+}
+
+#nav a:active {
+  background-color: lightgreen;
+  transition: all 0.3s ease 0s;
+  color: black
+;
+}
+footer{
+  background-color: lightblue;
+}
+.footer_list{
+  grid-area: footer;
+  background-color: #9f9ffa;
+  width: auto;
+  padding: 20px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
+}
+footer ul {
+  grid-area: footer;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  font-family: "Comic Sans MS";
 }
 </style>

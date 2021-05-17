@@ -1,11 +1,7 @@
 <template>
   <div class="home">
     <html>
-    <header>
-      <div class="header_container">
-      <h1>{{ title }}</h1>
-      </div>
-    </header>
+
     <body>
     <!--navigation_links ska hamna brevid varandra-->
     <div class=" navigation_links">
@@ -36,13 +32,6 @@
 
 
     <!--listan i footer ska hamna brevid varandra-->
-    <footer class="footer_list">
-      <ul>
-        <li><b>E-Mail: </b> info@info.se</li>
-        <li><b>Tel: </b> 08-000 000</li>
-        <li><b>Adress: </b> Stockholm, Sweden</li>
-      </ul>
-    </footer>
     </body>
     </html>
 
@@ -57,7 +46,6 @@ export default {
   name: "Home",
   data() {
     return {
-      title: 'Välkommen',
       loggInText: '',
       name: '',
       loggedIn: false
@@ -96,30 +84,8 @@ export default {
   font-family: "Comic Sans MS";
 
 }
-header{
-  background-color: lightblue;
-}
-.header_container{
-  border-color: black;
-  border-style: solid;
-  border-radius: 25px;
-  width: 50%;
-  margin: auto;
-  background-color: #9f9ffa;
-}
-body{
-  background-color: lightblue;
-  padding: 30px;
 
-}
-h1 {
-  grid-area: header;
-  font-family: "Comic Sans MS";
-  font-size: 34px;
-  color: black;
-  text-align: center;
 
-}
 .left {
   grid-area: left;
 
@@ -152,43 +118,7 @@ h1 {
   border-radius: 25px;
   margin:auto;
 }
-nav {
-  background-color: #c3bebe;
-  border-radius: 10px;
-  height: 40px;
-}
-nav ul {
-  grid-area: nav;
-  flex-direction: row;
-  display: flex;
-  justify-content: space-around;
-  list-style-type: none;
-}
-nav a {
-  flex: auto;
-  flex: 1; /* Betyder att varje flex i detta fallet a i nav kommer att anpassas efter fösnterets storlek och bli lika stora */
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #999;
-}
-footer{
-  grid-area: footer;
-  background-color: #9f9ffa;
-  width: auto;
-  padding: 20px;
-  border-color: black;
-  border-style: solid;
-  border-radius: 25px;
-}
-footer ul {
-  grid-area: footer;
-  flex-direction: row;
-  display: flex;
-  justify-content: space-around;
-  list-style-type: none;
-  font-family: "Comic Sans MS";
-}
+
+
 </style>
 

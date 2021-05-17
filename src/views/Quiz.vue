@@ -1,5 +1,6 @@
 <template>
-  <section>
+  <body>
+  <section class="grid_container_quiz">
     <QuizSettings @showQuiz="displayQuiz"
                   v-if="!showQuiz"
                   @setOperator="setOperator"
@@ -10,6 +11,7 @@
               :operator="operator"
               :sign="sign"/>
   </section>
+  </body>
 </template>
 
 <script>
@@ -53,4 +55,19 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.grid_container_quiz{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2.0fr 2.0fr 2.0fr;
+  grid-template-areas:
+    "header header "
+    "footer footer";
+  grid-gap: 20px;
+  height: 100vh;
+  text-align: center;
+  font-family: "Comic Sans MS";
+
+}
+
+</style>
