@@ -2,17 +2,23 @@
   <section>
     <h1>Quiz!!</h1>
     <h2>Du har valt {{ operator }} och svårighetsgrad {{ difficulty }}</h2>
+
     <form @submit.prevent="check">
       <fieldset>
         <ul>
-          <li v-for="n in 5" :key="n">
+          <li class="list" v-for="n in 5" :key="n">
             <p> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} </p>
             <input
+                class="field"
                 v-model="guess[n-1]"
+
+                v-bind:style="{border:resultColor[n-1]}"
             >
           </li>
+
         </ul>
-        <input type="submit" value="Calculate">
+        <input v-if="!checked" type="submit" value="Calculate" :disabled="!validated">
+        <button   v-if="checked"  ><router-link to="/quiz" >Nytt Quiz</router-link> </button>
 
         <!--      <p>{{ message }}</p>-->
         <p> Din lösning:
@@ -20,9 +26,6 @@
               v-for="(guess,index) in guess1"
               v-bind:key="index"
               v-bind:number="guess.number"
-              v-bind:style="{color:resultColor[index]}"
-              v-bind:color="guess.color"
-
           >{{ guess1[index].number }} </span>, poäng: {{ score }}</p>
         <p>Korrekta svar:{{ results }}</p>
         <p v-if="checked"> Test completed</p>
@@ -33,6 +36,7 @@
 
 <script>
 import Quiz from "@/views/Quiz";
+import QuizSettings from "@/components/QuizSettings"
 
 export default {
   name: "MainQuiz",
@@ -48,7 +52,9 @@ export default {
       results: [],
       score: 0,
       resultColor: [],
-      checked: false
+      checked: false,
+      color: " solid red"
+
     }
   },
   props: {
@@ -78,11 +84,26 @@ export default {
           return y * (Math.round(Math.random() * 100))
         }
       });
+    },
+    validated: function () {
+      let counter = 0
+      for (let i = 0; i < 5; i++) {
+        if (this.guess[i] != '') {
+          counter++
+        }
+      }
+      if (counter == 5) {
+        return true
+      }
+      return false
     }
   },
+
   methods: {
     check: function () {
+
       if (this.checked == false) {
+
         this.guess1 = []
         this.results = []
         if (this.operator == 'addition') {
@@ -92,10 +113,10 @@ export default {
 
             if (this.xNumbers[i] + this.yNumbers[i] != this.guess[i]) {
 
-              this.resultColor[i] = "red"
+              this.resultColor[i] = "solid red"
 
             } else {
-              this.resultColor[i] = "green"
+              this.resultColor[i] = "solid green"
               score++
             }
             this.results.push(this.xNumbers[i] + this.yNumbers[i])
@@ -162,6 +183,11 @@ export default {
     }
   }
 }
-</script>
 
+</script>
+<style>
+.list {
+  list-style-type: none;
+}
+</style>
 

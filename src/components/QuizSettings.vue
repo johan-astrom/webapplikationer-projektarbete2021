@@ -43,7 +43,6 @@ export default {
       this.$emit("setDifficulty", difficulty);
     },
     displayQuiz() {
-
       this.$emit("showQuiz");
     },
   },
