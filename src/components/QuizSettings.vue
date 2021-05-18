@@ -2,20 +2,21 @@
   <section>
     <article id="dropdowns">
       <b-dropdown class="dropdown" text="Addition" @show="setOperator('addition'), setSign('+')">
-        <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
-        <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
+        <b-dropdown-item @click="setDifficulty('lätt')">Lätt</b-dropdown-item>
+        <b-dropdown-item @click="setDifficulty('svårt')">Svårt</b-dropdown-item>
       </b-dropdown>
-      <b-dropdown class="dropdown" text="Subtraktion" @show="setOperator('subtraction'), setSign('-')">
-        <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
-        <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
+      <b-dropdown class="dropdown" text="Subtraktion" @show="setOperator('subtraktion'), setSign('-')">
+        <b-dropdown-item @click="setDifficulty('lätt')">Lätt</b-dropdown-item>
+        <b-dropdown-item @click="setDifficulty('svårt')">Svårt</b-dropdown-item>
       </b-dropdown>
       <b-dropdown class="dropdown" text="Division" @show="setOperator('division'), setSign('/')">
-        <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
-        <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
+        <b-dropdown-item @click="setDifficulty('lätt')">Lätt</b-dropdown-item>
+        <b-dropdown-item @click="setDifficulty('svårt')">Svårt</b-dropdown-item>
       </b-dropdown>
-      <b-dropdown class="dropdown" text="Multiplikation" @show="setOperator('multiplication'), setSign('x')">
-        <b-dropdown-item @click="setDifficulty('easy')">Lätt</b-dropdown-item>
-        <b-dropdown-item @click="setDifficulty('hard')">Svårt</b-dropdown-item>
+      <b-dropdown class="dropdown" text="Multiplikation" @show="setOperator('multiplikation'), setSign('x')">
+        <b-dropdown-item @click="setDifficulty('lätt')">Lätt</b-dropdown-item>
+        <b-dropdown-item @click="setDifficulty('svårt' +
+         '')">Svårt</b-dropdown-item>
       </b-dropdown>
     </article>
     <button @click="displayQuiz">Starta quiz!</button>
@@ -42,6 +43,7 @@ export default {
       this.$emit("setDifficulty", difficulty);
     },
     displayQuiz() {
+
       this.$emit("showQuiz");
     },
   },

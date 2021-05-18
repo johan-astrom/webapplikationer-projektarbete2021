@@ -36,7 +36,12 @@ export default {
   methods: {
     //Dessa tre metoder anropas vid event från QuizSettings och ställer in variabler
     displayQuiz() {
-      this.showQuiz = true;
+      if(this.operator && this.difficulty) {
+        this.showQuiz = true;
+      }
+      else{
+        this.showQuiz= false;
+      }
     },
     setOperator(operator) {
       this.operator = operator;
