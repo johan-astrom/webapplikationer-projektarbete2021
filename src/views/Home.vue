@@ -46,8 +46,6 @@ export default {
   name: "Home",
   data() {
     return {
-      loggInText: '',
-      name: '',
       loggedIn: false
     }
   },
