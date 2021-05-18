@@ -1,11 +1,19 @@
 <template>
-  <section>
-    <h1>Quiz!!</h1>
-    <h2>Du har valt {{ operator }} och svårighetsgrad {{ difficulty }}</h2>
-    <form @submit.prevent="check">
-      <fieldset>
+
+
+<body>
+<section class="grid_container_mainquiz">
+
+
+  <h1>Quiz!!</h1>
+  <h2>Du har valt {{ operator }} och svårighetsgrad {{ difficulty }}</h2>
+  <form @submit.prevent="check">
+    <main>
+      <fieldset >
         <ul>
           <li v-for="n in 5" :key="n">
+
+
             <p> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} </p>
             <input
                 v-model="guess[n-1]"
@@ -27,8 +35,14 @@
         <p>Korrekta svar:{{ results }}</p>
         <p v-if="checked"> Test completed</p>
       </fieldset>
-    </form>
-  </section>
+    </main>
+
+  </form>
+</section>
+</body>
+
+
+
 </template>
 
 <script>
@@ -93,7 +107,6 @@ export default {
             if (this.xNumbers[i] + this.yNumbers[i] != this.guess[i]) {
 
               this.resultColor[i] = "red"
-
             } else {
               this.resultColor[i] = "green"
               score++
@@ -164,15 +177,28 @@ export default {
 }
 </script>
 
-<<<<<<< HEAD
+
 <style scoped>
-ul li{
+ul li {
   list-style-type: none;
 }
-ul li p{
-  padding-top: 20px
-}
-</style>
-=======
 
->>>>>>> 98aa54689180f066c223e331a35cfe5e8589e5e2
+
+.grid_container_mainquiz {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2.0fr 2.0fr 2.0fr;
+  grid-template-areas:
+    "header "
+    "main"
+    "footer ";
+  grid-gap: 20px;
+  height: 70vh;
+  text-align: center;
+  font-family: "Comic Sans MS";
+
+}
+
+</style>
+
+
