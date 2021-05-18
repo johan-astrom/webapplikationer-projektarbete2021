@@ -207,5 +207,10 @@ export default {
 </script>
 
 <style scoped>
-
+ul li{
+  list-style-type: none;
+}
+ul li p{
+  padding-top: 20px
+}
 </style>

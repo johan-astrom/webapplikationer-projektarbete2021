@@ -1,19 +1,27 @@
 <template>
   <html>
+  <body>
   <div id="app">
+
     <header>
     <div class="header_container">
       <h1>{{ title }}</h1>
-    </div>
-    </header>
-    <div id="nav">
 
+    </div>
+      <div class="logInButton">
+      <div class="buttonLogIn">  <button id="btnIn" v-if="loggedIn==true" v-on:click="loggedInButtonFalse">Logga ut</button></div>
+      <div class="buttonLogOut">  <button id="btnOut" v-if="loggedIn==false" v-on:click="loggedInButtonTrue">Logga in</button></div>
+      </div>
+    </header>
+
+    <div id="nav">
       <router-link to="/" class="grid-item1">Home</router-link>
       <router-link to="/quiz" class="grid-item">Starta Quiz</router-link>
       <router-link to="/konto" class="grid-item3">Mitt konto</router-link>
     </div>
     <router-view />
   </div>
+
   <footer>
       <div class="footer_list">
     <ul>
@@ -23,13 +31,25 @@
     </ul>
       </div>
   </footer>
+  </body>
   </html>
 </template>
 <script>
 export default {
   data() {
     return {
-      title: 'Kunskapsquizet'
+      title: 'Kunskapsquizet',
+      loggedIn: '',
+      loggInText: '',
+      name: '',
+    }
+  },
+  methods:{
+    loggedInButtonFalse(){
+      this.loggedIn = false;
+    },
+    loggedInButtonTrue(){
+      this.loggedIn = true;
     }
   }
 }
@@ -51,6 +71,25 @@ export default {
 }
 header{
   background-color: lightblue;
+  padding-top: 20px;
+}
+.logInButton{
+  text-align: right;
+  padding-right: 15%;
+
+}
+#btnIn {
+  background-color: red;
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
+}
+
+#btnOut {
+  background-color: forestgreen;
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
 }
 
  h1 {
