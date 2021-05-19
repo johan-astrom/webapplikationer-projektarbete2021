@@ -49,8 +49,12 @@ export default {
           username: this.username,
           password: this.password,
         }),
-      });
-      return response.json();
+      }).then((response) => {
+        if (response.status === 400){
+        alert("Användarnamnet är upptaget.");
+      }else{
+          return response.json();
+        }})
     },
   },
 };
