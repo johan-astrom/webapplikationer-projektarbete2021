@@ -12,7 +12,7 @@
                 class="field"
                 v-model="guess[n-1]"
                 v-bind:style="{border:resultColor[n-1]}"
-            > <p v-if="right[n-1]==false">right</p>
+            > <p v-if="right[n-1]==false">Rätt svar {{ results[n-1]}}</p>
           </li>
 
         </ul>
