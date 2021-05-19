@@ -17,7 +17,7 @@
 
         </ul>
         <input v-if="!checked" type="submit" value="Calculate" :disabled="!validated">
-        <button v-if="checked"  ><router-link to="/quiz" >Nytt Quiz</router-link> </button>
+        <button   v-if="checked"  ><router-link to="/" >Nytt Quiz</router-link> </button>
 
         <!--      <p>{{ message }}</p>-->
         <p> Din lösning:
@@ -35,7 +35,7 @@
 
 <script>
 import Quiz from "@/views/Quiz";
-import QuizSettings from "@/components/QuizSettings"
+
 
 export default {
   name: "MainQuiz",
@@ -100,6 +100,7 @@ export default {
   },
 
   methods: {
+
     check: function () {
      // this.showQuiz = false;
       if (this.checked == false) {
@@ -188,6 +189,7 @@ export default {
         }
         this.checked = true
       }
+
     }
   }
 }

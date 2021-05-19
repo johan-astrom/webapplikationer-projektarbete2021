@@ -1,16 +1,14 @@
 <template>
-  <html>
-  <body>
 <section>
-
+  <SignupPage/>
 </section>
-  </body>
-  </html>
 </template>
 
 <script>
+import SignupPage from "@/components/SignupPage";
 export default {
-  name: "Account"
+  name: "Account",
+  components: { SignupPage }
 };
 </script>
 
