@@ -3,7 +3,7 @@
     <h1>Quiz!!</h1>
     <h2>Du har valt {{ operator }} och svårighetsgrad {{ difficulty }}</h2>
 
-    <form @submit.prevent="check">
+    <form @submit="check">
       <fieldset>
         <ul>
           <li  v-for="n in 5" :key="n">
@@ -11,14 +11,13 @@
             <input
                 class="field"
                 v-model="guess[n-1]"
-
                 v-bind:style="{border:resultColor[n-1]}"
-            >
+            > <p v-if="right[n-1]==false">right</p>
           </li>
 
         </ul>
         <input v-if="!checked" type="submit" value="Calculate" :disabled="!validated">
-        <button   v-if="checked"  ><router-link to="/quiz" >Nytt Quiz</router-link> </button>
+        <button v-if="checked"  ><router-link to="/quiz" >Nytt Quiz</router-link> </button>
 
         <!--      <p>{{ message }}</p>-->
         <p> Din lösning:
@@ -53,7 +52,8 @@ export default {
       score: 0,
       resultColor: [],
       checked: false,
-      color: " solid red"
+      color: " solid red",
+      right: []
 
     }
   },
@@ -101,7 +101,7 @@ export default {
 
   methods: {
     check: function () {
-
+     // this.showQuiz = false;
       if (this.checked == false) {
 
         this.guess1 = []
@@ -113,10 +113,12 @@ export default {
 
             if (this.xNumbers[i] + this.yNumbers[i] != this.guess[i]) {
 
-              this.resultColor[i] = "solid red"
+              this.resultColor[i] = "solid red";
+              this.right.push(false);
 
             } else {
               this.resultColor[i] = "solid green"
+              this.right.push(true);
               score++
             }
             this.results.push(this.xNumbers[i] + this.yNumbers[i])
@@ -131,9 +133,11 @@ export default {
           for (let i = 0; i < 5; i++) {
 
             if (this.xNumbers[i] - this.yNumbers[i] != this.guess[i]) {
-              this.resultColor[i] = "solid red"
+              this.resultColor[i] = "solid red";
+              this.right.push(false);
             } else {
               this.resultColor [i] = "solid green"
+              this.right.push(true);
               score++
             }
             this.results.push(this.xNumbers[i] - this.yNumbers[i])
@@ -148,9 +152,11 @@ export default {
           for (let i = 0; i < 5; i++) {
 
             if (this.xNumbers[i] * this.yNumbers[i] != this.guess[i]) {
-              this.resultColor [i] = "solid red"
+              this.resultColor [i] = "solid red";
+              this.right.push(false);
             } else {
-              this.resultColor [i] = "solid green"
+              this.resultColor [i] = "solid green";
+              this.right.push(true);
               score++
             }
             this.results.push(this.xNumbers[i] * this.yNumbers[i])
@@ -165,9 +171,11 @@ export default {
           for (let i = 0; i < 5; i++) {
 
             if (this.xNumbers[i] / this.yNumbers[i] != this.guess[i]) {
-              this.resultColor [i] = "solid red"
+              this.resultColor [i] = "solid red";
+              this.right.push(false);
             } else {
-              this.resultColor [i] = "solid green"
+              this.resultColor [i] = "solid green";
+              this.right.push(true);
               score++
             }
             this.results.push(this.xNumbers[i] / this.yNumbers[i])
@@ -176,7 +184,7 @@ export default {
               color: this.resultColor[i]
             })
           }
-          this.score = score
+          this.score = score;
         }
         this.checked = true
       }
