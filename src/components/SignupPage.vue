@@ -1,12 +1,25 @@
 <template>
   <section>
     <h2>Registrera användare</h2>
-    <form id="signup-form" method="POST">
+    <form id="signup-form" method="POST" @submit.prevent="postData(postUrl)">
       <label for="username">Ange ett användarnamn:</label>
-      <input id="username" name="username" v-model="username" required/>
-      <p v-if="shortUsername">Användarnamnet måste vara minst 4 tecken!</p>
+      <input
+        id="username"
+        name="username"
+        v-model="username"
+        minlength="4"
+        maxlength="20"
+        required
+      />
       <label for="password">Ange ett lösenord:</label>
-      <input id="password" name="password" v-model="password" required/>
+      <input
+        id="password"
+        name="password"
+        v-model="password"
+        minlength="6"
+        maxlength="15"
+        required
+      />
       <input type="submit" value="Skicka" />
     </form>
   </section>
@@ -15,16 +28,32 @@
 <script>
 export default {
   name: "SignupPage",
-  data(){
-    return{
+  data() {
+    return {
       username: "",
       password: "",
-      shortUsername: false
-    }
-  }
+      postUrl: "http://localhost:3000/users/",
+    };
+  },
+  methods: {
+    postData: async function (url = "") {
+      const response = await fetch(url, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({
+          username: this.username,
+          password: this.password,
+        }),
+      });
+      return response.json();
+    },
+  },
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
