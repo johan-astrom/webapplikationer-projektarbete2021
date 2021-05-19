@@ -16,7 +16,7 @@
 
     <div id="nav">
       <router-link to="/" class="grid-item1">Home</router-link>
-      <router-link to="/quiz" class="grid-item">Starta Quiz</router-link>
+      <router-link  to="/quiz"  class="grid-item">Starta Quiz</router-link>
       <router-link to="/konto" class="grid-item3">Mitt konto</router-link>
     </div>
     <router-view />
