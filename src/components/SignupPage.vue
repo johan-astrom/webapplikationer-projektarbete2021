@@ -1,7 +1,7 @@
 <template>
   <section>
     <h2>Registrera användare</h2>
-    <form id="signup-form" method="POST" @submit.prevent="postData(postUrl)">
+    <form id="signup-form" method="POST" @submit.prevent="checkUsername()">
       <label for="username">Ange ett användarnamn:</label>
       <input
         id="username"
@@ -43,11 +43,22 @@ export default {
       username: "",
       password: "",
       passwordCheck: "",
-      postUrl: "http://localhost:3000/users/",
+      postUrl: "http://localhost:3000/users/"
     };
   },
   methods: {
-    postData: async function (url = "") {
+    checkUsername() {
+      if (
+        this.username.toLowerCase().includes("fuck") ||
+        this.username.toLowerCase().includes("snopp") ||
+        this.username.toLowerCase().includes("fan")
+      ) {
+        alert("Användarnamnet innehåller fula ord!");
+      } else {
+        this.postData(this.postUrl);
+      }
+    },
+    postData: async function(url = "") {
       const response = await fetch(url, {
         method: "POST",
         mode: "cors",
@@ -58,16 +69,17 @@ export default {
         referrerPolicy: "no-referrer",
         body: JSON.stringify({
           username: this.username,
-          password: this.password,
-        }),
+          password: this.password
+        })
       }).then((response) => {
-        if (response.status === 400){
-        alert("Användarnamnet är upptaget.");
-      }else{
+        if (response.status === 400) {
+          alert("Användarnamnet är upptaget.");
+        } else {
           return response.json();
-        }})
-    },
-  },
+        }
+      });
+    }
+  }
 };
 </script>
 
