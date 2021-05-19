@@ -131,9 +131,9 @@ export default {
           for (let i = 0; i < 5; i++) {
 
             if (this.xNumbers[i] - this.yNumbers[i] != this.guess[i]) {
-              this.resultColor[i] = "red"
+              this.resultColor[i] = "solid red"
             } else {
-              this.resultColor [i] = "green"
+              this.resultColor [i] = "solid green"
               score++
             }
             this.results.push(this.xNumbers[i] - this.yNumbers[i])
@@ -148,9 +148,9 @@ export default {
           for (let i = 0; i < 5; i++) {
 
             if (this.xNumbers[i] * this.yNumbers[i] != this.guess[i]) {
-              this.resultColor [i] = "red"
+              this.resultColor [i] = "solid red"
             } else {
-              this.resultColor [i] = "green"
+              this.resultColor [i] = "solid green"
               score++
             }
             this.results.push(this.xNumbers[i] * this.yNumbers[i])
@@ -165,9 +165,9 @@ export default {
           for (let i = 0; i < 5; i++) {
 
             if (this.xNumbers[i] / this.yNumbers[i] != this.guess[i]) {
-              this.resultColor [i] = "red"
+              this.resultColor [i] = "solid red"
             } else {
-              this.resultColor [i] = "green"
+              this.resultColor [i] = "solid green"
               score++
             }
             this.results.push(this.xNumbers[i] / this.yNumbers[i])
