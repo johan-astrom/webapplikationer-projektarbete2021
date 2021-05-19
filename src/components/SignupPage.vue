@@ -20,7 +20,17 @@
         maxlength="15"
         required
       />
-      <input type="submit" value="Skicka" />
+      <label for="password-check">Bekräfta ditt lösenord:</label>
+      <input
+        id="password-check"
+        name="password-check"
+        v-model="passwordCheck"
+        minlength="6"
+        maxlength="15"
+        required
+      />
+      <p v-if="passwordCheck!==password && passwordCheck">Lösenorden stämmer inte överens!</p>
+      <input type="submit" v-show="passwordCheck===password" value="Skicka" />
     </form>
   </section>
 </template>
@@ -32,6 +42,7 @@ export default {
     return {
       username: "",
       password: "",
+      passwordCheck: "",
       postUrl: "http://localhost:3000/users/",
     };
   },
@@ -60,4 +71,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.redButton {
+  background: red;
+}
+</style>
