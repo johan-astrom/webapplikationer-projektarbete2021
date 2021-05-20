@@ -12,13 +12,17 @@ const routes = [
     component: Home,
   },
   {
-    path: "/quiz",
-    name: "Quiz",
+    path: "/quizsettings",
+    name: "QuizSettings",
     component: () =>
       import("../views/Quiz.vue"),
   },
-
-
+  {
+    path: "/quiz",
+    name: "MainQuiz",
+    component: () =>
+      import("../views/MainQuiz.vue"),
+  },
   {
     path: "/konto",
     name: "Account",

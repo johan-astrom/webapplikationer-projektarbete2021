@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="grid_container_quiz">
     <article id="dropdowns">
       <b-dropdown class="dropdown" text="Addition" @show="setOperator('addition'), setSign('+')">
         <b-dropdown-item @click="setDifficulty('lätt')">Lätt</b-dropdown-item>
@@ -19,7 +19,7 @@
          '')">Svårt</b-dropdown-item>
       </b-dropdown>
     </article>
-    <button @click="displayQuiz">Starta quiz!</button>
+    <button><router-link to="/quiz">Starta quiz!</router-link></button>
   </section>
 </template>
 
@@ -35,15 +35,26 @@ export default {
     },
     setDifficulty(difficulty) {
       localStorage.setItem("difficulty", difficulty);
-    },
-    displayQuiz() {
-      this.$emit("showQuiz");
-    },
+    }
   },
 };
 </script>
 
 <style scoped>
+
+.grid_container_quiz{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2.0fr 2.0fr 2.0fr;
+  grid-template-areas:
+    "header header "
+    "footer footer";
+  grid-gap: 20px;
+  height: 100vh;
+  text-align: center;
+  font-family: "Comic Sans MS";
+
+}
 
 #dropdowns {
   display: flex;

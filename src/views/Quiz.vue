@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import QuizSettings from "@/components/QuizSettings";
-import MainQuiz from "@/components/MainQuiz";
+import QuizSettings from "@/views/QuizSettings";
+import MainQuiz from "@/views/MainQuiz";
 
 export default {
   name: "Quiz",
