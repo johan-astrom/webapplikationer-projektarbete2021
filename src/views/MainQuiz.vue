@@ -34,8 +34,6 @@
 </template>
 
 <script>
-import Quiz from "@/views/Quiz";
-
 
 export default {
   name: "MainQuiz",
