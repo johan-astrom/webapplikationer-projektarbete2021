@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       title: 'Kunskapsquizet',
-      loggedIn: '',
+      loggedIn: false,
       loggInText: '',
       name: '',
     }
