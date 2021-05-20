@@ -28,15 +28,12 @@ export default {
   name: "QuizSettings",
   methods: {
     setOperator(operator) {
-      this.$emit("setOperator", operator);
       localStorage.setItem("operator", operator);
     },
     setSign(sign){
-      this.$emit("setSign", sign);
       localStorage.setItem("sign", sign);
     },
     setDifficulty(difficulty) {
-      this.$emit("setDifficulty", difficulty);
       localStorage.setItem("difficulty", difficulty);
     },
     displayQuiz() {

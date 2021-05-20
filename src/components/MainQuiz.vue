@@ -53,15 +53,11 @@ export default {
       resultColor: [],
       checked: false,
       color: " solid red",
-      right: []
-
+      right: [],
+      operator: '',
+      sign: '',
+      difficulty: ''
     }
-  },
-  props: {
-    //Dessa två får sina värden från Quiz-komponenten
-    operator: String,
-    sign: String,
-    difficulty: String
   },
   computed: {
     xNumbers: function () {
@@ -191,6 +187,11 @@ export default {
       }
 
     }
+  },
+  mounted() {
+    this.operator = localStorage.getItem("operator");
+    this.sign = localStorage.getItem("sign");
+    this.difficulty = localStorage.getItem("difficulty");
   }
 }
 
