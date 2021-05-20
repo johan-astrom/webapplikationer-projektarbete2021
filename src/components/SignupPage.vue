@@ -1,9 +1,14 @@
 <template>
   <section>
+    <div class="signup_container">
     <h2>Registrera användare</h2>
+      <br>
+
     <form id="signup-form" method="POST" @submit.prevent="checkUsername()">
       <label for="username">Ange ett användarnamn:</label>
-      <input
+      <br>
+
+      <input class="signup_username_container"
         id="username"
         name="username"
         v-model="username"
@@ -11,8 +16,11 @@
         maxlength="20"
         required
       />
+      <br>
       <label for="password">Ange ett lösenord:</label>
-      <input
+      <br>
+
+      <input class="signup_password_container"
         type="password"
         id="password"
         name="password"
@@ -22,6 +30,7 @@
         required
       />
       <label for="password-check">Bekräfta ditt lösenord:</label>
+      <br>
       <input
         type="password"
         id="password-check"
@@ -32,8 +41,11 @@
         required
       />
       <p v-if="passwordCheck!==password && passwordCheck">Lösenorden stämmer inte överens!</p>
+      <br>
+      <br>
       <input type="submit" v-show="passwordCheck===password" value="Skicka" />
     </form>
+    </div>
   </section>
 </template>
 
@@ -88,5 +100,28 @@ export default {
 <style scoped>
 .redButton {
   background: red;
+}
+
+.signup_container{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2.0fr;
+  grid-template-areas:
+    "header header "
+    "signup_username_container signup_username_container"
+    "signup_password_container signup_password_container"
+    "footer footer";
+  grid-gap: 20px;
+  height: auto;
+  width: 35%;
+  text-align: center;
+  font-family: "Comic Sans MS";
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
+  margin: auto;
+  alignment: center;
+  background-color: #d6eef5;
+
 }
 </style>

@@ -1,8 +1,10 @@
 <template>
+  <body>
 <section>
   <SignupPage/>
   <LoginPage @user-login="login" />
 </section>
+  </body>
 </template>
 
 <script>
