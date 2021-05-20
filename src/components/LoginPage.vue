@@ -37,34 +37,20 @@ export default {
   },
   methods: {
     getUser() {
-      /*fetch(`http://localhost:3000/users/${this.username}`)
+      fetch(`http://localhost:3000/users/username/${this.username}`)
       .then((res) => res.json())
       .then(data => {
-        console.log("Användare:" + data.username);
-        console.log("Lösenord:" + data.password);
-        console.log("Id:" + data.userId);
-      }).catch(err => {
-        console.log("No such user!")
+        let user = data.users[0];
+        if (user.username === this.username){
+          if (user.password === this.password){
+            this.$emit("user-login");
+          }else {
+            alert("Felaktigt lösenord!");
+          }
+        }
+      }).catch(() => {
+        alert("Felaktigt användarnamn!")
       })
-    }
-  }*/
-      fetch(`http://localhost:3000/users/`)
-        .then((res) => res.json())
-        .then(data => {
-          let users = data.users;
-          users.forEach((user) => {
-            if (user.username === this.username) {
-              if (user.password === this.password) {
-                this.$emit("user-login");
-                console.log("Inloggad!");
-              } else {
-                alert("Felaktigt lösenord!");
-              }
-            } else {
-              alert("Felaktigt användarnamn!");
-            }
-          });
-        });
     }
   }
 };
