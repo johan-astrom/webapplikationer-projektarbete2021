@@ -1,7 +1,7 @@
 <template>
 <section>
   <SignupPage/>
-  <LoginPage/>
+  <LoginPage @user-login="login" />
 </section>
 </template>
 
@@ -10,7 +10,12 @@ import SignupPage from "@/components/SignupPage";
 import LoginPage from "@/components/LoginPage";
 export default {
   name: "Account",
-  components: { LoginPage, SignupPage }
+  components: { LoginPage, SignupPage },
+  methods: {
+    login(){
+      this.$emit("user-login-step2");
+    }
+  }
 };
 </script>
 

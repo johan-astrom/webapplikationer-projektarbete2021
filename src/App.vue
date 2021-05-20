@@ -19,7 +19,7 @@
       <router-link  to="/quiz"  class="grid-item">Starta Quiz</router-link>
       <router-link to="/konto" class="grid-item3">Mitt konto</router-link>
     </div>
-    <router-view />
+    <router-view @user-login-step2="login" />
   </div>
 
   <footer>
@@ -50,6 +50,9 @@ export default {
     },
     loggedInButtonTrue(){
       this.loggedIn = true;
+    },
+    login(){
+      this.loggedIn=true;
     }
   }
 }

@@ -55,7 +55,7 @@ export default {
           users.forEach((user) => {
             if (user.username === this.username) {
               if (user.password === this.password) {
-                //loginfunktionalitet
+                this.$emit("user-login");
                 console.log("Inloggad!");
               } else {
                 alert("Felaktigt lösenord!");
