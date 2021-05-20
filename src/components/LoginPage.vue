@@ -1,9 +1,13 @@
 <template>
   <section>
+    <div class="login_container">
     <h2>Logga in</h2>
+      <br>
+
     <form id="login-form" method="POST" @submit.prevent="getUser()">
       <label for="login-username">Ange ditt användarnamn:</label>
-      <input
+      <br>
+      <input class="username_container"
         id="login-username"
         name="username"
         v-model="username"
@@ -11,8 +15,10 @@
         maxlength="20"
         required
       />
+      <br>
       <label for="login-password">Ange ditt lösenord:</label>
-      <input
+      <br>
+      <input class="password_container"
         type="password"
         id="login-password"
         name="password"
@@ -21,8 +27,12 @@
         maxlength="15"
         required
       />
+      <br>
+      <br>
       <input type="submit" value="Logga in" />
+      <input type="submit" value="Registrera" />
     </form>
+    </div>
   </section>
 </template>
 
@@ -58,5 +68,26 @@ export default {
 </script>
 
 <style scoped>
+.login_container{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2.0fr;
+  grid-template-areas:
+    "header header "
+    "login_container login_container"
+    "password_containe password_containerr"
+    "footer footer";
+  grid-gap: 20px;
+  height: auto;
+  width: 35%;
+  text-align: center;
+  font-family: "Comic Sans MS";
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
+  margin: auto;
+  alignment: center;
+  background-color: #d6eef5;
 
+}
 </style>
