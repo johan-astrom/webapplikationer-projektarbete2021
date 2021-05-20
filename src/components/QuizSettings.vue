@@ -26,21 +26,18 @@
 <script>
 export default {
   name: "QuizSettings",
-  data() {
-    return {
-
-    };
-  },
   methods: {
-    //Dessa tre metoder skickar event till Quiz-componenten, för att ställa in variabler i dess data-block
     setOperator(operator) {
       this.$emit("setOperator", operator);
+      localStorage.setItem("operator", operator);
     },
     setSign(sign){
       this.$emit("setSign", sign);
+      localStorage.setItem("sign", sign);
     },
     setDifficulty(difficulty) {
       this.$emit("setDifficulty", difficulty);
+      localStorage.setItem("difficulty", difficulty);
     },
     displayQuiz() {
       this.$emit("showQuiz");
