@@ -60,6 +60,8 @@ export default {
               } else {
                 alert("Felaktigt lösenord!");
               }
+            } else {
+              alert("Felaktigt användarnamn!");
             }
           });
         });
