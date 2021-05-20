@@ -37,8 +37,6 @@
 
 export default {
   name: "MainQuiz",
-  // eslint-disable-next-line vue/no-unused-components
-  components: {Quiz},
   data() {
     return {
       x: [1, 1, 1, 1, 1],
