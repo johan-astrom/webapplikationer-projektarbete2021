@@ -1,14 +1,16 @@
 <template>
 <section>
   <SignupPage/>
+  <LoginPage/>
 </section>
 </template>
 
 <script>
 import SignupPage from "@/components/SignupPage";
+import LoginPage from "@/components/LoginPage";
 export default {
   name: "Account",
-  components: { SignupPage }
+  components: { LoginPage, SignupPage }
 };
 </script>
 

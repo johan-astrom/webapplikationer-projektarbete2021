@@ -1,0 +1,73 @@
+<template>
+  <section>
+    <h2>Logga in</h2>
+    <form id="signup-form" method="POST" @submit.prevent="getUser()">
+      <label for="username">Ange ditt användarnamn:</label>
+      <input
+        id="username"
+        name="username"
+        v-model="username"
+        minlength="4"
+        maxlength="20"
+        required
+      />
+      <label for="password">Ange ditt lösenord:</label>
+      <input
+        id="password"
+        name="password"
+        v-model="password"
+        minlength="6"
+        maxlength="15"
+        required
+      />
+      <input type="submit" value="Logga in" />
+    </form>
+  </section>
+</template>
+
+<script>
+export default {
+  name: "LoginPage",
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  methods: {
+    getUser() {
+      /*fetch(`http://localhost:3000/users/${this.username}`)
+      .then((res) => res.json())
+      .then(data => {
+        console.log("Användare:" + data.username);
+        console.log("Lösenord:" + data.password);
+        console.log("Id:" + data.userId);
+      }).catch(err => {
+        console.log("No such user!")
+      })
+    }
+  }*/
+      fetch(`http://localhost:3000/users/`)
+        .then((res) => res.json())
+        .then(data => {
+          let users = data.users;
+          users.forEach((user) => {
+            if (user.username === this.username) {
+              if (user.password === this.password) {
+                //loginfunktionalitet
+                console.log("Inloggad!");
+              } else {
+                alert("Felaktigt lösenord!");
+              }
+            }
+          });
+        });
+    }
+  }
+};
+
+</script>
+
+<style scoped>
+
+</style>
