@@ -19,6 +19,7 @@
          '')">Svårt</b-dropdown-item>
       </b-dropdown>
     </article>
+    <p v-if="!difficultySelected">Test</p>
     <router-link tag="button" to="/quiz" :disabled="!difficultySelected" >Starta quiz!</router-link>
   </section>
 </template>
@@ -26,9 +27,7 @@
 <script>
 export default {
   name: "QuizSettings",
-  props: {
-    difficultySelected: {}
-  },
+  props: ["difficultySelected"],
   methods: {
     setOperator(operator) {
       localStorage.setItem("operator", operator);

@@ -16,7 +16,10 @@
 
     <div id="nav">
       <router-link to="/" class="grid-item1">Home</router-link>
-      <router-link to="/quizsettings"  class="grid-item" @click.native="clearStorage">Starta Quiz</router-link>
+      <router-link to="/quizsettings"
+                   class="grid-item"
+                   @click.native="clearStorage"
+      :difficulty-selected="difficultySelected">Starta Quiz</router-link>
       <router-link to="/konto" class="grid-item3">Mitt konto</router-link>
     </div>
     <router-view @user-login-step2="login" />
@@ -42,6 +45,7 @@ export default {
       loggedIn: false,
       loggInText: '',
       name: '',
+      difficultySelected: false
     }
   },
   methods:{
