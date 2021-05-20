@@ -15,7 +15,7 @@ const routes = [
     path: "/quizsettings",
     name: "QuizSettings",
     component: () =>
-      import("../views/Quiz.vue"),
+      import("../views/QuizSettings.vue"),
   },
   {
     path: "/quiz",

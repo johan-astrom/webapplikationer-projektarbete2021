@@ -19,13 +19,16 @@
          '')">Svårt</b-dropdown-item>
       </b-dropdown>
     </article>
-    <button><router-link to="/quiz">Starta quiz!</router-link></button>
+    <router-link tag="button" to="/quiz" :disabled="!difficultySelected" >Starta quiz!</router-link>
   </section>
 </template>
 
 <script>
 export default {
   name: "QuizSettings",
+  props: {
+    difficultySelected: {}
+  },
   methods: {
     setOperator(operator) {
       localStorage.setItem("operator", operator);
@@ -35,8 +38,9 @@ export default {
     },
     setDifficulty(difficulty) {
       localStorage.setItem("difficulty", difficulty);
+      this.difficultySelected=true
     }
-  },
+  }
 };
 </script>
 
