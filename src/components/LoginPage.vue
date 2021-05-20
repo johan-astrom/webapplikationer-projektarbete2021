@@ -1,19 +1,20 @@
 <template>
   <section>
     <h2>Logga in</h2>
-    <form id="signup-form" method="POST" @submit.prevent="getUser()">
-      <label for="username">Ange ditt användarnamn:</label>
+    <form id="login-form" method="POST" @submit.prevent="getUser()">
+      <label for="login-username">Ange ditt användarnamn:</label>
       <input
-        id="username"
+        id="login-username"
         name="username"
         v-model="username"
         minlength="4"
         maxlength="20"
         required
       />
-      <label for="password">Ange ditt lösenord:</label>
+      <label for="login-password">Ange ditt lösenord:</label>
       <input
-        id="password"
+        type="password"
+        id="login-password"
         name="password"
         v-model="password"
         minlength="6"

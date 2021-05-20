@@ -13,6 +13,7 @@
       />
       <label for="password">Ange ett lösenord:</label>
       <input
+        type="password"
         id="password"
         name="password"
         v-model="password"
@@ -22,6 +23,7 @@
       />
       <label for="password-check">Bekräfta ditt lösenord:</label>
       <input
+        type="password"
         id="password-check"
         name="password-check"
         v-model="passwordCheck"
