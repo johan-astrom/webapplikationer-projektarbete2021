@@ -40,13 +40,13 @@
 
 <script>
 // @ is an alias to /src
-
+//import {loggedIn} from "../router/index"
 
 export default {
   name: "Home",
   data() {
     return {
-      loggedIn: false
+
     }
   },
   components: {

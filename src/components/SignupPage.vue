@@ -1,4 +1,5 @@
 <template>
+<Body>
   <section>
     <div class="signup_container">
     <h2>Registrera användare</h2>
@@ -29,6 +30,7 @@
         maxlength="15"
         required
       />
+      <br>
       <label for="password-check">Bekräfta ditt lösenord:</label>
       <br>
       <input
@@ -47,6 +49,7 @@
     </form>
     </div>
   </section>
+</Body>
 </template>
 
 <script>
