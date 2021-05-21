@@ -1,14 +1,13 @@
 <template>
   <body>
 <section>
-<!--  <SignupPage/>-->
   <LoginPage @user-login="login" />
 </section>
   </body>
 </template>
 
 <script>
-// import SignupPage from "@/components/SignupPage";
+
 import LoginPage from "@/components/LoginPage";
 export default {
   name: "Account",

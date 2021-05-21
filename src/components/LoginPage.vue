@@ -33,6 +33,15 @@
       <router-link tag="button" to="/components/SignupPage">Registrera</router-link>
     </form>
     </div>
+
+
+    <div class="Account_container">
+      <div>
+
+      </div>
+
+    </div>
+
   </section>
 </template>
 

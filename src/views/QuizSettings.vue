@@ -1,4 +1,5 @@
 <template>
+  <body>
   <section id="grid_container_quiz">
     <article id="dropdowns">
       <b-dropdown class="dropdown" text="Addition" @show="setOperator('addition'), setSign('+')">
@@ -23,6 +24,7 @@
     <p v-if="!difficultySelected">Test</p>
     <router-link tag="button" to="/quiz" :disabled="!difficultySelected">Starta quiz!</router-link>
   </section>
+  </body>
 </template>
 
 <script>

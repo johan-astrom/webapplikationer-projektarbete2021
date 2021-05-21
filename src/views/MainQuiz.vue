@@ -1,4 +1,5 @@
 <template>
+  <body>
   <section class="grid_container_mainquiz">
     <h1>Quiz!!</h1>
     <h2>Du har valt {{ operator }} och svårighetsgrad {{ difficulty }}</h2>
@@ -31,6 +32,7 @@
       </fieldset>
     </form>
   </section>
+  </body>
 </template>
 
 <script>

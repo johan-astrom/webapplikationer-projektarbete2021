@@ -1,8 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import loggedIn from "../App";
 
-
+Vue.component('loggedIn',loggedIn)
 Vue.use(VueRouter);
 
 const routes = [
@@ -34,7 +35,8 @@ const routes = [
     name: "SignupPage",
     component: ()=>
         import("../components/SignupPage.vue")
-  }
+  },
+
 ];
 
 const router = new VueRouter({
