@@ -16,28 +16,33 @@
       <b-dropdown class="dropdown" text="Multiplikation" @show="setOperator('multiplikation'), setSign('x')">
         <b-dropdown-item @click="setDifficulty('lätt')">Lätt</b-dropdown-item>
         <b-dropdown-item @click="setDifficulty('svårt' +
-         '')">Svårt</b-dropdown-item>
+         '')">Svårt
+        </b-dropdown-item>
       </b-dropdown>
     </article>
     <p v-if="!difficultySelected">Test</p>
-    <router-link tag="button" to="/quiz" :disabled="!difficultySelected" >Starta quiz!</router-link>
+    <router-link tag="button" to="/quiz" :disabled="!difficultySelected">Starta quiz!</router-link>
   </section>
 </template>
 
 <script>
 export default {
   name: "QuizSettings",
-  props: ["difficultySelected"],
+  data(){
+    return{
+      difficultySelected: false
+    }
+  },
   methods: {
     setOperator(operator) {
       localStorage.setItem("operator", operator);
     },
-    setSign(sign){
+    setSign(sign) {
       localStorage.setItem("sign", sign);
     },
     setDifficulty(difficulty) {
       localStorage.setItem("difficulty", difficulty);
-      this.difficultySelected=true
+      this.difficultySelected = true;
     }
   }
 };
@@ -45,7 +50,7 @@ export default {
 
 <style scoped>
 
-.grid_container_quiz{
+.grid_container_quiz {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 2.0fr 2.0fr 2.0fr;
@@ -64,7 +69,7 @@ export default {
   flex-direction: column;
 }
 
-.dropdown{
+.dropdown {
   width: 150px;
   align-self: center;
   margin-bottom: 15px;

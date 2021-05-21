@@ -4,13 +4,17 @@
   <div id="app">
 
     <header>
-    <div class="header_container">
-      <h1>{{ title }}</h1>
+      <div class="header_container">
+        <h1>{{ title }}</h1>
 
-    </div>
+      </div>
       <div class="logInButton">
-      <div class="buttonLogIn">  <button id="btnIn" v-if="loggedIn==true" v-on:click="loggedInButtonFalse">Logga ut</button></div>
-      <div class="buttonLogOut">  <button id="btnOut" v-if="loggedIn==false" v-on:click="loggedInButtonTrue">Logga in</button></div>
+        <div class="buttonLogIn">
+          <button id="btnIn" v-if="loggedIn==true" v-on:click="loggedInButtonFalse">Logga ut</button>
+        </div>
+        <div class="buttonLogOut">
+          <button id="btnOut" v-if="loggedIn==false" v-on:click="loggedInButtonTrue">Logga in</button>
+        </div>
       </div>
     </header>
 
@@ -19,20 +23,21 @@
       <router-link to="/quizsettings"
                    class="grid-item"
                    @click.native="clearStorage"
-      :difficulty-selected="difficultySelected">Starta Quiz</router-link>
+      >Starta Quiz
+      </router-link>
       <router-link to="/konto" class="grid-item3">Mitt konto</router-link>
     </div>
     <router-view @user-login-step2="login" />
   </div>
 
   <footer>
-      <div class="footer_list">
-    <ul>
-      <li><b>E-Mail: </b> info@info.se</li>
-      <li><b>Tel: </b> 08-000 000</li>
-      <li><b>Adress: </b> Stockholm, Sweden</li>
-    </ul>
-      </div>
+    <div class="footer_list">
+      <ul>
+        <li><b>E-Mail: </b> info@info.se</li>
+        <li><b>Tel: </b> 08-000 000</li>
+        <li><b>Adress: </b> Stockholm, Sweden</li>
+      </ul>
+    </div>
   </footer>
   </body>
   </html>
@@ -41,41 +46,41 @@
 export default {
   data() {
     return {
-      title: 'Kunskapsquizet',
+      title: "Kunskapsquizet",
       loggedIn: false,
-      loggInText: '',
-      name: '',
-      difficultySelected: false
-    }
+      loggInText: "",
+      name: ""
+    };
   },
-  methods:{
-    loggedInButtonFalse(){
+  methods: {
+    loggedInButtonFalse() {
       this.loggedIn = false;
     },
-    loggedInButtonTrue(){
+    loggedInButtonTrue() {
       this.loggedIn = true;
     },
-    login(){
-      this.loggedIn=true;
+    login() {
+      this.loggedIn = true;
     },
-    clearStorage(){
-      if(this.$route.name!="QuizSettings") {
+    clearStorage() {
+      if (this.$route.name != "QuizSettings") {
         localStorage.setItem("operator", ""),
           localStorage.setItem("sign", ""),
-          localStorage.setItem("difficulty", "")
+          localStorage.setItem("difficulty", "");
       }
     }
   }
-}
+};
 </script>
 
 <style>
-#app body{
+#app body {
   background-color: lightblue;
   padding: 30px;
 
 }
-.header_container{
+
+.header_container {
   border-color: black;
   border-style: solid;
   border-radius: 25px;
@@ -83,15 +88,18 @@ export default {
   margin: auto;
   background-color: #9f9ffa;
 }
-header{
+
+header {
   background-color: lightblue;
   padding-top: 20px;
 }
-.logInButton{
+
+.logInButton {
   text-align: right;
   padding-right: 15%;
 
 }
+
 #btnIn {
   background-color: red;
   border-color: black;
@@ -106,7 +114,7 @@ header{
   border-radius: 25px;
 }
 
- h1 {
+h1 {
   grid-area: header;
   font-family: "Comic Sans MS";
   font-size: 34px;
@@ -114,6 +122,7 @@ header{
   text-align: center;
 
 }
+
 #app {
   font-family: "Comic Sans MS";
   -webkit-font-smoothing: antialiased;
@@ -121,6 +130,7 @@ header{
   text-align: center;
 
 }
+
 #nav {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -129,7 +139,8 @@ header{
   color: black;
 
 }
-.grid-item1{
+
+.grid-item1 {
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   background-color: #9f9ffa;
@@ -140,10 +151,11 @@ header{
   border-style: solid;
   color: #2c3e50;
 }
-.grid-item3{
+
+.grid-item3 {
   border-bottom-right-radius: 25px;
   border-top-right-radius: 25px;
-  background-color:#9f9ffa;
+  background-color: #9f9ffa;
   padding: 20px;
   font-size: 20px;
   text-align: center;
@@ -151,6 +163,7 @@ header{
   border-style: solid;
   color: #2c3e50;
 }
+
 .grid-item {
   background-color: #9f9ffa;
 
@@ -171,13 +184,14 @@ header{
 #nav a:active {
   background-color: lightgreen;
   transition: all 0.3s ease 0s;
-  color: black
-;
+  color: black;
 }
-footer{
+
+footer {
   background-color: lightblue;
 }
-.footer_list{
+
+.footer_list {
   grid-area: footer;
   background-color: #9f9ffa;
   width: auto;
@@ -186,6 +200,7 @@ footer{
   border-style: solid;
   border-radius: 25px;
 }
+
 footer ul {
   grid-area: footer;
   flex-direction: row;
