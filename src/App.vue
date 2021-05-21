@@ -59,10 +59,11 @@ export default {
       this.loggedIn=true;
     },
     clearStorage(){
-      console.log("I clearStorage")
-      localStorage.setItem("operator", ""),
-      localStorage.setItem("sign", ""),
-      localStorage.setItem("difficulty", "")
+      if(this.$route.name!="QuizSettings") {
+        localStorage.setItem("operator", ""),
+          localStorage.setItem("sign", ""),
+          localStorage.setItem("difficulty", "")
+      }
     }
   }
 }

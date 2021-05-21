@@ -17,7 +17,7 @@
 
         </ul>
         <input v-if="!checked" type="submit" value="Calculate" :disabled="!validated">
-        <button   v-if="checked"  ><router-link to="/" >Nytt Quiz</router-link> </button>
+        <button   v-if="checked"  ><router-link to="/quizsettings" >Nytt quiz</router-link> </button>
 
         <!--      <p>{{ message }}</p>-->
         <p> Din lösning:
