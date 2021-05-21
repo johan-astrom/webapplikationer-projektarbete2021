@@ -22,7 +22,7 @@
       <router-link to="/" class="grid-item1">Home</router-link>
       <router-link to="/quizsettings"
                    class="grid-item"
-                   @click.native="clearStorage"
+
       >Starta Quiz
       </router-link>
       <router-link to="/konto" class="grid-item3">Mitt konto</router-link>
@@ -61,14 +61,14 @@ export default {
     },
     login() {
       this.loggedIn = true;
-    },
+    }/*,
     clearStorage() {
       if (this.$route.name != "QuizSettings") {
         localStorage.setItem("operator", ""),
             localStorage.setItem("sign", ""),
             localStorage.setItem("difficulty", "");
       }
-    }
+    }*/
   }
 };
 </script>
