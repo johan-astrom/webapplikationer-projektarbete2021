@@ -40,7 +40,7 @@
 
 <script>
 // @ is an alias to /src
-
+//import {loggedIn} from "/@/App.vue"
 
 export default {
   name: "Home",

@@ -30,13 +30,15 @@
       <br>
       <br>
       <input type="submit" value="Logga in" />
-      <input type="submit" value="Registrera" />
+      <router-link tag="button" to="/components/SignupPage">Registrera</router-link>
     </form>
     </div>
   </section>
 </template>
 
 <script>
+
+
 export default {
   name: "LoginPage",
   data() {
@@ -44,6 +46,9 @@ export default {
       username: "",
       password: ""
     };
+  },
+  components: {
+
   },
   methods: {
     getUser() {
