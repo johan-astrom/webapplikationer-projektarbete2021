@@ -17,7 +17,7 @@
 
         </ul>
         <input v-if="!checked" type="submit" value="Calculate" :disabled="!validated">
-        <button   v-if="checked"  ><router-link to="/" >Nytt Quiz</router-link> </button>
+        <button   v-if="checked"  ><router-link to="/quizsettings" >Nytt Quiz</router-link> </button>
 
         <!--      <p>{{ message }}</p>-->
         <p> Din lösning:
@@ -34,13 +34,9 @@
 </template>
 
 <script>
-import Quiz from "@/views/Quiz";
-
 
 export default {
   name: "MainQuiz",
-  // eslint-disable-next-line vue/no-unused-components
-  components: {Quiz},
   data() {
     return {
       x: [1, 1, 1, 1, 1],
@@ -53,16 +49,13 @@ export default {
       resultColor: [],
       checked: false,
       color: " solid red",
-      right: []
-
+      right: [],
+      operator: '',
+      sign:'',
+      difficulty: ''
     }
   },
-  props: {
-    //Dessa två får sina värden från Quiz-komponenten
-    operator: String,
-    sign: String,
-    difficulty: String
-  },
+
   computed: {
     xNumbers: function () {
 
@@ -191,8 +184,14 @@ export default {
       }
 
     }
+  },
+  mounted() {
+    this.operator = localStorage.getItem("operator");
+    this.sign = localStorage.getItem("sign");
+    this.difficulty = localStorage.getItem("difficulty");
   }
 }
+
 
 
 </script>

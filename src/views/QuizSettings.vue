@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="grid_container_quiz">
     <article id="dropdowns">
       <b-dropdown class="dropdown" text="Addition" @show="setOperator('addition'), setSign('+')">
         <b-dropdown-item @click="setDifficulty('lätt')">Lätt</b-dropdown-item>
@@ -15,45 +15,58 @@
       </b-dropdown>
       <b-dropdown class="dropdown" text="Multiplikation" @show="setOperator('multiplikation'), setSign('x')">
         <b-dropdown-item @click="setDifficulty('lätt')">Lätt</b-dropdown-item>
-        <b-dropdown-item @click="setDifficulty('svårt' +
-         '')">Svårt</b-dropdown-item>
+        <b-dropdown-item @click="setDifficulty('svårt' +'')">Svårt</b-dropdown-item>
       </b-dropdown>
     </article>
-    <button @click="displayQuiz">Starta quiz!</button>
+    <router-link tag="button" to="/quiz" :disabled="!difficultySelected">Starta quiz!</router-link>
   </section>
 </template>
 
 <script>
 export default {
   name: "QuizSettings",
+  props: ["difficultySelected"],
   methods: {
+
     setOperator(operator) {
-      this.$emit("setOperator", operator);
       localStorage.setItem("operator", operator);
     },
-    setSign(sign){
-      this.$emit("setSign", sign);
+    setSign(sign) {
       localStorage.setItem("sign", sign);
     },
     setDifficulty(difficulty) {
-      this.$emit("setDifficulty", difficulty);
       localStorage.setItem("difficulty", difficulty);
-    },
-    displayQuiz() {
-      this.$emit("showQuiz");
-    },
-  },
+      this.difficultySelected = true
+
+    }
+  }
+
 };
+
 </script>
 
 <style scoped>
+
+.grid_container_quiz {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2.0fr 2.0fr 2.0fr;
+  grid-template-areas:
+    "header header "
+    "footer footer";
+  grid-gap: 20px;
+  height: 100vh;
+  text-align: center;
+  font-family: "Comic Sans MS";
+}
+
 
 #dropdowns {
   display: flex;
   flex-direction: column;
 }
 
-.dropdown{
+.dropdown {
   width: 150px;
   align-self: center;
   margin-bottom: 15px;

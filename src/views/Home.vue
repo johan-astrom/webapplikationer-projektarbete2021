@@ -12,7 +12,7 @@
       <article class="left">
         <div>
           <!--Lägger in länken till quiz nedan när man trycker på "Starta quiz"-->
-          <router-link to="/quiz"><h2>Starta Quiz</h2></router-link>
+          <router-link to="/quizSettings"><h2>Starta Quiz</h2></router-link>
           <img src="../assets/math.jpg" alt="">
         </div>
 
