@@ -21,6 +21,7 @@ const routes = [
     path: "/quiz",
     name: "MainQuiz",
     component: () =>
+
         import("../views/MainQuiz.vue"),
   },
   {

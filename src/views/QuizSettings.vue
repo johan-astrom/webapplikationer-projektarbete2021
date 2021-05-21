@@ -18,6 +18,7 @@
         <b-dropdown-item @click="setDifficulty('svårt' +'')">Svårt</b-dropdown-item>
       </b-dropdown>
     </article>
+    <p v-if="!difficultySelected">Test</p>
     <router-link tag="button" to="/quiz" :disabled="!difficultySelected">Starta quiz!</router-link>
   </section>
 </template>
@@ -25,9 +26,12 @@
 <script>
 export default {
   name: "QuizSettings",
-  props: ["difficultySelected"],
+  data(){
+    return{
+      difficultySelected: false
+    }
+  },
   methods: {
-
     setOperator(operator) {
       localStorage.setItem("operator", operator);
     },
@@ -37,12 +41,9 @@ export default {
     setDifficulty(difficulty) {
       localStorage.setItem("difficulty", difficulty);
       this.difficultySelected = true
-
     }
   }
-
-};
-
+  };
 </script>
 
 <style scoped>
@@ -59,7 +60,6 @@ export default {
   text-align: center;
   font-family: "Comic Sans MS";
 }
-
 
 #dropdowns {
   display: flex;

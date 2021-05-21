@@ -17,7 +17,7 @@
 
         </ul>
         <input v-if="!checked" type="submit" value="Calculate" :disabled="!validated">
-        <button   v-if="checked"  ><router-link to="/quizsettings" >Nytt Quiz</router-link> </button>
+        <button   v-if="checked"  ><router-link to="/quizsettings" >Nytt quiz</router-link> </button>
 
         <!--      <p>{{ message }}</p>-->
         <p> Din lösning:
@@ -34,7 +34,6 @@
 </template>
 
 <script>
-
 export default {
   name: "MainQuiz",
   data() {
@@ -51,26 +50,22 @@ export default {
       color: " solid red",
       right: [],
       operator: '',
-      sign:'',
+      sign: '',
       difficulty: ''
     }
   },
-
   computed: {
     xNumbers: function () {
-
       return this.x.map((x) => {
         if (this.difficulty == 'lätt') {
           return x * (Math.round(Math.random() * 10))
         } else {
           return x * (Math.round(Math.random() * 100))
         }
-
       });
     },
     yNumbers: function () {
       return this.y.map((y) => {
-
         if (this.difficulty == 'lätt') {
           return y * (Math.round(Math.random() * 10))
         } else {
@@ -91,25 +86,18 @@ export default {
       return false
     }
   },
-
   methods: {
-
     check: function () {
-     // this.showQuiz = false;
+      // this.showQuiz = false;
       if (this.checked == false) {
-
         this.guess1 = []
         this.results = []
         if (this.operator == 'addition') {
           let score = 0
-
           for (let i = 0; i < 5; i++) {
-
             if (this.xNumbers[i] + this.yNumbers[i] != this.guess[i]) {
-
               this.resultColor[i] = "solid red";
               this.right.push(false);
-
             } else {
               this.resultColor[i] = "solid green"
               this.right.push(true);
@@ -125,7 +113,6 @@ export default {
         } else if (this.operator == 'subtraktion') {
           let score = 0
           for (let i = 0; i < 5; i++) {
-
             if (this.xNumbers[i] - this.yNumbers[i] != this.guess[i]) {
               this.resultColor[i] = "solid red";
               this.right.push(false);
@@ -144,7 +131,6 @@ export default {
         } else if (this.operator == 'multiplikation') {
           let score = 0;
           for (let i = 0; i < 5; i++) {
-
             if (this.xNumbers[i] * this.yNumbers[i] != this.guess[i]) {
               this.resultColor [i] = "solid red";
               this.right.push(false);
@@ -163,7 +149,6 @@ export default {
         } else {
           let score = 0;
           for (let i = 0; i < 5; i++) {
-
             if (this.xNumbers[i] / this.yNumbers[i] != this.guess[i]) {
               this.resultColor [i] = "solid red";
               this.right.push(false);
@@ -182,7 +167,6 @@ export default {
         }
         this.checked = true
       }
-
     }
   },
   mounted() {
@@ -191,13 +175,9 @@ export default {
     this.difficulty = localStorage.getItem("difficulty");
   }
 }
-
-
-
 </script>
 
 <style scoped>
-
 ul li{
   list-style-type: none;
 }
@@ -215,5 +195,3 @@ ul li{
   font-family: "Comic Sans MS";
 }
 </style>
-
-
