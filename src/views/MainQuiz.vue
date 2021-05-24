@@ -7,11 +7,12 @@
     <form @submit="check">
       <fieldset>
         <ul>
-          <li v-for="n in 5" :key="n">
+          <li v-for='n in 5' :key='n' >
             <p> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} </p>
             <input
+                :disabled="checked"
                 class="field"
-                v-model="guess[n-1]"
+                v-model='guess[n-1]'
                 v-bind:style="{border:resultColor[n-1]}"
             >
             <p v-if="right[n-1]==false">Rätt svar {{ results[n - 1] }}</p>
@@ -22,17 +23,15 @@
         <button v-if="checked">
           <router-link to="/quizsettings">Nytt quiz</router-link>
         </button>
-        <button v-if="checked" @click="reload">
-          <router-link to="/quiz">spela om</router-link>
+
+        <button  style="margin: 10px"   v-if="checked" @click="reload">
+          <router-link to="/quiz"> spela om</router-link>
         </button>
+
         <!--      <p>{{ message }}</p>-->
-        <p> Din lösning:
-          <span
-              v-for="(guess,index) in guess1"
-              v-bind:key="index"
-              v-bind:number="guess.number"
-          >{{ guess1[index].number }} </span>, poäng: {{ score }}</p>
-        <p>Korrekta svar:{{ results }}</p>
+        <p  v-if="checked"> Din lösning:
+          <span>{{ guess1}}  </span>, poäng: {{ score }}</p>
+        <p v-if="checked">Korrekta svar:{{ results }}</p>
         <p v-if="checked"> Test completed</p>
       </fieldset>
     </form>
@@ -49,11 +48,8 @@ export default {
     return {
       y: [1, 1, 1, 1, 1],
       /*x: [1, 1, 1, 1, 1],*/
-
-
-
       message: "",
-      guess: ['', '', '', '', ''],
+      guess: [],
       guess1: [],
       results: [],
       score: 0,
@@ -115,17 +111,17 @@ export default {
         let x = new Set();
         if (this.difficulty == 'lätt') {
 
-          while(x.size != 5){
-              x.add(Math.floor(Math.random() * 10) + 1)
-            }
-        }else{
+          while (x.size != 5) {
+            x.add(Math.floor(Math.random() * 10) + 1)
+          }
+        } else {
 
-          while(x.size !=5){
-            x.add(Math.ceil(Math.random() * 90+10))
+          while (x.size != 5) {
+            x.add(Math.ceil(Math.random() * 90 + 10))
             //x.add(this.getRandomInt(10,100));
           }
         }
-        let array=Array.from(x);
+        let array = Array.from(x);
         //let array=[...x];
         //x.forEach(value => array.push(value))
         return array;
@@ -164,7 +160,7 @@ export default {
     validated: function () {
       let counter = 0
       for (let i = 0; i < 5; i++) {
-        if (this.guess[i] != '') {
+        if (this.guess[i] != null) {
           counter++
         }
       }
@@ -197,10 +193,7 @@ export default {
               score++
             }
             this.results.push(this.xNumbers[i] + this.yNumbers[i])
-            this.guess1.push({
-              number: this.guess[i],
-              color: this.resultColor[i]
-            })
+            this.guess1.push(this.guess[i])
           }
           this.score = score
         } else if (this.operator == 'subtraktion') {
@@ -215,10 +208,7 @@ export default {
               score++
             }
             this.results.push(this.xNumbers[i] - this.yNumbers[i])
-            this.guess1.push({
-              number: this.guess[i],
-              color: this.resultColor[i]
-            })
+            this.guess1.push(this.guess[i])
           }
           this.score = score;
         } else if (this.operator == 'multiplikation') {
@@ -233,10 +223,7 @@ export default {
               score++
             }
             this.results.push(this.xNumbers[i] * this.yNumbers[i])
-            this.guess1.push({
-              number: this.guess[i],
-              color: this.resultColor[i]
-            })
+            this.guess1.push(this.guess[i])
           }
           this.score = score
         } else {
@@ -251,10 +238,7 @@ export default {
               score++
             }
             this.results.push(this.xNumbers[i] / this.yNumbers[i])
-            this.guess1.push({
-              number: this.guess[i],
-              color: this.resultColor[i]
-            })
+            this.guess1.push(this.guess[i])
           }
           this.score = score;
         }
