@@ -7,19 +7,24 @@
     <form @submit="check">
       <fieldset>
         <ul>
-          <li  v-for="n in 5" :key="n">
+          <li v-for="n in 5" :key="n">
             <p> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} </p>
             <input
                 class="field"
                 v-model="guess[n-1]"
                 v-bind:style="{border:resultColor[n-1]}"
-            > <p v-if="right[n-1]==false">Rätt svar {{ results[n-1]}}</p>
+            >
+            <p v-if="right[n-1]==false">Rätt svar {{ results[n - 1] }}</p>
           </li>
 
         </ul>
         <input v-if="!checked" type="submit" value="Calculate" :disabled="!validated">
-        <button   v-if="checked"  ><router-link to="/quizsettings" >Nytt quiz</router-link> </button>
-
+        <button v-if="checked">
+          <router-link to="/quizsettings">Nytt quiz</router-link>
+        </button>
+        <button v-if="checked" @click="reload">
+          <router-link to="/quiz">spela om</router-link>
+        </button>
         <!--      <p>{{ message }}</p>-->
         <p> Din lösning:
           <span
@@ -36,12 +41,17 @@
 </template>
 
 <script>
+
 export default {
   name: "MainQuiz",
+
   data() {
     return {
-      x: [1, 1, 1, 1, 1],
       y: [1, 1, 1, 1, 1],
+      /*x: [1, 1, 1, 1, 1],*/
+
+
+
       message: "",
       guess: ['', '', '', '', ''],
       guess1: [],
@@ -53,27 +63,103 @@ export default {
       right: [],
       operator: '',
       sign: '',
-      difficulty: ''
+      difficulty: '',
+
     }
   },
   computed: {
+
+
+    yDivEasy: function () {
+
+      let y = [];
+      while (y.length < 5) {
+        let r = (Math.floor(Math.random() * 10) + 1);
+        if (y.indexOf(r) == -1) y.push(r);
+      }
+      /*let y1 = new Set();
+      while(y.size != 5){
+        y.add(Math.floor(Math.random() * 10) + 1);*/
+
+      return y;
+    },
+    xDivEasy: function () {
+      let x = [];
+      for (let i = 0; i < 5; i++) {
+        x.push((Math.floor(Math.random() * 10) + 1) * this.yDivEasy[i]);
+      }
+      return x;
+    },
+    yDivDifficult: function () {
+      let y = [];
+      while (y.length < 5) {
+        let r = (Math.floor(Math.random() * 100) + 1);
+        if (y.indexOf(r) == -1) y.push(r);
+      }
+      return y;
+    },
+    xDivDifficult: function () {
+      let x = [];
+      for (let i = 0; i < 5; i++) {
+        x.push((Math.floor(Math.random() * 100) + 1) * this.yDivDifficult[i]);
+      }
+      return x;
+    },
     xNumbers: function () {
-      return this.x.map((x) => {
+
+      if (this.operator == 'division' && this.difficulty == 'lätt') {
+        return this.xDivEasy;
+      } else if (this.operator == 'division' && this.difficulty == 'svårt') {
+        return this.xDivDifficult
+      } else {
+        let x = new Set();
         if (this.difficulty == 'lätt') {
-          return x * (Math.round(Math.random() * 10))
-        } else {
-          return x * (Math.round(Math.random() * 100))
+
+          while(x.size != 5){
+              x.add(Math.floor(Math.random() * 10) + 1)
+            }
+        }else{
+
+          while(x.size !=5){
+            x.add(Math.ceil(Math.random() * 90+10))
+            //x.add(this.getRandomInt(10,100));
+          }
         }
-      });
+        let array=Array.from(x);
+        //let array=[...x];
+        //x.forEach(value => array.push(value))
+        return array;
+
+        /*return this.x.map((x) => {
+
+          if (this.difficulty == 'lätt') {
+             x = (Math.floor(Math.random() * 10) + 1);
+            if (this.x.indexOf(x) == -1) {
+              return x
+            } else {
+              return x * (Math.round(Math.random() * 100))
+            }
+          }
+        }
+        );*/
+      }
     },
     yNumbers: function () {
-      return this.y.map((y) => {
-        if (this.difficulty == 'lätt') {
-          return y * (Math.round(Math.random() * 10))
-        } else {
-          return y * (Math.round(Math.random() * 100))
-        }
-      });
+
+      if (this.operator == 'division' && this.difficulty == 'lätt') {
+        return this.yDivEasy;
+      } else if (this.operator == 'division' && this.difficulty == 'svårt') {
+        return this.yDivDifficult
+      } else {
+        return this.y.map((y) => {
+          if (this.difficulty == 'lätt') {
+            return y * ((Math.floor(Math.random() * 10)) + 1)
+          } else {
+            return y * (Math.round(Math.random() * 100))
+          }
+
+        });
+      }
     },
     validated: function () {
       let counter = 0
@@ -89,7 +175,12 @@ export default {
     }
   },
   methods: {
+
+    reload: function () {
+      this.$router.go(this.$router.currentRoute)
+    },
     check: function () {
+
       // this.showQuiz = false;
       if (this.checked == false) {
         this.guess1 = []
@@ -180,9 +271,10 @@ export default {
 </script>
 
 <style scoped>
-ul li{
+ul li {
   list-style-type: none;
 }
+
 .grid_container_mainquiz {
   display: grid;
   grid-template-columns: 1fr;
