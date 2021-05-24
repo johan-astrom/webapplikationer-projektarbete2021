@@ -47,6 +47,8 @@
       <br>
       <input type="submit" v-show="passwordCheck===password" value="Skicka" />
     </form>
+      <br>
+      <p>Har du redan ett konto? Tryck <router-link to="/components/LoginPage"> här</router-link> för att logga in</p>
     </div>
   </section>
 </Body>
