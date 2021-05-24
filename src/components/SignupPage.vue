@@ -127,4 +127,9 @@ export default {
   background-color: #d6eef5;
 
 }
+
+body{
+  width: auto;
+  height: 600px;
+}
 </style>

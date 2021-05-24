@@ -19,8 +19,9 @@
         <b-dropdown-item @click="setDifficulty('svårt' +'')">Svårt</b-dropdown-item>
       </b-dropdown>
     </article>
-    <p v-if="!difficultySelected">Test</p>
-    <router-link tag="button" to="/quiz" :disabled="!difficultySelected">Starta quiz!</router-link>
+<!--    <p v-if="!difficultySelected">Test</p>-->
+    <br>
+    <router-link class="start_button" tag="button" to="/quiz" :disabled="!difficultySelected">Starta quiz!</router-link>
   </section>
   </body>
 </template>
@@ -72,6 +73,13 @@ export default {
   width: 150px;
   align-self: center;
   margin-bottom: 15px;
+}
+
+button{
+  height: 20%;
+  width: 20%;
+  display: block;
+  margin: 0 auto;
 }
 
 

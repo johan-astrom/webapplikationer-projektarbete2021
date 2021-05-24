@@ -1,4 +1,5 @@
 <template>
+  <body>
   <section>
     <div class="login_container">
     <h2>Logga in</h2>
@@ -43,6 +44,7 @@
     </div>
 
   </section>
+  </body>
 </template>
 
 <script>
@@ -103,5 +105,10 @@ export default {
   alignment: center;
   background-color: #d6eef5;
 
+}
+
+body{
+  width: auto;
+  height: 600px;
 }
 </style>
