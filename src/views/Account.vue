@@ -1,6 +1,7 @@
 <template>
   <body>
 <section>
+<!--  <ProfileInfo v-if="loggedIn==true"></ProfileInfo>-->
   <LoginPage @user-login="login" />
 </section>
   </body>
@@ -9,8 +10,12 @@
 <script>
 
 import LoginPage from "@/components/LoginPage";
+// import ProfileInfo from "@/components/ProfileInfo";
 export default {
   name: "Account",
+  // props:{
+  //   loggedIn: Boolean
+  // },
   components: { LoginPage  },
   methods: {
     login(){

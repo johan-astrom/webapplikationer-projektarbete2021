@@ -44,6 +44,9 @@
 
 export default {
   name: "Home",
+  props: {
+  loggedIn: Boolean
+},
   data() {
     return {
 
