@@ -13,7 +13,7 @@
           <button id="btnIn" v-if="loggedIn==true" v-on:click="loggedInButtonFalse">Logga ut</button>
         </div>
         <div class="buttonLogOut">
-          <button id="btnOut" v-if="loggedIn==false" v-on:click="loggedInButtonTrue">Logga in</button>
+          <button id="btnOut" v-if="loggedIn==false" v-on:click="goToAccount()">Logga in</button>
         </div>
       </div>
     </header>
@@ -61,14 +61,10 @@ export default {
     },
     login() {
       this.loggedIn = true;
-    }/*,
-    clearStorage() {
-      if (this.$route.name != "QuizSettings") {
-        localStorage.setItem("operator", ""),
-            localStorage.setItem("sign", ""),
-            localStorage.setItem("difficulty", "");
-      }
-    }*/
+    },
+    goToAccount(){
+      this.$router.push({name: 'Account'});
+    }
   }
 };
 </script>
