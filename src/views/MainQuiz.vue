@@ -278,14 +278,16 @@ ul li {
 .grid_container_mainquiz {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 2.0fr 2.0fr 2.0fr;
+  grid-template-rows: 1.0fr 1.0fr 7.0fr;
   grid-template-areas:
     "header "
     "main"
     "footer ";
   grid-gap: 20px;
-  height: 70vh;
+  height: 100vh;
   text-align: center;
   font-family: "Comic Sans MS";
 }
+
+
 </style>
