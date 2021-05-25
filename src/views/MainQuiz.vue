@@ -21,11 +21,11 @@
         </ul>
         <input v-if="!checked" type="submit" value="Calculate" :disabled="!validated">
         <button v-if="checked">
-          <router-link to="/quizsettings">Nytt quiz</router-link>
+          <router-link class="button_style" to="/quizsettings">Nytt quiz</router-link>
         </button>
 
         <button  style="margin: 10px"   v-if="checked" @click="reload">
-          <router-link to="/quiz"> spela om</router-link>
+          <router-link class="button_style" to="/quiz"> spela om</router-link>
         </button>
 
         <!--      <p>{{ message }}</p>-->
@@ -255,6 +255,10 @@ export default {
 </script>
 
 <style scoped>
+.button_style {
+  text-decoration: none;
+  color: black;
+}
 ul li {
   list-style-type: none;
 }
