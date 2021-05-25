@@ -84,6 +84,7 @@ export default {
 </script>
 
 <style scoped>
+
 .login_container{
   display: grid;
   grid-template-columns: 1fr;

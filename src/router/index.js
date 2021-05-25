@@ -38,6 +38,18 @@ const routes = [
         component: () =>
             import("../components/SignupPage.vue")
     },
+    {
+        path: "/components/LoginPage",
+        name: "LoginPage",
+        component: () =>
+            import("../components/LoginPage.vue")
+    },
+    {
+        path: "/components/ProfileInfo",
+        name: "ProfileInfo",
+        component: () =>
+            import("../components/ProfileInfo.vue")
+    },
 
 ];
 
