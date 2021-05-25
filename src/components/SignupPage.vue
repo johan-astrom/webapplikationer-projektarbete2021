@@ -90,6 +90,8 @@ export default {
         })
       }).then((response) => {
         if (response.status === 400) {
+          console.log(response)
+          console.log(response.status)
           alert("Användarnamnet är upptaget.");
         } else {
           return response.json();
