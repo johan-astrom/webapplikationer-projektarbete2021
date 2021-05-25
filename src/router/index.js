@@ -45,12 +45,11 @@ const routes = [
             import("../components/LoginPage.vue")
     },
     {
-        path: "/components/ProfileInfo",
+        path: "/ProfileInfo",
         name: "ProfileInfo",
         component: () =>
-            import("../components/ProfileInfo.vue")
-    },
-
+            import("../views/ProfileInfo.vue")
+    }
 ];
 
 const router = new VueRouter({

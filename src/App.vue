@@ -20,14 +20,11 @@
 
     <div id="nav">
       <router-link to="/" class="grid-item1">Home</router-link>
-      <router-link to="/quizsettings"
-                   class="grid-item"
-
-      >Starta Quiz
-      </router-link>
-      <router-link to="/konto" class="grid-item3">Mitt konto</router-link>
+      <router-link to="/quizsettings" class="grid-item">Starta Quiz</router-link>
+      <router-link v-if="loggedIn==false" to="/konto" class="grid-item3">Mitt konto</router-link>
+      <router-link v-if="loggedIn==true" to="/ProfileInfo" class="grid-item3">Mitt konto</router-link>
     </div>
-    <router-view @user-login-step2="login" />
+    <router-view @user-login-step2="login"/>
   </div>
 
   <footer>
@@ -62,7 +59,7 @@ export default {
     login() {
       this.loggedIn = true;
     },
-    goToAccount(){
+    goToAccount() {
       this.$router.push({name: 'Account'});
     }
   }
@@ -74,6 +71,7 @@ export default {
   background-color: lightblue;
   padding: 30px;
 }
+
 .header_container {
   border-color: black;
   border-style: solid;
@@ -82,26 +80,31 @@ export default {
   margin: auto;
   background-color: #9f9ffa;
 }
+
 header {
   background-color: lightblue;
   padding-top: 20px;
 }
+
 .logInButton {
   text-align: right;
   padding-right: 15%;
 }
+
 #btnIn {
   background-color: red;
   border-color: black;
   border-style: solid;
   border-radius: 25px;
 }
+
 #btnOut {
   background-color: forestgreen;
   border-color: black;
   border-style: solid;
   border-radius: 25px;
 }
+
 h1 {
   grid-area: header;
   font-family: "Comic Sans MS";
@@ -109,12 +112,14 @@ h1 {
   color: black;
   text-align: center;
 }
+
 #app {
   font-family: "Comic Sans MS";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+
 #nav {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -122,6 +127,7 @@ h1 {
   padding: 10px;
   color: black;
 }
+
 .grid-item1 {
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
@@ -133,6 +139,7 @@ h1 {
   border-style: solid;
   color: #2c3e50;
 }
+
 .grid-item3 {
   border-bottom-right-radius: 25px;
   border-top-right-radius: 25px;
@@ -144,6 +151,7 @@ h1 {
   border-style: solid;
   color: #2c3e50;
 }
+
 .grid-item {
   background-color: #9f9ffa;
   padding: 20px;
@@ -153,19 +161,23 @@ h1 {
   border-style: solid;
   color: #2c3e50;
 }
+
 #nav a:hover {
   background-color: yellow;
   transition: all 0.3s ease 0s;
   color: black;
 }
+
 #nav a:active {
   background-color: lightgreen;
   transition: all 0.3s ease 0s;
   color: black;
 }
+
 footer {
   background-color: lightblue;
 }
+
 .footer_list {
   grid-area: footer;
   background-color: #9f9ffa;
@@ -175,6 +187,7 @@ footer {
   border-style: solid;
   border-radius: 25px;
 }
+
 footer ul {
   grid-area: footer;
   flex-direction: row;

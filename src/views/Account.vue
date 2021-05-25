@@ -1,7 +1,7 @@
 <template>
   <body>
 <section>
-<!--  <ProfileInfo v-if="loggedIn==true"></ProfileInfo>-->
+<!--  <ProfileInfo></ProfileInfo>-->
   <LoginPage @user-login="login" />
 </section>
   </body>
@@ -20,7 +20,7 @@ export default {
   methods: {
     login(){
       this.$emit("user-login-step2");
-    }
+    },
   }
 };
 </script>
