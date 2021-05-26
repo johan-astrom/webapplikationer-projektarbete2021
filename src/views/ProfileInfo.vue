@@ -5,7 +5,9 @@
       <b-card class="card" no-body>
         <b-tabs pills card vertical>
           <b-tab title="Visa Resultat" active>
-            <b-card-text>Tab contents 1</b-card-text>
+            <b-card-text>
+              <h3>Tidigare resultat:</h3>
+            </b-card-text>
           </b-tab>
 
             <b-tab title="Ändra Lösenord">
@@ -45,10 +47,17 @@
             </b-tab>
 
             <b-tab title="Ta bort Konto">
-              <b-card-text>Tab contents 3</b-card-text>
+              <b-card-text>
+                <h4>Är du säker på att du vill radera ditt konto?</h4>
+              </b-card-text>
             </b-tab>
-            <b-tab v-on:click="logout" title="Logga Ut">
-              <b-card-text>Logga ut</b-card-text>
+            <b-tab title="Logga Ut">
+              <b-card-text>
+                <h4>Är du säker på att du vill logga ut?</h4>
+
+                <input type="submit" value="OK" v-on:click="logout"/>
+
+              </b-card-text>
             </b-tab>
         </b-tabs>
       </b-card>
@@ -73,18 +82,9 @@ export default {
   },
 
   methods: {
-    showResult() {
-
-    },
-    changePassword() {
-
-
-    },
-    deleteAccount() {
-
-    },
     logout() {
-      this.$emit("user-login-step3");
+      this.loggedIn =localStorage.removeItem("loggedIn");
+
     },
     checkUsername() {
         this.postData(this.postUrl);
@@ -109,6 +109,7 @@ export default {
     },
 
   }
+
 };
 </script>
 
@@ -122,7 +123,7 @@ export default {
     "Profile_Container"
     "footer footer";
   grid-gap: 20px;
-  height: 100vh;
+  height: 55vh;
   text-align: center;
   font-family: "Comic Sans MS";
 }
@@ -163,7 +164,7 @@ b-tab {
   border-radius: 25px;
 }
 
-Visa Resultat active {
+active {
   background-color: mediumslateblue;;
 }
 

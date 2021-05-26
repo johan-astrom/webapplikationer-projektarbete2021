@@ -137,6 +137,6 @@ export default {
 
 body{
   width: auto;
-  height: 600px;
+  height: 65vh;
 }
 </style>

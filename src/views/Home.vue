@@ -3,15 +3,10 @@
     <html>
 
     <body>
-    <!--navigation_links ska hamna brevid varandra-->
-    <div class=" navigation_links">
-
-    </div>
-
     <main class="grid_container">
       <article class="left">
         <div>
-          <!--Lägger in länken till quiz nedan när man trycker på "Starta quiz"-->
+
           <router-link to="/quizSettings"><h2>Starta Quiz</h2></router-link>
           <img src="../assets/math.jpg" alt="">
         </div>
@@ -20,18 +15,15 @@
 
       <article class="right">
         <div>
-          <!--Lägger in länkar till sign up/log in nedan när man trycker på respektive knapp-->
-          <!--Är man redan inloggad står det: Välkommen "Namnet på personen"-->
-          <router-link v-if="loggedIn==true" to="/ProfileInfo" > <h2>Välkommen</h2></router-link>
-          <router-link v-if="loggedIn==false" to="/konto"><h2>Logga in/ Registrera</h2></router-link>
+          <router-link v-if="loggedIn" to="/ProfileInfo" > <h2>Välkommen</h2></router-link>
+
+          <router-link v-if="!loggedIn" to="/konto"><h2>Logga in/ Registrera</h2></router-link>
 
           <img src="../assets/kugghjul.jpg" alt="">
         </div>
       </article>
     </main>
 
-
-    <!--listan i footer ska hamna brevid varandra-->
     </body>
     </html>
 
@@ -42,14 +34,12 @@
 // @ is an alias to /src
 //import {loggedIn} from "../router/index"
 
+
 export default {
   name: "Home",
-  props: {
-  loggedIn: Boolean
-},
   data() {
     return {
-
+      loggedIn:localStorage.getItem('loggedIn')
     }
   },
   components: {
@@ -73,7 +63,7 @@ export default {
     "left right"
     "footer footer";
   grid-gap: 20px;
-  height: 100vh;
+  height: 55vh;
   text-align: center;
   font-family: "Comic Sans MS";
 }
