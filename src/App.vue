@@ -10,10 +10,10 @@
       </div>
       <div class="logInButton">
         <div class="buttonLogIn">
-          <button id="btnIn" v-if="loggedIn==true" v-on:click="loggedInButtonFalse">Logga ut</button>
+          <button id="btnIn" v-if="loggedIn" v-on:click="loggedInButtonFalse">Logga ut</button>
         </div>
         <div class="buttonLogOut">
-          <button id="btnOut" v-if="loggedIn==false" v-on:click="goToAccount()">Logga in</button>
+          <button id="btnOut" v-if="!loggedIn" v-on:click="goToAccount()">Logga in</button>
         </div>
       </div>
     </header>
@@ -21,8 +21,8 @@
     <div id="nav">
       <router-link to="/" class="grid-item1">Home</router-link>
       <router-link to="/quizsettings" class="grid-item">Starta Quiz</router-link>
-      <router-link v-if="loggedIn==false" to="/konto" class="grid-item3">Mitt konto</router-link>
-      <router-link v-if="loggedIn==true" to="/ProfileInfo" class="grid-item3">Mitt konto</router-link>
+      <router-link v-if="!loggedIn" to="/konto" class="grid-item3">Mitt konto</router-link>
+      <router-link v-if="loggedIn" to="/ProfileInfo" class="grid-item3">Mitt konto</router-link>
     </div>
 
     <router-view @user-login-step3="login2"  @user-login-step2="login" :activeUser="activeUser"/>
@@ -46,22 +46,21 @@ export default {
   data() {
     return {
       title: "Kunskapsquizet",
-      loggedIn: false,
       loggInText: "",
       name: "",
-      activeUser: {}
+      activeUser: {},
+      loggedIn:localStorage.getItem('loggedIn')
     };
   },
   methods: {
     loggedInButtonFalse() {
-      this.loggedIn = false;
+      this.loggedIn = "";
+      localStorage.setItem("loggedIn","")
     },
 
-    loggedInButtonTrue() {
-      this.loggedIn = true;
-    },
     login(user) {
-      this.loggedIn = true;
+      localStorage.setItem("loggedIn","true");
+      this.loggedIn="true";
       this.activeUser.userId = user.userId
       this.activeUser.username = user.username
       console.log(this.activeUser)

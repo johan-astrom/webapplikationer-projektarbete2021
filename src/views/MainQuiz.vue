@@ -45,8 +45,6 @@ export default {
   name: "MainQuiz",
   props: {
     activeUser: {type: Object},
-    loggedIn: {type: Boolean}
-
   },
   data() {
     return {
@@ -66,6 +64,7 @@ export default {
       operator: '',
       sign: '',
       difficulty: '',
+      loggedIn:""
 
     }
   },
@@ -250,8 +249,9 @@ export default {
         }
         this.checked = true
       }
-
+     if(this.loggedIn){
       this.postData()
+     }
     },
     postData: async function () {
       const response = await fetch("http://localhost:3000/testResults", {
@@ -279,6 +279,8 @@ export default {
     this.operator = localStorage.getItem("operator");
     this.sign = localStorage.getItem("sign");
     this.difficulty = localStorage.getItem("difficulty");
+    this.loggedIn=localStorage.getItem("loggedIn")
+
   }
 }
 </script>

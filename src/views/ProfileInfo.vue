@@ -65,12 +65,11 @@ export default {
     return {
       password: "",
       passwordCheck: "",
-      postUrl: "http://localhost:3000/users/"
+      postUrl: "http://localhost:3000/users/",
+      loggedIn:""
     }
   },
-  props: {
-    loggedIn: Boolean
-  },
+
   methods: {
     showResult() {
 
@@ -105,7 +104,11 @@ export default {
       }).then((response) => {
           return response.json();
         });
-    }
+    },
+
+  },
+  mounted(){
+    this.loggedIn=localStorage.getItem("loggedIn")
   }
 };
 </script>
