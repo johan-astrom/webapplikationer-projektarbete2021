@@ -59,14 +59,16 @@
 
 <script>
 export default {
-
+  props: {
+    isLoggedIn:{type: String}
+  },
   name: "ProfileInfo",
   data() {
     return {
       password: "",
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/",
-      loggedIn:""
+
     }
   },
 
@@ -106,9 +108,6 @@ export default {
         });
     },
 
-  },
-  mounted(){
-    this.loggedIn=localStorage.getItem("loggedIn")
   }
 };
 </script>

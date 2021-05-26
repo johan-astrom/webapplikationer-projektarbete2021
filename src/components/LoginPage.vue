@@ -54,9 +54,7 @@
 
 export default {
   name: "LoginPage",
-  props: {
-    loggedIn: Boolean
-  },
+
   data() {
     return {
       username: "",

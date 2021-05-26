@@ -57,6 +57,9 @@
 <script>
 export default {
   name: "SignupPage",
+  props:{
+    isLoggedIn:{type:String}
+  },
   data() {
     return {
       username: "",

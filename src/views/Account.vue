@@ -13,11 +13,10 @@ import LoginPage from "@/components/LoginPage";
 // import ProfileInfo from "@/components/ProfileInfo";
 export default {
   name: "Account",
- data(){
-    return{
-      loggedIn:""
-    }
- },
+  props: {
+    isLoggedIn:{type: String}
+  },
+
   components: { LoginPage  },
   methods: {
 
@@ -25,11 +24,9 @@ export default {
 this.$emit("user-login-step2",user);
     }
 
-  },
-
-  mounted(){
-    this.loggedIn=localStorage.getItem('loggedIn')
   }
+
+
 };
 </script>
 
