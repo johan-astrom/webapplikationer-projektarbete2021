@@ -5,6 +5,7 @@
       <h2>Logga in</h2>
       <br>
 
+
       <form id="login-form" method="POST" @submit.prevent="getUser()">
         <label for="login-username">Ange ditt användarnamn:</label>
         <br>
@@ -33,6 +34,7 @@
         <input type="submit" value="Logga in" v-on:click="goToProfile(), signinTrue()"/>
         <router-link tag="button" to="/components/SignupPage">Registrera</router-link>
       </form>
+
     </div>
 
 
@@ -48,6 +50,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: "LoginPage",
   props: {
@@ -63,17 +67,19 @@ export default {
   methods: {
     getUser() {
       fetch(`http://localhost:3000/users/username/${this.username}`)
+
           .then((res) => res.json())
           .then(data => {
             let user = data.users[0];
             if (user.username === this.username) {
               if (user.password === this.password) {
-                this.$emit("user-login");
+                this.$emit("user-login", user);
               } else {
                 alert("Felaktigt lösenord!");
               }
             }
           }).catch(() => {
+
         alert("Felaktigt användarnamn!")
       })
     },
@@ -86,9 +92,11 @@ export default {
     // }
   }
 };
+
 </script>
 
 <style scoped>
+
 .login_container {
   display: grid;
   grid-template-columns: 1fr;
@@ -109,7 +117,9 @@ export default {
   margin: auto;
   alignment: center;
   background-color: #d6eef5;
+
 }
+
 body {
   width: auto;
   height: 600px;
