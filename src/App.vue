@@ -27,7 +27,7 @@
       </router-link>
       <router-link to="/konto" class="grid-item3">Mitt konto</router-link>
     </div>
-    <router-view @user-login-step2="login" />
+    <router-view @user-login-step2="login"  :activeUser="activeUser" />
   </div>
 
   <footer>
@@ -49,7 +49,8 @@ export default {
       title: "Kunskapsquizet",
       loggedIn: false,
       loggInText: "",
-      name: ""
+      name: "",
+      activeUser:{}
     };
   },
   methods: {
@@ -59,11 +60,15 @@ export default {
     loggedInButtonTrue() {
       this.loggedIn = true;
     },
-    login() {
+    login(user) {
       this.loggedIn = true;
+      this.activeUser.userId=user.userId
+      this.activeUser.username=user.username
+      console.log(this.activeUser)
     },
     goToAccount(){
       this.$router.push({name: 'Account'});
+
     }
   }
 };

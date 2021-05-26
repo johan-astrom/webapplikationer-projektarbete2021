@@ -13,13 +13,13 @@ import LoginPage from "@/components/LoginPage";
 // import ProfileInfo from "@/components/ProfileInfo";
 export default {
   name: "Account",
-  // props:{
-  //   loggedIn: Boolean
-  // },
+   /*props:{
+     loggedIn: Boolean
+   },*/
   components: { LoginPage  },
   methods: {
-    login(){
-      this.$emit("user-login-step2");
+    login(user){
+      this.$emit("user-login-step2",user);
     }
   }
 };

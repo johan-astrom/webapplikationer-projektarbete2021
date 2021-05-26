@@ -30,7 +30,7 @@
       />
       <br>
       <br>
-      <input type="submit" value="Logga in" />
+      <input type="submit" value="Logga in"  />
       <router-link tag="button" to="/components/SignupPage">Registrera</router-link>
     </form>
     </div>
@@ -69,7 +69,7 @@ export default {
         let user = data.users[0];
         if (user.username === this.username){
           if (user.password === this.password){
-            this.$emit("user-login");
+            this.$emit("user-login",user);
           }else {
             alert("Felaktigt lösenord!");
           }

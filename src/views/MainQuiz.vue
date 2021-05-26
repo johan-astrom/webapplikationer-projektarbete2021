@@ -7,7 +7,7 @@
     <form @submit="check">
       <fieldset>
         <ul>
-          <li v-for='n in 5' :key='n' >
+          <li v-for='n in 5' :key='n'>
             <p> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} </p>
             <input
                 :disabled="checked"
@@ -24,13 +24,13 @@
           <router-link class="button_style" to="/quizsettings">Nytt quiz</router-link>
         </button>
 
-        <button  style="margin: 10px"   v-if="checked" @click="reload">
+        <button style="margin: 10px" v-if="checked" @click="reload">
           <router-link class="button_style" to="/quiz"> Spela om</router-link>
         </button>
 
         <!--      <p>{{ message }}</p>-->
-        <p  v-if="checked"> Din lösning:
-          <span>{{ guess1}}  </span>, poäng: {{ score }}</p>
+        <p v-if="checked"> Din lösning:
+          <span>{{ guess1 }}  </span>, poäng: {{ score }}</p>
         <p v-if="checked">Korrekta svar:{{ results }}</p>
         <p v-if="checked"> Test completed</p>
       </fieldset>
@@ -43,9 +43,15 @@
 
 export default {
   name: "MainQuiz",
+  props: {
+    activeUser: {type: Object},
+    loggedIn: {type: Boolean}
 
+  },
   data() {
     return {
+      postUrl: "http://localhost:3000/testResults",
+      date: new Date(),
       y: [1, 1, 1, 1, 1],
       /*x: [1, 1, 1, 1, 1],*/
       message: "",
@@ -244,6 +250,27 @@ export default {
         }
         this.checked = true
       }
+    },
+    postData: async function (url = this.postUrl) {
+      const response = await fetch(url, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {"Content-Type": "application/json"},
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({
+          //userId: ,
+          operation: this.operator,
+          timeStamp: this.date,
+          score: this.score
+        })
+      }).then((response) => {
+
+        return response.json();
+
+      });
     }
   },
   mounted() {
@@ -259,6 +286,7 @@ export default {
   text-decoration: none;
   color: black;
 }
+
 ul li {
   list-style-type: none;
 }
