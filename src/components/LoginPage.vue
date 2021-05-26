@@ -31,7 +31,7 @@
         />
         <br>
         <br>
-        <input type="submit" value="Logga in" v-on:click="goToProfile(), signinTrue()"/>
+        <input type="submit" value="Logga in" v-on:click="goToProfile(); signinTrue()"/>
         <router-link tag="button" to="/components/SignupPage">Registrera</router-link>
       </form>
 
