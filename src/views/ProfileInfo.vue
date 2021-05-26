@@ -12,7 +12,6 @@
               <b-card-text>
                 <div id="Ändra lösenord" class="tabcontent">
                   <h3>Byt Lösenord</h3>
-                  <form id="changePassword-form" method="POST" @submit.prevent="checkUsername()">
                     <label for="password">Ange ditt nya lösenord:</label>
                     <br>
                     <input class="signup_password_container"
@@ -25,7 +24,7 @@
                            required
                     />
                     <br>
-                    <label for="password-check">Bekräfta ditt lösenord:</label>
+                    <label for="password-check">Bekräfta ditt nya lösenord:</label>
                     <br>
                     <input
                         type="password"
@@ -40,7 +39,7 @@
                     <br>
                     <br>
                     <input type="submit" v-show="passwordCheck===password" value="Skicka"/>
-                  </form>
+
                 </div>
               </b-card-text>
             </b-tab>
@@ -64,7 +63,6 @@ export default {
   name: "ProfileInfo",
   data() {
     return {
-      username: "",
       password: "",
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/"
@@ -88,15 +86,8 @@ export default {
       this.$emit("user-login-step3");
     },
     checkUsername() {
-      if (
-          this.username.toLowerCase().includes("fuck") ||
-          this.username.toLowerCase().includes("snopp") ||
-          this.username.toLowerCase().includes("fan")
-      ) {
-        alert("Användarnamnet innehåller fula ord!");
-      } else {
         this.postData(this.postUrl);
-      }
+
     },
     postData: async function (url = "") {
       const response = await fetch(url, {
@@ -112,15 +103,11 @@ export default {
           password: this.password
         })
       }).then((response) => {
-        if (response.status === 400) {
-          alert("Användarnamnet är upptaget.");
-        } else {
           return response.json();
-        }
-      });
+        });
     }
   }
-}
+};
 </script>
 
 <style scoped>
