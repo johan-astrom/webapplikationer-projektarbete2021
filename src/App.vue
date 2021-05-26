@@ -25,6 +25,7 @@
       <router-link v-if="loggedIn==true" to="/ProfileInfo" class="grid-item3">Mitt konto</router-link>
     </div>
     <router-view @user-login-step2="login"/>
+    <router-view @user-login-step3="login2"/>
   </div>
 
   <footer>
@@ -53,14 +54,14 @@ export default {
     loggedInButtonFalse() {
       this.loggedIn = false;
     },
-    loggedInButtonTrue() {
-      this.loggedIn = true;
-    },
     login() {
       this.loggedIn = true;
     },
     goToAccount() {
       this.$router.push({name: 'Account'});
+    },
+    login2() {
+      this.loggedIn=false;
     }
   }
 };

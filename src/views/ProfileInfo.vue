@@ -7,7 +7,7 @@
             <b-tab title="Visa Resultat" active><b-card-text>Tab contents 1</b-card-text></b-tab>
             <b-tab title="Ändra Lösenord"><b-card-text>Tab contents 2</b-card-text></b-tab>
             <b-tab title="Ta bort Konto"><b-card-text>Tab contents 3</b-card-text></b-tab>
-            <b-tab v-on:click="loggedIn==false" title="Logga Ut"><b-card-text>Logga ut</b-card-text></b-tab>
+            <b-tab v-on:click="logout" title="Logga Ut"><b-card-text>Logga ut</b-card-text></b-tab>
           </b-tabs>
         </b-card>
       </div>
@@ -32,7 +32,7 @@ export default {
 
     },
     logout() {
-      this.loggedIn == false;
+      this.$emit("user-login-step3");
     }
    }
 }
