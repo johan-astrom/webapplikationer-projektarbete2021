@@ -82,7 +82,8 @@ export default {
 
     },
     logout() {
-      this.$emit("user-login-step3");
+      this.loggedIn=localStorage.removeItem("loggedIn");
+
     },
     checkUsername() {
         this.postData(this.postUrl);

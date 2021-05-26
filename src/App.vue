@@ -54,8 +54,9 @@ export default {
   },
   methods: {
     loggedInButtonFalse() {
-      this.loggedIn = "";
-      localStorage.setItem("loggedIn","")
+
+      this.loggedIn =localStorage.removeItem("loggedIn");
+
     },
 
     login(user) {
@@ -68,8 +69,11 @@ export default {
     goToAccount() {
       this.$router.push({name: 'Account'});
     },
-    login2() {
-      this.loggedIn = false;
+    login2(user) {
+      localStorage.setItem("loggedIn","false");
+      this.loggedIn="false";
+      this.activeUser.userId = user.userId
+      this.activeUser.username = user.username
 
     }
   }
