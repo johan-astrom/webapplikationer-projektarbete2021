@@ -53,9 +53,7 @@ export default {
   },
   methods: {
     loggedInButtonFalse() {
-
       this.loggedIn =localStorage.removeItem("loggedIn");
-
     },
 
     login(user) {

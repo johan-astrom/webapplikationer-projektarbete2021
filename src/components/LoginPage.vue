@@ -31,13 +31,11 @@
         />
         <br>
         <br>
-        <input type="submit" value="Logga in" v-on:click="goToProfile()"/>
+        <input type="submit" value="Logga in"/>
         <router-link tag="button" to="/components/SignupPage">Registrera</router-link>
       </form>
 
     </div>
-
-
     <div class="Account_container">
       <div>
 
@@ -94,6 +92,9 @@ export default {
 </script>
 
 <style scoped>
+button{
+  margin: 8px;
+}
 
 .login_container {
   display: grid;

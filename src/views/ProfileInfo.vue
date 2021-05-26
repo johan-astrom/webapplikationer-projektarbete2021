@@ -5,7 +5,9 @@
       <b-card class="card" no-body>
         <b-tabs pills card vertical>
           <b-tab title="Visa Resultat" active>
-            <b-card-text>Tab contents 1</b-card-text>
+            <b-card-text>
+              <h3>Tidigare resultat:</h3>
+            </b-card-text>
           </b-tab>
 
             <b-tab title="Ändra Lösenord">
@@ -45,12 +47,15 @@
             </b-tab>
 
             <b-tab title="Ta bort Konto">
-              <b-card-text>Tab contents 3</b-card-text>
+              <b-card-text>
+                <h4>Är du säker på att du vill radera ditt konto?</h4>
+              </b-card-text>
             </b-tab>
             <b-tab title="Logga Ut">
               <b-card-text>
-                <h3>Är du säker på att du vill logga ut?</h3>
-                <button v-on:click="logout">OK</button>
+                <h4>Är du säker på att du vill logga ut?</h4>
+
+                <input type="submit" value="OK" v-on:click="logout"/>
 
               </b-card-text>
             </b-tab>
@@ -76,7 +81,7 @@ export default {
 
   methods: {
     logout() {
-      this.loggedIn=localStorage.removeItem("loggedIn");
+      this.loggedIn =localStorage.removeItem("loggedIn");
 
     },
     checkUsername() {

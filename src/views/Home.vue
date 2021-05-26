@@ -3,11 +3,6 @@
     <html>
 
     <body>
-    <!--navigation_links ska hamna brevid varandra-->
-    <div class=" navigation_links">
-
-    </div>
-
     <main class="grid_container">
       <article class="left">
         <div>
