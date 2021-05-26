@@ -23,7 +23,7 @@
           <!--Lägger in länkar till sign up/log in nedan när man trycker på respektive knapp-->
           <!--Är man redan inloggad står det: Välkommen "Namnet på personen"-->
           <router-link v-if="loggedIn" to="/ProfileInfo" > <h2>Välkommen</h2></router-link>
-          <router-link v-else to="/konto"><h2>Logga in/ Registrera</h2></router-link>
+          <router-link v-if="!loggedIn" to="/konto"><h2>Logga in</h2></router-link>
 
           <img src="../assets/kugghjul.jpg" alt="">
         </div>

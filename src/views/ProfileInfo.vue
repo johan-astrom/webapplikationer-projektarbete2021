@@ -47,8 +47,12 @@
             <b-tab title="Ta bort Konto">
               <b-card-text>Tab contents 3</b-card-text>
             </b-tab>
-            <b-tab v-on:click="logout" title="Logga Ut">
-              <b-card-text>Logga ut</b-card-text>
+            <b-tab title="Logga Ut">
+              <b-card-text>
+                <h3>Är du säker på att du vill logga ut?</h3>
+                <button v-on:click="logout">OK</button>
+
+              </b-card-text>
             </b-tab>
         </b-tabs>
       </b-card>
@@ -66,21 +70,11 @@ export default {
       password: "",
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/",
-      loggedIn:""
+      loggedIn:localStorage.getItem('loggedIn')
     }
   },
 
   methods: {
-    showResult() {
-
-    },
-    changePassword() {
-
-
-    },
-    deleteAccount() {
-
-    },
     logout() {
       this.$emit("user-login-step3");
     },
@@ -109,7 +103,7 @@ export default {
   },
   mounted(){
     this.loggedIn=localStorage.getItem("loggedIn")
-  }
+  },
 };
 </script>
 

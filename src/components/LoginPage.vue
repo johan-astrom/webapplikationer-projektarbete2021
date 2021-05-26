@@ -31,7 +31,7 @@
         />
         <br>
         <br>
-        <input type="submit" value="Logga in" v-on:click="goToProfile(); signinTrue()"/>
+        <input type="submit" value="Logga in" v-on:click="goToProfile()"/>
         <router-link tag="button" to="/components/SignupPage">Registrera</router-link>
       </form>
 
@@ -87,9 +87,7 @@ export default {
     //   this.$router.push({name: 'ProfileInfo'});
     //   this.$forceUpdate();
     // },
-    // signinTrue() {
-    //   this.loggedIn == true;
-    // }
+
   }
 };
 
