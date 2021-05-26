@@ -22,8 +22,8 @@
         <div>
           <!--Lägger in länkar till sign up/log in nedan när man trycker på respektive knapp-->
           <!--Är man redan inloggad står det: Välkommen "Namnet på personen"-->
-          <router-link to="/components/ProfileInfo" v-if="loggedIn==true"> <h2>Välkommen</h2></router-link>
-          <router-link to="/konto" v-else><h2>Logga in/ Registrera</h2></router-link>
+          <router-link v-if="loggedIn==true" to="/ProfileInfo" > <h2>Välkommen</h2></router-link>
+          <router-link v-if="loggedIn==false" to="/konto"><h2>Logga in/ Registrera</h2></router-link>
 
           <img src="../assets/kugghjul.jpg" alt="">
         </div>
@@ -56,13 +56,7 @@ export default {
 
   },
   methods: {
-    // loggedInText: function () {
-    //   if (this.loggedIn == true) {
-    //     this.loggInText = 'Välkommen ' + this.name;
-    //   } else if (this.loggedIn == false) {
-    //     this.loggInText = 'Logga in/ Registrera'
-    //   }
-    // }
+
   }
 };
 </script>
@@ -76,14 +70,12 @@ export default {
   grid-template-rows: 2.0fr 2.0fr 2.0fr;
   grid-template-areas:
     "header header "
-
     "left right"
     "footer footer";
   grid-gap: 20px;
   height: 100vh;
   text-align: center;
   font-family: "Comic Sans MS";
-
 }
 
 

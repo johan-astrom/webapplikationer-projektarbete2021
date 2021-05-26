@@ -20,14 +20,12 @@
 
     <div id="nav">
       <router-link to="/" class="grid-item1">Home</router-link>
-      <router-link to="/quizsettings"
-                   class="grid-item"
-
-      >Starta Quiz
-      </router-link>
-      <router-link to="/konto" class="grid-item3">Mitt konto</router-link>
+      <router-link to="/quizsettings" class="grid-item">Starta Quiz</router-link>
+      <router-link v-if="loggedIn==false" to="/konto" class="grid-item3">Mitt konto</router-link>
+      <router-link v-if="loggedIn==true" to="/ProfileInfo" class="grid-item3">Mitt konto</router-link>
     </div>
-    <router-view @user-login-step2="login"  :activeUser="activeUser" />
+    <router-view @user-login-step2="login"/>
+    <router-view @user-login-step3="login2"/>
   </div>
 
   <footer>
@@ -49,26 +47,21 @@ export default {
       title: "Kunskapsquizet",
       loggedIn: false,
       loggInText: "",
-      name: "",
-      activeUser:{}
+      name: ""
     };
   },
   methods: {
     loggedInButtonFalse() {
       this.loggedIn = false;
     },
-    loggedInButtonTrue() {
+    login() {
       this.loggedIn = true;
     },
-    login(user) {
-      this.loggedIn = true;
-      this.activeUser.userId=user.userId
-      this.activeUser.username=user.username
-      console.log(this.activeUser)
-    },
-    goToAccount(){
+    goToAccount() {
       this.$router.push({name: 'Account'});
-
+    },
+    login2() {
+      this.loggedIn=false;
     }
   }
 };
@@ -190,4 +183,3 @@ footer ul {
 }
 </style>
 
-<!-- Commenting to test Push function -->

@@ -2,37 +2,37 @@
   <body>
   <section>
     <div class="login_container">
-    <h2>Logga in</h2>
+      <h2>Logga in</h2>
       <br>
 
-    <form id="login-form" method="POST" @submit.prevent="getUser()">
-      <label for="login-username">Ange ditt användarnamn:</label>
-      <br>
-      <input class="username_container"
-        id="login-username"
-        name="username"
-        v-model="username"
-        minlength="4"
-        maxlength="20"
-        required
-      />
-      <br>
-      <label for="login-password">Ange ditt lösenord:</label>
-      <br>
-      <input class="password_container"
-        type="password"
-        id="login-password"
-        name="password"
-        v-model="password"
-        minlength="6"
-        maxlength="15"
-        required
-      />
-      <br>
-      <br>
-      <input type="submit" value="Logga in"  />
-      <router-link tag="button" to="/components/SignupPage">Registrera</router-link>
-    </form>
+      <form id="login-form" method="POST" @submit.prevent="getUser()">
+        <label for="login-username">Ange ditt användarnamn:</label>
+        <br>
+        <input class="username_container"
+               id="login-username"
+               name="username"
+               v-model="username"
+               minlength="4"
+               maxlength="20"
+               required
+        />
+        <br>
+        <label for="login-password">Ange ditt lösenord:</label>
+        <br>
+        <input class="password_container"
+               type="password"
+               id="login-password"
+               name="password"
+               v-model="password"
+               minlength="6"
+               maxlength="15"
+               required
+        />
+        <br>
+        <br>
+        <input type="submit" value="Logga in" v-on:click="goToProfile(), signinTrue()"/>
+        <router-link tag="button" to="/components/SignupPage">Registrera</router-link>
+      </form>
     </div>
 
 
@@ -48,44 +48,48 @@
 </template>
 
 <script>
-
-
 export default {
   name: "LoginPage",
+  props: {
+    loggedIn: Boolean
+  },
   data() {
     return {
       username: "",
       password: ""
     };
   },
-  components: {
-
-  },
+  components: {},
   methods: {
     getUser() {
       fetch(`http://localhost:3000/users/username/${this.username}`)
-      .then((res) => res.json())
-      .then(data => {
-        let user = data.users[0];
-        if (user.username === this.username){
-          if (user.password === this.password){
-            this.$emit("user-login",user);
-          }else {
-            alert("Felaktigt lösenord!");
-          }
-        }
-      }).catch(() => {
+          .then((res) => res.json())
+          .then(data => {
+            let user = data.users[0];
+            if (user.username === this.username) {
+              if (user.password === this.password) {
+                this.$emit("user-login");
+              } else {
+                alert("Felaktigt lösenord!");
+              }
+            }
+          }).catch(() => {
         alert("Felaktigt användarnamn!")
       })
-    }
+    },
+    // goToProfile() {
+    //   this.$router.push({name: 'ProfileInfo'});
+    //   this.$forceUpdate();
+    // },
+    // signinTrue() {
+    //   this.loggedIn == true;
+    // }
   }
 };
-
 </script>
 
 <style scoped>
-
-.login_container{
+.login_container {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 2.0fr;
@@ -105,10 +109,8 @@ export default {
   margin: auto;
   alignment: center;
   background-color: #d6eef5;
-
 }
-
-body{
+body {
   width: auto;
   height: 600px;
 }
