@@ -19,7 +19,7 @@
           </li>
 
         </ul>
-        <input v-if="!checked" type="submit" value="Calculate" :disabled="!validated">
+        <input v-if="!checked"  type="submit" value="Calculate" :disabled="!validated">
         <button v-if="checked">
           <router-link class="button_style" to="/quizsettings">Nytt quiz</router-link>
         </button>
@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       postUrl: "http://localhost:3000/testResults",
-      date: new Date(),
+      date: new Date().toLocaleString(),
       y: [1, 1, 1, 1, 1],
       /*x: [1, 1, 1, 1, 1],*/
       message: "",
@@ -250,9 +250,11 @@ export default {
         }
         this.checked = true
       }
+
+      this.postData()
     },
-    postData: async function (url = this.postUrl) {
-      const response = await fetch(url, {
+    postData: async function () {
+      const response = await fetch("http://localhost:3000/testResults", {
         method: "POST",
         mode: "cors",
         cache: "no-cache",
@@ -261,7 +263,7 @@ export default {
         redirect: "follow",
         referrerPolicy: "no-referrer",
         body: JSON.stringify({
-          //userId: ,
+          userId:this.activeUser.userId ,
           operation: this.operator,
           timeStamp: this.date,
           score: this.score
