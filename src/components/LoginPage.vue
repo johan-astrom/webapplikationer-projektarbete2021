@@ -118,6 +118,6 @@ button{
 
 body {
   width: auto;
-  height: 600px;
+  height: 55vh;
 }
 </style>

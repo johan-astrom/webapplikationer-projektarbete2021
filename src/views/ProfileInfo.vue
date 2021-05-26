@@ -123,7 +123,7 @@ export default {
     "Profile_Container"
     "footer footer";
   grid-gap: 20px;
-  height: 100vh;
+  height: 55vh;
   text-align: center;
   font-family: "Comic Sans MS";
 }
@@ -164,7 +164,7 @@ b-tab {
   border-radius: 25px;
 }
 
-Visa Resultat active {
+active {
   background-color: mediumslateblue;;
 }
 

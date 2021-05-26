@@ -63,7 +63,7 @@ export default {
     "left right"
     "footer footer";
   grid-gap: 20px;
-  height: 100vh;
+  height: 55vh;
   text-align: center;
   font-family: "Comic Sans MS";
 }

@@ -59,7 +59,7 @@ export default {
     "header header "
     "footer footer";
   grid-gap: 20px;
-  height: 100vh;
+  height: 55vh;
   text-align: center;
   font-family: "Comic Sans MS";
 }
@@ -76,8 +76,8 @@ export default {
 }
 
 button{
-  height: 20%;
-  width: 20%;
+  height: 40%;
+  width: 10%;
   display: block;
   margin: 0 auto;
 }
