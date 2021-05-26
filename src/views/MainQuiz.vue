@@ -45,6 +45,7 @@ export default {
   name: "MainQuiz",
   props: {
     activeUser: {type: Object},
+    isLoggedIn:{type: String}
   },
   data() {
     return {
@@ -64,12 +65,12 @@ export default {
       operator: '',
       sign: '',
       difficulty: '',
-      loggedIn:""
+
+
 
     }
   },
   computed: {
-
 
     yDivEasy: function () {
 
@@ -249,7 +250,7 @@ export default {
         }
         this.checked = true
       }
-     if(this.loggedIn){
+     if(this.isLoggedIn){
       this.postData()
      }
     },
@@ -279,7 +280,7 @@ export default {
     this.operator = localStorage.getItem("operator");
     this.sign = localStorage.getItem("sign");
     this.difficulty = localStorage.getItem("difficulty");
-    this.loggedIn=localStorage.getItem("loggedIn")
+
 
   }
 }
