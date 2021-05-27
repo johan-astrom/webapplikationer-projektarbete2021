@@ -1,5 +1,6 @@
 <template>
   <body>
+  <div class="quiz_container">
   <section id="grid_container_quiz">
     <article id="dropdowns">
       <b-dropdown class="dropdown" text="Addition" @show="setOperator('addition'), setSign('+')">
@@ -21,8 +22,9 @@
     </article>
 <!--    <p v-if="!difficultySelected">Test</p>-->
     <br>
-    <router-link class="start_button" tag="button" to="/quiz" :disabled="!difficultySelected">Starta quiz!</router-link>
+    <router-link class="start_button" tag="button" to="/quiz" :disabled="!difficultySelected">Starta</router-link>
   </section>
+  </div>
   </body>
 </template>
 
@@ -50,6 +52,19 @@ export default {
 </script>
 
 <style scoped>
+/*Mobile*/
+.quiz_container{
+  width: 75%;
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
+  margin: auto;
+  alignment: center;
+  background-color: #d6eef5;
+  text-align: center;
+  padding-top: 40px;
+  text-align: center;
+}
 
 #grid_container_quiz {
   display: grid;
@@ -77,9 +92,28 @@ export default {
 
 button{
   height: 40%;
-  width: 10%;
+  width: 50%;
   display: block;
   margin: 0 auto;
+}
+/*Tablet*/
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  button{
+    width: 40%;
+  }
+  .quiz_container{
+    width: 35%;
+  }
+}
+/*Desktop*/
+@media screen and (min-width: 1025px) {
+  button{
+    width: 25%;
+  }
+  .quiz_container{
+    width: 30%;
+  }
+
 }
 
 </style>

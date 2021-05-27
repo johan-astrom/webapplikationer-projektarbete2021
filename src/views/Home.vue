@@ -8,18 +8,19 @@
         <div>
 
           <router-link to="/quizSettings"><h2>Starta Quiz</h2></router-link>
-          <img src="../assets/math.jpg" alt="">
+          <router-link to="/quizSettings"><img src="../assets/math.jpg" alt=""></router-link>
         </div>
 
       </article>
 
       <article class="right">
         <div>
-          <router-link v-if="isLoggedIn" to="/ProfileInfo" > <h2>Välkommen {{activeUser.username}}</h2></router-link>
+          <router-link v-if="isLoggedIn" to="/ProfileInfo"> <h2>Välkommen {{activeUser.username}}</h2></router-link>
 
           <router-link v-if="!isLoggedIn" to="/konto"><h2>Logga in/ Registrera</h2></router-link>
 
-          <img src="../assets/kugghjul.jpg" alt="">
+          <router-link v-if="isLoggedIn" to="/ProfileInfo"><img src="../assets/kugghjul.jpg" alt=""></router-link>
+          <router-link v-if="!isLoggedIn" to="/konto"><img src="../assets/kugghjul.jpg" alt=""></router-link>
         </div>
       </article>
     </main>
@@ -69,8 +70,8 @@ export default {
   font-family: "Comic Sans MS";
 }
 img{
-  height: 80%;
-  width: 80%;
+  height: 85%;
+  width: 85%;
 }
 .left {
   grid-area: left;
@@ -110,8 +111,8 @@ img{
     height: 55vh;
   }
   img{
-    height: 288px;
-    width: 350px;
+    height: 90%;
+    width: 90%;
   }
 }
 /*Desktop*/
@@ -120,8 +121,8 @@ img{
     height: 55vh;
   }
   img{
-    height: 288px;
-    width: 350px;
+    height: 100%;
+    width: 100%;
   }
 }
 

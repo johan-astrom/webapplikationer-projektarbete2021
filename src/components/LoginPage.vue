@@ -96,7 +96,6 @@ button {
   grid-gap: 20px;
   height: auto;
   width: 35%;
-  text-align: center;
   font-family: "Comic Sans MS";
   border-color: black;
   border-style: solid;
