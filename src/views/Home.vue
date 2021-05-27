@@ -54,7 +54,7 @@ export default {
 };
 </script>
 <style scoped>
-
+/*Mobile*/
 .grid_container{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -64,12 +64,14 @@ export default {
     "left right"
     "footer footer";
   grid-gap: 20px;
-  height: 55vh;
+  height: 35vh;
   text-align: center;
   font-family: "Comic Sans MS";
 }
-
-
+img{
+  height: 80%;
+  width: 80%;
+}
 .left {
   grid-area: left;
 
@@ -101,6 +103,26 @@ export default {
   border-style: solid;
   border-radius: 25px;
   margin:auto;
+}
+/*Tablet*/
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .grid_container{
+    height: 55vh;
+  }
+  img{
+    height: 288px;
+    width: 350px;
+  }
+}
+/*Desktop*/
+@media screen and (min-width: 1025px) {
+  .grid_container{
+    height: 55vh;
+  }
+  img{
+    height: 288px;
+    width: 350px;
+  }
 }
 
 
