@@ -83,8 +83,7 @@ export default {
 
   methods: {
     logout() {
-      this.loggedIn =localStorage.removeItem("loggedIn");
-
+      this.$emit("log-out-from-profile");
     },
     checkUsername() {
         this.postData(this.postUrl);

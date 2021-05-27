@@ -26,6 +26,7 @@
 
         <button style="margin: 10px" v-if="checked" @click="reload">
           <router-link class="button_style" to="/quiz"> Spela om</router-link>
+
         </button>
 
         <!--      <p>{{ message }}</p>-->
