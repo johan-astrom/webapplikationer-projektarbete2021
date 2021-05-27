@@ -3,7 +3,7 @@
   <section>
 
     <LoginPage v-if="!isLoggedIn" @user-login="login" />
-      <ProfileInfo v-if="isLoggedIn"></ProfileInfo>
+      <ProfileInfo @log-out-from-profile="logout" v-if="isLoggedIn"></ProfileInfo>
   </section>
   </body>
 </template>
@@ -24,6 +24,9 @@ export default {
 
     login(user){
 this.$emit("user-login-step2",user);
+    },
+    logout(){
+      this.$emit("logout-from-account")
     }
 
   }
