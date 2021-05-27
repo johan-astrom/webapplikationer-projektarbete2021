@@ -6,8 +6,7 @@
         <b-tabs pills card vertical>
           <b-tab title="Visa Resultat" active>
             <b-card-text>
-              <h3>Tidigare resultat:</h3>
-              <button>Tryck!!</button>
+              <h3>Dina snittresultat:</h3>
               <p>Addition: {{ avgAddition }}</p>
               <p>Subtraktion: {{ avgSubtraction }}</p>
               <p>Division: {{ avgDivision }}</p>
