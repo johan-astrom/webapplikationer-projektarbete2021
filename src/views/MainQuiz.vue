@@ -9,6 +9,7 @@
         <ul>
           <li v-for='n in 5' :key='n'>
             <p style="margin: 0; padding: 2px"> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} </p>
+            <div class="answers">
             <input
                 :disabled="checked"
                 class="field"
@@ -16,6 +17,7 @@
                 v-bind:style="{border:resultColor[n-1]}"
             >
             <p v-if="right[n-1]==false">Rätt svar {{ results[n - 1] }}</p>
+            </div>
           </li>
 
         </ul>
@@ -287,8 +289,10 @@ export default {
 </script>
 
 <style scoped>
-.field{
-  display: inline-block;
+.answers{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .button_styling {

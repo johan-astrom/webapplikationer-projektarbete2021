@@ -40,7 +40,7 @@
                     <p v-if="passwordCheck!==password && passwordCheck">Lösenorden stämmer inte överens!</p>
                     <br>
                     <br>
-                    <input type="submit" v-show="passwordCheck===password" value="Skicka"/>
+                    <input @click="postData" type="submit" v-show="passwordCheck===password" value="Skicka"/>
 
                 </div>
               </b-card-text>
@@ -69,7 +69,10 @@
 <script>
 export default {
   props: {
-    isLoggedIn:{type: String}
+    isLoggedIn:{type: String},
+    activeUser: {
+      type: Object
+    }
   },
   name: "ProfileInfo",
   data() {
@@ -89,8 +92,9 @@ export default {
         this.postData(this.postUrl);
 
     },
-    postData: async function (url = "") {
-      const response = await fetch(url, {
+    postData: async function () {
+      console.log(this.activeUser.userId)
+      const response = await fetch(`http://localhost:3000/users/${this.activeUser.userId}`,{
         method: "PATCH",
         mode: "cors",
         cache: "no-cache",

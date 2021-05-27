@@ -3,7 +3,7 @@
   <section>
 
     <LoginPage v-if="!isLoggedIn" @user-login="login" />
-      <ProfileInfo @log-out-from-profile="logout" v-if="isLoggedIn"></ProfileInfo>
+      <ProfileInfo :activeUser="activeUser" @log-out-from-profile="logout" v-if="isLoggedIn"></ProfileInfo>
   </section>
   </body>
 </template>
@@ -16,7 +16,10 @@ import ProfileInfo from "@/components/ProfileInfo";
 export default {
   name: "Account",
   props: {
-    isLoggedIn:{type: String}
+    isLoggedIn:{type: String},
+    activeUser: {
+      type: Object
+    }
   },
 
   components: { LoginPage, ProfileInfo  },
