@@ -86,6 +86,7 @@ export default {
 </script>
 
 <style>
+/*Mobile*/
 #app body {
   background-color: lightblue;
   padding: 30px;
@@ -209,11 +210,26 @@ footer {
 
 footer ul {
   grid-area: footer;
-  flex-direction: row;
+  flex-direction: column;
+  text-align: center;
   display: flex;
   justify-content: space-around;
   list-style-type: none;
   font-family: "Comic Sans MS";
 }
-</style>
 
+/*Tablet*/
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .footer_list {
+    width: auto;
+    padding: 20px;
+  }
+}
+/*Desktop*/
+@media screen and (min-width: 1025px) {
+  footer ul {
+    flex-direction: row;
+  }
+}
+
+</style>
