@@ -45,7 +45,7 @@
 export default {
   data() {
     return {
-      title: "Kunskapsquizet",
+      title: "Mattequizet",
       name: "",
       activeUser: {},
       loggedIn:localStorage.getItem('loggedIn')
