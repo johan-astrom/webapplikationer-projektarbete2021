@@ -43,16 +43,21 @@
 export default {
   data() {
     return {
-      title: "Kunskapsquizet",
+      title: "Mattequizet",
       name: "",
-      activeUser: {},
+      activeUser: {
+        username: localStorage.getItem("username"),
+        userId: localStorage.getItem("userId")
+      },
       loggedIn:localStorage.getItem('loggedIn')
     };
   },
   methods: {
     loggedInButtonFalse() {
-      console.log("libf");
       this.loggedIn =localStorage.removeItem("loggedIn");
+      this.activeUser={};
+      localStorage.removeItem("username");
+      localStorage.removeItem("userId");
     },
 
     login(user) {
@@ -60,6 +65,8 @@ export default {
       this.loggedIn="true";
       this.activeUser.userId = user.userId
       this.activeUser.username = user.username
+      localStorage.setItem("username", user.username);
+      localStorage.setItem("userId", user.userId);
       console.log(this.activeUser)
     },
     goToAccount() {
