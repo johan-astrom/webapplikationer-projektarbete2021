@@ -141,7 +141,8 @@ h1 {
 }
 
 #nav {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   grid-template-columns: auto auto auto;
   background-color: lightblue;
   padding: 10px;
@@ -150,7 +151,16 @@ h1 {
 
 .grid-item1 {
   border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
+  border-top-right-radius: 25px;
+  background-color: #9f9ffa;
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+  border-color: black;
+  border-style: solid;
+  color: #2c3e50;
+}
+.grid-item {
   background-color: #9f9ffa;
   padding: 20px;
   font-size: 20px;
@@ -161,9 +171,9 @@ h1 {
 }
 
 .grid-item3 {
-  border-bottom-right-radius: 25px;
-  border-top-right-radius: 25px;
   background-color: #9f9ffa;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
   padding: 20px;
   font-size: 20px;
   text-align: center;
@@ -172,15 +182,7 @@ h1 {
   color: #2c3e50;
 }
 
-.grid-item {
-  background-color: #9f9ffa;
-  padding: 20px;
-  font-size: 20px;
-  text-align: center;
-  border-color: black;
-  border-style: solid;
-  color: #2c3e50;
-}
+
 
 #nav a:hover {
   background-color: yellow;
@@ -224,11 +226,38 @@ footer ul {
     width: auto;
     padding: 20px;
   }
+  #nav {
+    display: grid;
+  }
+  .grid-item1 {
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 25px;
+
+  }
+
+  .grid-item3 {
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 25px;
+  }
+
 }
 /*Desktop*/
 @media screen and (min-width: 1025px) {
   footer ul {
     flex-direction: row;
+  }
+  #nav {
+    display: grid;
+  }
+  .grid-item1 {
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 25px;
+
+  }
+
+  .grid-item3 {
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 25px;
   }
 }
 
