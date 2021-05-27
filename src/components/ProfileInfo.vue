@@ -7,58 +7,64 @@
           <b-tab title="Visa Resultat" active>
             <b-card-text>
               <h3>Tidigare resultat:</h3>
+              <button>Tryck!!</button>
+              <p>Addition: {{ avgAddition }}</p>
+              <p>Subtraktion: {{ avgSubtraction }}</p>
+              <p>Division: {{ avgDivision }}</p>
+              <p>Multiplikation: {{ avgMultiplication }}</p>
+
             </b-card-text>
           </b-tab>
 
-            <b-tab title="Ändra Lösenord">
-              <b-card-text>
-                <div id="Ändra lösenord" class="tabcontent">
-                  <h3>Byt Lösenord</h3>
-                    <label for="password">Ange ditt nya lösenord:</label>
-                    <br>
-                    <input class="signup_password_container"
-                           type="password"
-                           id="password"
-                           name="password"
-                           v-model="password"
-                           minlength="6"
-                           maxlength="15"
-                           required
-                    />
-                    <br>
-                    <label for="password-check">Bekräfta ditt nya lösenord:</label>
-                    <br>
-                    <input
-                        type="password"
-                        id="password-check"
-                        name="password-check"
-                        v-model="passwordCheck"
-                        minlength="6"
-                        maxlength="15"
-                        required
-                    />
-                    <p v-if="passwordCheck!==password && passwordCheck">Lösenorden stämmer inte överens!</p>
-                    <br>
-                    <br>
-                    <input @click="postData" type="submit" v-show="passwordCheck===password" value="Skicka"/>
+          <b-tab title="Ändra Lösenord">
+            <b-card-text>
+              <div id="Ändra lösenord" class="tabcontent">
+                <h3>Byt Lösenord</h3>
+                <label for="password">Ange ditt nya lösenord:</label>
+                <br>
+                <input class="signup_password_container"
+                       type="password"
+                       id="password"
+                       name="password"
+                       v-model="password"
+                       minlength="6"
+                       maxlength="15"
+                       required
+                />
+                <br>
+                <label for="password-check">Bekräfta ditt nya lösenord:</label>
+                <br>
+                <input
+                  type="password"
+                  id="password-check"
+                  name="password-check"
+                  v-model="passwordCheck"
+                  minlength="6"
+                  maxlength="15"
+                  required
+                />
+                <p v-if="passwordCheck!==password && passwordCheck">Lösenorden stämmer inte överens!</p>
+                <br>
+                <br>
+                <input @click="postData" type="submit" v-show="passwordCheck===password" value="Skicka" />
 
-                </div>
-              </b-card-text>
-            </b-tab>
+              </div>
+            </b-card-text>
+          </b-tab>
 
-            <b-tab title="Ta bort Konto">
-              <b-card-text>
-                <h4>Är du säker på att du vill radera ditt konto?</h4>
-              </b-card-text>
-            </b-tab>
-            <b-tab title="Logga Ut">
-              <b-card-text>
-                <h4>Är du säker på att du vill logga ut?</h4>
+          <b-tab title="Ta bort Konto">
+            <b-card-text>
+              <h4>Är du säker på att du vill radera ditt konto?</h4>
+            </b-card-text>
+          </b-tab>
+          <b-tab title="Logga Ut">
+            <b-card-text>
+              <h4>Är du säker på att du vill logga ut?</h4>
 
-                <input type="submit" value="OK" v-on:click="logout"/>
+              <input type="submit" value="OK" v-on:click="logout" />
 
-              </b-card-text>
-            </b-tab>
+            </b-card-text>
+          </b-tab>
         </b-tabs>
       </b-card>
     </div>
@@ -69,7 +75,7 @@
 <script>
 export default {
   props: {
-    isLoggedIn:{type: String},
+    isLoggedIn: { type: String },
     activeUser: {
       type: Object
     }
@@ -80,8 +86,11 @@ export default {
       password: "",
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/:id",
-
-    }
+      avgAddition: 0,
+      avgSubtraction: 0,
+      avgDivision: 0,
+      avgMultiplication: 0
+    };
   },
   methods: {
     logout() {
@@ -89,30 +98,84 @@ export default {
       //this.$router.push({name: 'Home'});
     },
     checkUsername() {
-        this.postData(this.postUrl);
+      this.postData(this.postUrl);
 
     },
-    postData: async function () {
-      console.log(this.activeUser.userId)
-      const response = await fetch(`http://localhost:3000/users/${this.activeUser.userId}`,{
+
+    checkAverage: function(sum, length) {
+      if (length > 0) {
+        return sum / length;
+      } else {
+        return "Inga test gjorda";
+      }
+    },
+    postData: async function() {
+      console.log(this.activeUser.userId);
+      const response = await fetch(`http://localhost:3000/users/${this.activeUser.userId}`, {
         method: "PATCH",
         mode: "cors",
         cache: "no-cache",
         credentials: "same-origin",
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         redirect: "follow",
         referrerPolicy: "no-referrer",
         body: JSON.stringify({
           password: this.password
         })
       }).then((response) => {
-          return response.json();
-        });
+        return response.json();
+      });
     }
+  }, mounted() {
+    fetch(`http://localhost:3000/testResults/${this.activeUser.userId}`)
+        .then(res => res.json())
+        .then(data => {
+          let testResults = data.testResults;
+          let additionTests = testResults.filter((testResult) => {
+            return testResult.operation === "addition";
+          });
+          let subtractionTests = testResults.filter((testResult) => {
+            return testResult.operation === "subtraktion";
+          });
+          let divisionTests = testResults.filter((testResult) => {
+            return testResult.operation === "division";
+          });
+          let multiplicationTests = testResults.filter((testResult) => {
+            return testResult.operation === "multiplikation";
+          });
+          let sum = 0;
+          for (let i = 0; i < additionTests.length; i++) {
+            sum += additionTests[i].score;
+          }
+          this.avgAddition = this.checkAverage(sum, additionTests.length);
 
+          sum = 0;
+          for (let i = 0; i < subtractionTests.length; i++) {
+            sum += subtractionTests[i].score;
+          }
+          this.avgSubtraction = this.checkAverage(sum, subtractionTests.length);
+
+          sum = 0;
+          for (let i = 0; i < divisionTests.length; i++) {
+            sum += divisionTests[i].score;
+          }
+          this.avgDivision = this.checkAverage(sum, divisionTests.length);
+
+          sum = 0;
+          for (let i = 0; i < multiplicationTests.length; i++) {
+            sum += multiplicationTests[i].score;
+          }
+          this.avgMultiplication = this.checkAverage(sum, multiplicationTests.length);
+          console.log(sum)
+        }).catch(err=>{
+          console.log('Fel!' + err.message)
+        });
   }
 
+
 };
+
+
 </script>
 
 <style scoped>
