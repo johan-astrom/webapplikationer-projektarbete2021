@@ -25,7 +25,7 @@
       <router-link v-if="loggedIn" to="/ProfileInfo" class="grid-item3">Mitt konto</router-link>
     </div>
 
-    <router-view :isLoggedIn="loggedIn"  @user-login-step3="login2"  @user-login-step2="login" :activeUser="activeUser"/>
+    <router-view @log-out-from-profile="loggedInButtonFalse" :isLoggedIn="loggedIn"  @user-login-step3="login2"  @user-login-step2="login" :activeUser="activeUser"/>
 
   </div>
 

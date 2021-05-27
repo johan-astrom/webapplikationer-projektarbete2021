@@ -15,9 +15,9 @@
 
       <article class="right">
         <div>
-          <router-link v-if="loggedIn" to="/ProfileInfo" > <h2>Välkommen</h2></router-link>
+          <router-link v-if="isLoggedIn" to="/ProfileInfo" > <h2>Välkommen {{activeUser.username}}</h2></router-link>
 
-          <router-link v-if="!loggedIn" to="/konto"><h2>Logga in/ Registrera</h2></router-link>
+          <router-link v-if="!isLoggedIn" to="/konto"><h2>Logga in/ Registrera</h2></router-link>
 
           <img src="../assets/kugghjul.jpg" alt="">
         </div>
@@ -37,11 +37,14 @@
 
 export default {
   name: "Home",
-  data() {
-    return {
-      loggedIn:localStorage.getItem('loggedIn')
-    }
-  },
+ props: {
+    isLoggedIn: {
+      type: String
+    },
+   activeUser: {
+      type: Object
+   }
+ },
   components: {
 
   },
@@ -52,8 +55,6 @@ export default {
 </script>
 <style scoped>
 
-/*Tänk på att alla globala färger, fonter och styles ska ligga i app.vue
- */
 .grid_container{
   display: grid;
   grid-template-columns: 1fr 1fr;

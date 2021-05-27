@@ -76,14 +76,14 @@ export default {
     return {
       password: "",
       passwordCheck: "",
-      postUrl: "http://localhost:3000/users/",
+      postUrl: "http://localhost:3000/users/:id",
 
     }
   },
 
   methods: {
     logout() {
-      this.loggedIn =localStorage.removeItem("loggedIn");
+      this.$emit("log-out-from-profile");
 
     },
     checkUsername() {
@@ -92,7 +92,7 @@ export default {
     },
     postData: async function (url = "") {
       const response = await fetch(url, {
-        method: "POST",
+        method: "PATCH",
         mode: "cors",
         cache: "no-cache",
         credentials: "same-origin",
@@ -100,7 +100,6 @@ export default {
         redirect: "follow",
         referrerPolicy: "no-referrer",
         body: JSON.stringify({
-          username: this.username,
           password: this.password
         })
       }).then((response) => {
