@@ -48,7 +48,7 @@ const routes = [
         path: "/ProfileInfo",
         name: "ProfileInfo",
         component: () =>
-            import("../views/ProfileInfo.vue")
+            import("../components/ProfileInfo.vue")
     }
 ];
 

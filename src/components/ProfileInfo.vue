@@ -80,11 +80,10 @@ export default {
 
     }
   },
-
   methods: {
     logout() {
       this.$emit("log-out-from-profile");
-
+      //this.$router.push({name: 'Home'});
     },
     checkUsername() {
         this.postData(this.postUrl);

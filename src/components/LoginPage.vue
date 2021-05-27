@@ -31,7 +31,7 @@
         />
         <br>
         <br>
-        <input type="submit" value="Logga in" v-on:click="goToProfile"/>
+        <input type="submit" value="Logga in"/>
         <router-link tag="button" to="/components/SignupPage">Registrera</router-link>
       </form>
     </div>
@@ -72,11 +72,7 @@ export default {
 
         alert("Felaktigt användarnamn!")
       })
-    },
-    // goToProfile() {
-    //   this.$router.push({name: 'ProfileInfo'});
-    //   this.$forceUpdate();
-    // },
+    }
 
   }
 };
