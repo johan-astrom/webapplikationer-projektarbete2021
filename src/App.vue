@@ -5,8 +5,7 @@
 
     <header>
       <div class="header_container">
-        <h1>{{ title }}</h1>
-
+        <router-link to="/" class="header_link"> <h1>{{ title }}</h1></router-link>
       </div>
       <div class="logInButton">
         <div class="buttonLogIn">
@@ -26,7 +25,6 @@
     </div>
     <router-view @logout-from-account="loggedInButtonFalse" :isLoggedIn="loggedIn"  @user-login-step3="login2"  @user-login-step2="login" :activeUser="activeUser"/>
   </div>
-
   <footer>
     <div class="footer_list">
       <ul>
@@ -94,19 +92,22 @@ export default {
   border-color: black;
   border-style: solid;
   border-radius: 25px;
-  width: 50%;
+  width: 90%;
+  height: 75px;
   margin: auto;
   background-color: #9f9ffa;
+  text-align: center;
 }
-
 header {
   background-color: lightblue;
   padding-top: 20px;
 }
-
+.header_link{
+  text-decoration: none;
+  font-size: 100px;
+}
 .logInButton {
-  text-align: right;
-  padding-right: 15%;
+  margin-top: 10px;
 }
 
 #btnIn {
@@ -125,7 +126,6 @@ header {
 
 h1 {
   grid-area: header;
-  font-family: "Comic Sans MS";
   font-size: 34px;
   color: black;
   text-align: center;
@@ -140,47 +140,54 @@ h1 {
 
 #nav {
   display: flex;
+  font-size: 20px;
   flex-direction: column;
   grid-template-columns: auto auto auto;
   background-color: lightblue;
   padding: 10px;
   color: black;
+  margin: auto;
+
 }
 
 .grid-item1 {
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   background-color: #9f9ffa;
-  padding: 20px;
-  font-size: 20px;
+
   text-align: center;
   border-color: black;
   border-style: solid;
   color: #2c3e50;
+  margin: auto;
+  width: 75%;
+  padding: 10px;
 }
 .grid-item {
   background-color: #9f9ffa;
-  padding: 20px;
-  font-size: 20px;
+
   text-align: center;
   border-color: black;
   border-style: solid;
   color: #2c3e50;
+  margin: auto;
+  width: 75%;
+  padding: 10px;
 }
 
 .grid-item3 {
   background-color: #9f9ffa;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
-  padding: 20px;
-  font-size: 20px;
+
   text-align: center;
   border-color: black;
   border-style: solid;
   color: #2c3e50;
+  margin: auto;
+  width: 75%;
+  padding: 10px;
 }
-
-
 
 #nav a:hover {
   background-color: yellow;
@@ -201,15 +208,17 @@ footer {
 .footer_list {
   grid-area: footer;
   background-color: #9f9ffa;
-  width: auto;
-  padding: 20px;
   border-color: black;
   border-style: solid;
   border-radius: 25px;
+  margin: auto;
+  width: 80%;
+  padding: 10px;
 }
 
 footer ul {
   grid-area: footer;
+  font-size: 20px;
   flex-direction: column;
   text-align: center;
   display: flex;
@@ -220,29 +229,45 @@ footer ul {
 
 /*Tablet*/
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .footer_list {
-    width: auto;
-    padding: 20px;
-  }
+
   #nav {
     display: grid;
   }
   .grid-item1 {
     border-top-right-radius: 0px;
     border-bottom-left-radius: 25px;
+    margin: auto;
+    width: 100%;
+    padding: 20px;
+  }
+  .grid-item{
+    text-align: center;
+    border-color: black;
+    border-style: solid;
+    color: #2c3e50;
+    margin: auto;
+    width: 100%;
+    padding: 20px;
 
   }
-
   .grid-item3 {
     border-bottom-left-radius: 0px;
     border-top-right-radius: 25px;
+    margin: auto;
+    width: 100%;
+    padding: 20px;
+  }
+  .footer_list {
+    width: auto;
+    padding: 20px;
+
   }
 
 }
 /*Desktop*/
 @media screen and (min-width: 1025px) {
-  footer ul {
-    flex-direction: row;
+  .header_container {
+    width: 50%;
   }
   #nav {
     display: grid;
@@ -250,12 +275,37 @@ footer ul {
   .grid-item1 {
     border-top-right-radius: 0px;
     border-bottom-left-radius: 25px;
-
+    margin: auto;
+    width: 100%;
+    padding: 20px;
+  }
+  .grid-item{
+    text-align: center;
+    border-color: black;
+    border-style: solid;
+    color: #2c3e50;
+    margin: auto;
+    width: 100%;
+    padding: 20px;
   }
 
   .grid-item3 {
     border-bottom-left-radius: 0px;
     border-top-right-radius: 25px;
+    margin: auto;
+    width: 100%;
+    padding: 20px;
+  }
+  .logInButton {
+    text-align: right;
+    padding-right: 15%;
+  }
+  footer ul {
+    flex-direction: row;
+  }
+  .footer_list {
+    width: auto;
+    padding: 20px;
   }
 }
 
