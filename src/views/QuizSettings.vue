@@ -113,7 +113,6 @@ button{
   .quiz_container{
     width: 30%;
   }
-
 }
 
 </style>
