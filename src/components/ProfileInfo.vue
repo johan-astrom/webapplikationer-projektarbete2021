@@ -76,14 +76,14 @@ export default {
     return {
       password: "",
       passwordCheck: "",
-      postUrl: "http://localhost:3000/users/",
+      postUrl: "http://localhost:3000/users/:id",
 
     }
   },
-
   methods: {
     logout() {
       this.$emit("log-out-from-profile");
+      //this.$router.push({name: 'Home'});
     },
     checkUsername() {
         this.postData(this.postUrl);
@@ -91,7 +91,7 @@ export default {
     },
     postData: async function (url = "") {
       const response = await fetch(url, {
-        method: "POST",
+        method: "PATCH",
         mode: "cors",
         cache: "no-cache",
         credentials: "same-origin",
@@ -99,13 +99,12 @@ export default {
         redirect: "follow",
         referrerPolicy: "no-referrer",
         body: JSON.stringify({
-          username: this.username,
           password: this.password
         })
       }).then((response) => {
           return response.json();
         });
-    },
+    }
 
   }
 

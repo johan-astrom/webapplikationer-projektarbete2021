@@ -34,15 +34,9 @@
         <input type="submit" value="Logga in"/>
         <router-link tag="button" to="/components/SignupPage">Registrera</router-link>
       </form>
-
     </div>
-    <div class="Account_container">
-      <div>
-
-      </div>
-
+    <div>
     </div>
-
   </section>
   </body>
 </template>
@@ -78,11 +72,7 @@ export default {
 
         alert("Felaktigt användarnamn!")
       })
-    },
-    // goToProfile() {
-    //   this.$router.push({name: 'ProfileInfo'});
-    //   this.$forceUpdate();
-    // },
+    }
 
   }
 };
@@ -90,7 +80,7 @@ export default {
 </script>
 
 <style scoped>
-button{
+button {
   margin: 8px;
 }
 
@@ -114,7 +104,7 @@ button{
   margin: auto;
   alignment: center;
   background-color: #d6eef5;
-
+  text-align: center;
 }
 
 body {

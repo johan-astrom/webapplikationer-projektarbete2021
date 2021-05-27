@@ -8,7 +8,7 @@
       <fieldset>
         <ul>
           <li v-for='n in 5' :key='n'>
-            <p> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} </p>
+            <p style="margin: 0; padding: 2px"> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} </p>
             <input
                 :disabled="checked"
                 class="field"
@@ -19,14 +19,13 @@
           </li>
 
         </ul>
-        <input v-if="!checked"  type="submit" value="Calculate" :disabled="!validated">
+        <input style="margin-left: 21px" v-if="!checked"  type="submit" value="Calculate" :disabled="!validated">
         <button v-if="checked">
-          <router-link class="button_style" to="/quizsettings">Nytt quiz</router-link>
+          <router-link class="button_styling" to="/quizsettings">Nytt quiz</router-link>
         </button>
 
         <button style="margin: 10px" v-if="checked" @click="reload">
-          <router-link class="button_style" to="/quiz"> Spela om</router-link>
-
+          <router-link class="button_styling" to="/quiz"> Spela om</router-link>
         </button>
 
         <!--      <p>{{ message }}</p>-->
@@ -288,9 +287,14 @@ export default {
 </script>
 
 <style scoped>
-.button_style {
+.field{
+  display: inline-block;
+}
+
+.button_styling {
   text-decoration: none;
   color: black;
+  float: inside;
 }
 
 ul li {
@@ -306,10 +310,8 @@ ul li {
     "main"
     "footer ";
   grid-gap: 20px;
-  height: 100vh;
+  height: auto;
   text-align: center;
   font-family: "Comic Sans MS";
 }
-
-
 </style>
