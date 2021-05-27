@@ -5,7 +5,7 @@
 
     <header>
       <div class="header_container">
-        <h1>{{ title }}</h1>
+        <router-link to="/" class="header_link"> <h1>{{ title }}</h1> </router-link>
 
       </div>
       <div class="logInButton">
@@ -96,7 +96,7 @@ export default {
   border-color: black;
   border-style: solid;
   border-radius: 25px;
-  width: 50%;
+  width: 80%;
   margin: auto;
   background-color: #9f9ffa;
 }
@@ -105,10 +105,12 @@ header {
   background-color: lightblue;
   padding-top: 20px;
 }
+.header_link{
+  text-decoration: none;
+}
 
 .logInButton {
-  text-align: right;
-  padding-right: 15%;
+  margin-top: 10px;
 }
 
 #btnIn {
@@ -147,39 +149,48 @@ h1 {
   background-color: lightblue;
   padding: 10px;
   color: black;
+  margin: auto;
+
 }
 
 .grid-item1 {
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   background-color: #9f9ffa;
-  padding: 20px;
+
   font-size: 20px;
   text-align: center;
   border-color: black;
   border-style: solid;
   color: #2c3e50;
+  margin: auto;
+  width: 60%;
+  padding: 10px;
 }
 .grid-item {
   background-color: #9f9ffa;
-  padding: 20px;
   font-size: 20px;
   text-align: center;
   border-color: black;
   border-style: solid;
   color: #2c3e50;
+  margin: auto;
+  width: 60%;
+  padding: 10px;
 }
 
 .grid-item3 {
   background-color: #9f9ffa;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
-  padding: 20px;
   font-size: 20px;
   text-align: center;
   border-color: black;
   border-style: solid;
   color: #2c3e50;
+  margin: auto;
+  width: 60%;
+  padding: 10px;
 }
 
 
@@ -232,19 +243,35 @@ footer ul {
   .grid-item1 {
     border-top-right-radius: 0px;
     border-bottom-left-radius: 25px;
+    margin: auto;
+    width: 100%;
+    padding: 20px;
+  }
+  .grid-item{
+    font-size: 20px;
+    text-align: center;
+    border-color: black;
+    border-style: solid;
+    color: #2c3e50;
+    margin: auto;
+    width: 100%;
+    padding: 20px;
 
   }
 
   .grid-item3 {
     border-bottom-left-radius: 0px;
     border-top-right-radius: 25px;
+    margin: auto;
+    width: 100%;
+    padding: 20px;
   }
 
 }
 /*Desktop*/
 @media screen and (min-width: 1025px) {
-  footer ul {
-    flex-direction: row;
+  .header_container {
+    width: 50%;
   }
   #nav {
     display: grid;
@@ -252,12 +279,35 @@ footer ul {
   .grid-item1 {
     border-top-right-radius: 0px;
     border-bottom-left-radius: 25px;
+    margin: auto;
+    width: 100%;
+    padding: 20px;
+  }
+  .grid-item{
+    font-size: 20px;
+    text-align: center;
+    border-color: black;
+    border-style: solid;
+    color: #2c3e50;
+    margin: auto;
+    width: 100%;
+    padding: 20px;
 
   }
 
   .grid-item3 {
     border-bottom-left-radius: 0px;
     border-top-right-radius: 25px;
+    margin: auto;
+    width: 100%;
+    padding: 20px;
+  }
+  .logInButton {
+    text-align: right;
+    padding-right: 15%;
+  }
+  footer ul {
+    flex-direction: row;
   }
 }
 
