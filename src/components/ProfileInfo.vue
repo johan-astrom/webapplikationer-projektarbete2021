@@ -7,14 +7,14 @@
           <b-tab title="Visa Resultat" active>
             <b-card-text>
               <h3>Dina snittresultat:</h3>
-              <p>Addition: {{ avgAddition }} av 5</p>
-              <p v-if="avgAddition<3">Du skulle behöva öva mer på addition!</p>
-              <p>Subtraktion: {{ avgSubtraction }} av 5</p>
-              <p v-if="avgSubtraction<3">Du skulle behöva öva mer på subtraktion!</p>
-              <p>Division: {{ avgDivision }} av 5</p>
-              <p v-if="avgDivision<3">Du skulle behöva öva mer på division!</p>
-              <p>Multiplikation: {{ avgMultiplication }} av 5</p>
-              <p v-if="avgAddition<3">Du skulle behöva öva mer på multiplikation!</p>
+              <p>Addition, lätt: {{ avgAdditionEasy }}</p>
+              <p v-if="avgAdditionEasy<3">Du skulle behöva öva mer på addition!</p>
+              <p>Subtraktion: {{ avgSubtractionEasy }}</p>
+              <p v-if="avgSubtractionEasy<3">Du skulle behöva öva mer på subtraktion!</p>
+              <p>Division: {{ avgDivisionEasy }}</p>
+              <p v-if="avgDivisionEasy<3">Du skulle behöva öva mer på division!</p>
+              <p>Multiplikation: {{ avgMultiplicationEasy }}</p>
+              <p v-if="avgAdditionEasy<3">Du skulle behöva öva mer på multiplikation!</p>
 
             </b-card-text>
           </b-tab>
@@ -90,10 +90,14 @@ export default {
       password: "",
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/:id",
-      avgAddition: 0,
-      avgSubtraction: 0,
-      avgDivision: 0,
-      avgMultiplication: 0
+      avgAdditionEasy: 0,
+      avgAdditionHard: 0,
+      avgSubtractionEasy: 0,
+      avgSubtractionHard: 0,
+      avgDivisionEasy: 0,
+      avgDivisionHard: 0,
+      avgMultiplicationEasy: 0,
+      avgMultiplicationHard: 0
     };
   },
   methods: {
@@ -108,10 +112,17 @@ export default {
 
     checkAverage: function(sum, length) {
       if (length > 0) {
-        return sum / length;
+        return `${sum / length} av 5`;
       } else {
         return "Inga test gjorda";
       }
+    },
+    totalPoints: function(scoreArray){
+      let sum = 0;
+      for (let i = 0; i < scoreArray.length; i++) {
+        sum += scoreArray[i].score;
+      }
+      return sum;
     },
     postData: async function() {
       const response = await fetch(`http://localhost:3000/users/${this.activeUser.userId}`, {
@@ -150,42 +161,43 @@ export default {
         .then(res => res.json())
         .then(data => {
           let testResults = data.testResults;
-          let additionTests = testResults.filter((testResult) => {
-            return testResult.operation === "addition";
+          let additionTestsEasy = testResults.filter((testResult) => {
+            return testResult.operation === "addition" && testResult.difficulty === "lätt";
           });
-          let subtractionTests = testResults.filter((testResult) => {
-            return testResult.operation === "subtraktion";
+          let additionTestsHard = testResults.filter((testResult) => {
+            return testResult.operation === "addition" && testResult.difficulty === "svårt";
           });
-          let divisionTests = testResults.filter((testResult) => {
-            return testResult.operation === "division";
+          let subtractionTestsEasy = testResults.filter((testResult) => {
+            return testResult.operation === "subtraktion" && testResult.difficulty === "lätt";
           });
-          let multiplicationTests = testResults.filter((testResult) => {
-            return testResult.operation === "multiplikation";
+          let subtractionTestsHard = testResults.filter((testResult) => {
+            return testResult.operation === "subtraktion" && testResult.difficulty === "svårt";
           });
-          let sum = 0;
-          for (let i = 0; i < additionTests.length; i++) {
-            sum += additionTests[i].score;
-          }
-          this.avgAddition = this.checkAverage(sum, additionTests.length);
+          let divisionTestsEasy = testResults.filter((testResult) => {
+            return testResult.operation === "division" && testResult.difficulty === "lätt";
+          });
+          let divisionTestsHard = testResults.filter((testResult) => {
+            return testResult.operation === "division" && testResult.difficulty === "svårt";
+          });
+          let multiplicationTestsEasy = testResults.filter((testResult) => {
+            return testResult.operation === "multiplikation" && testResult.difficulty === "lätt";
+          });
+          let multiplicationTestsHard = testResults.filter((testResult) => {
+            return testResult.operation === "multiplikation" && testResult.difficulty === "svårt";
+          });
 
-          sum = 0;
-          for (let i = 0; i < subtractionTests.length; i++) {
-            sum += subtractionTests[i].score;
-          }
-          this.avgSubtraction = this.checkAverage(sum, subtractionTests.length);
+          this.avgAdditionEasy = this.checkAverage(this.totalPoints(additionTestsEasy), additionTestsEasy.length);
+          this.avgAdditionHard = this.checkAverage(this.totalPoints(additionTestsHard), additionTestsHard.length);
 
-          sum = 0;
-          for (let i = 0; i < divisionTests.length; i++) {
-            sum += divisionTests[i].score;
-          }
-          this.avgDivision = this.checkAverage(sum, divisionTests.length);
+          this.avgSubtractionEasy = this.checkAverage(this.totalPoints(subtractionTestsEasy), subtractionTestsEasy.length);
+          this.avgSubtractionHard = this.checkAverage(this.totalPoints(subtractionTestsHard), subtractionTestsHard.length);
 
-          sum = 0;
-          for (let i = 0; i < multiplicationTests.length; i++) {
-            sum += multiplicationTests[i].score;
-          }
-          this.avgMultiplication = this.checkAverage(sum, multiplicationTests.length);
-          console.log(sum)
+          this.avgDivisionEasy = this.checkAverage(this.totalPoints(divisionTestsEasy), divisionTestsEasy.length);
+          this.avgDivisionHard = this.checkAverage(this.totalPoints(divisionTestsHard), divisionTestsHard.length);
+
+          this.avgMultiplicationEasy = this.checkAverage(this.totalPoints(multiplicationTestsEasy), multiplicationTestsEasy.length);
+          this.avgMultiplicationHard = this.checkAverage(this.totalPoints(multiplicationTestsHard), multiplicationTestsHard.length);
+
         }).catch(err=>{
           console.log('Fel!' + err.message)
         });

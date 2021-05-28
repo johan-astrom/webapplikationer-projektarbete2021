@@ -269,6 +269,7 @@ export default {
         body: JSON.stringify({
           userId: this.activeUser.userId,
           operation: this.operator,
+          difficulty: this.difficulty,
           timeStamp: this.date,
           score: this.score
         })
