@@ -20,8 +20,8 @@
     <div id="nav">
       <router-link to="/" class="grid-item1">Home</router-link>
       <router-link to="/quizsettings" class="grid-item">Starta Quiz</router-link>
-      <router-link v-if="!loggedIn" to="/konto" class="grid-item3">Mitt konto</router-link>
-      <router-link v-if="loggedIn" to="/ProfileInfo" class="grid-item3">Mitt konto</router-link>
+      <router-link  to="/konto" class="grid-item3">Mitt konto</router-link>
+<!--      <router-link v-if="loggedIn" to="/ProfileInfo" class="grid-item3">Mitt konto</router-link>-->
     </div>
     <router-view @logout-from-account="loggedInButtonFalse" :isLoggedIn="loggedIn"  @user-login-step3="login2"  @user-login-step2="login" :activeUser="activeUser"/>
   </div>

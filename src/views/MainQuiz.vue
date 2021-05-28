@@ -28,6 +28,8 @@
             <router-link class="button_styling" to="/quiz"> Spela om</router-link>
           </button>
 
+
+
           <!--      <p>{{ message }}</p>-->
           <p v-if="checked"> Din lösning:
             <span>{{ guess1 }}  </span>, poäng: {{ score }}</p>
@@ -66,6 +68,7 @@ export default {
       operator: '',
       sign: '',
       difficulty: '',
+      componentKey:0
 
 
     }
@@ -177,7 +180,7 @@ export default {
     }
   },
   methods: {
-
+  
     reload: function () {
       this.$router.go(this.$router.currentRoute)
     },
@@ -301,7 +304,8 @@ export default {
   padding-top: 40px;
   text-align: center;
 }
-h2{
+
+h2 {
   height: auto;
 }
 
@@ -310,9 +314,11 @@ h2{
   flex-direction: row;
   justify-content: center;
 }
-.wrong_answers{
+
+.wrong_answers {
   margin-left: 25px;
 }
+
 .button_styling {
   text-decoration: none;
   color: black;
