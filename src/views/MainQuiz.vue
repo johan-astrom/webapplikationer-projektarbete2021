@@ -7,15 +7,17 @@
         <fieldset>
           <ul>
             <li v-for='n in 5' :key='n'>
-              <p style="margin: 0; padding: 2px"> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} </p>
+
               <div class="answers">
+                <p class="question_start"> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} = </p>
                 <input
                     :disabled="checked"
                     class="field"
                     v-model='guess[n-1]'
                     v-bind:style="{border:resultColor[n-1]}"
                 >
-                <p class="wrong_answers" v-if="right[n-1]==false">Rätt svar {{ results[n - 1] }}</p>
+                <p class="wrong_right_comment" v-if="right[n-1]==false">Rätt svar {{ results[n - 1] }}</p>
+                <p class="wrong_right_comment" v-if="right[n-1]==true">Bra jobbat!</p>
               </div>
             </li>
           </ul>
@@ -309,14 +311,21 @@ export default {
 h2 {
   height: auto;
 }
-
+.question_start{
+  margin-right: 40px; padding: 2px
+}
 .answers {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  font-size: 15px;
+
 }
 
-.wrong_answers {
+
+.wrong_right_comment {
   margin-left: 25px;
 }
 
@@ -349,6 +358,10 @@ ul li {
   .question_container {
     width: 70%;
   }
+
+  .answers{
+    font-size: 17px;
+  }
 }
 
 /*Desktop*/
@@ -356,7 +369,9 @@ ul li {
   button {
     width: 20%;
   }
-
+  .answers{
+    font-size: 18px;
+  }
   .question_container {
     width: 50%;
   }
