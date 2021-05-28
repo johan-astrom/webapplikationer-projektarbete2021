@@ -8,9 +8,13 @@
             <b-card-text>
               <h3>Dina snittresultat:</h3>
               <p>Addition: {{ avgAddition }}</p>
+              <p v-if="avgAddition<3">Du skulle behöva öva mer på addition!</p>
               <p>Subtraktion: {{ avgSubtraction }}</p>
+              <p v-if="avgSubtraction<3">Du skulle behöva öva mer på subtraktion!</p>
               <p>Division: {{ avgDivision }}</p>
+              <p v-if="avgDivision<3">Du skulle behöva öva mer på division!</p>
               <p>Multiplikation: {{ avgMultiplication }}</p>
+              <p v-if="avgAddition<3">Du skulle behöva öva mer på multiplikation!</p>
 
             </b-card-text>
           </b-tab>
