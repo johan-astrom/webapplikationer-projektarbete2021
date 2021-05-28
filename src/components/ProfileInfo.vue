@@ -6,15 +6,15 @@
         <b-tabs pills card vertical>
           <b-tab title="Visa Resultat" active>
             <b-card-text>
-              <h3>Dina snittresultat:</h3>
-              <p>Addition, lätt: {{ avgAdditionEasy }}</p>
-              <p v-if="avgAdditionEasy<3">Du skulle behöva öva mer på addition!</p>
-              <p>Subtraktion: {{ avgSubtractionEasy }}</p>
-              <p v-if="avgSubtractionEasy<3">Du skulle behöva öva mer på subtraktion!</p>
-              <p>Division: {{ avgDivisionEasy }}</p>
-              <p v-if="avgDivisionEasy<3">Du skulle behöva öva mer på division!</p>
-              <p>Multiplikation: {{ avgMultiplicationEasy }}</p>
-              <p v-if="avgAdditionEasy<3">Du skulle behöva öva mer på multiplikation!</p>
+              <h3>Dina snittresultat av 5:</h3>
+              <table v-for="(average, index) in averages" :key="index">
+                <tr>
+                  <td>{{average.operation}},</td>
+                  <td>{{average.difficulty}}:</td>
+                  <td>{{average.average}}</td>
+                  <td v-if="average.average>4 && average.difficulty==='lätt'">Du borde gå vidare till svår nivå!</td>
+                </tr>
+              </table>
 
             </b-card-text>
           </b-tab>
@@ -90,14 +90,17 @@ export default {
       password: "",
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/:id",
-      avgAdditionEasy: 0,
-      avgAdditionHard: 0,
-      avgSubtractionEasy: 0,
-      avgSubtractionHard: 0,
-      avgDivisionEasy: 0,
-      avgDivisionHard: 0,
-      avgMultiplicationEasy: 0,
-      avgMultiplicationHard: 0
+      averages: [
+        { average: 0 , operation: 'addition', difficulty: 'lätt'},
+        { average: 0 , operation: 'addition', difficulty: 'svårt'},
+        { average: 0 , operation: 'subtraktion', difficulty: 'lätt'},
+        { average: 0 , operation: 'subtraktion', difficulty: 'svårt'},
+        { average: 0 , operation: 'division', difficulty: 'lätt'},
+        { average: 0 , operation: 'division', difficulty: 'svårt'},
+        { average: 0 , operation: 'multiplikation', difficulty: 'lätt'},
+        { average: 0 , operation: 'multiplikation', difficulty: 'svårt'},
+
+    ]
     };
   },
   methods: {
@@ -112,7 +115,7 @@ export default {
 
     checkAverage: function(sum, length) {
       if (length > 0) {
-        return `${sum / length} av 5`;
+        return sum / length;
       } else {
         return "Inga test gjorda";
       }
@@ -186,17 +189,17 @@ export default {
             return testResult.operation === "multiplikation" && testResult.difficulty === "svårt";
           });
 
-          this.avgAdditionEasy = this.checkAverage(this.totalPoints(additionTestsEasy), additionTestsEasy.length);
-          this.avgAdditionHard = this.checkAverage(this.totalPoints(additionTestsHard), additionTestsHard.length);
+          this.averages[0].average = this.checkAverage(this.totalPoints(additionTestsEasy), additionTestsEasy.length);
+          this.averages[1].average = this.checkAverage(this.totalPoints(additionTestsHard), additionTestsHard.length);
 
-          this.avgSubtractionEasy = this.checkAverage(this.totalPoints(subtractionTestsEasy), subtractionTestsEasy.length);
-          this.avgSubtractionHard = this.checkAverage(this.totalPoints(subtractionTestsHard), subtractionTestsHard.length);
+          this.averages[2].average = this.checkAverage(this.totalPoints(subtractionTestsEasy), subtractionTestsEasy.length);
+          this.averages[3].average = this.checkAverage(this.totalPoints(subtractionTestsHard), subtractionTestsHard.length);
 
-          this.avgDivisionEasy = this.checkAverage(this.totalPoints(divisionTestsEasy), divisionTestsEasy.length);
-          this.avgDivisionHard = this.checkAverage(this.totalPoints(divisionTestsHard), divisionTestsHard.length);
+          this.averages[4].average = this.checkAverage(this.totalPoints(divisionTestsEasy), divisionTestsEasy.length);
+          this.averages[5].average = this.checkAverage(this.totalPoints(divisionTestsHard), divisionTestsHard.length);
 
-          this.avgMultiplicationEasy = this.checkAverage(this.totalPoints(multiplicationTestsEasy), multiplicationTestsEasy.length);
-          this.avgMultiplicationHard = this.checkAverage(this.totalPoints(multiplicationTestsHard), multiplicationTestsHard.length);
+          this.averages[6].average = this.checkAverage(this.totalPoints(multiplicationTestsEasy), multiplicationTestsEasy.length);
+          this.averages[7].average = this.checkAverage(this.totalPoints(multiplicationTestsHard), multiplicationTestsHard.length);
 
         }).catch(err=>{
           console.log('Fel!' + err.message)
