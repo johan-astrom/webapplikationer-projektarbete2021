@@ -45,7 +45,8 @@
       <p v-if="passwordCheck!==password && passwordCheck">Lösenorden stämmer inte överens!</p>
       <br>
       <br>
-      <input type="submit" v-show="passwordCheck===password" value="Skicka" />
+      <input v-if="isHidden" type="submit" v-show="passwordCheck===password" value="Skicka" v-on:click="isHidden = false">
+      <router-link to="/"> <input v-if="!isHidden" type="submit"  value="Till startsida"> </router-link>
     </form>
       <br>
       <p>Har du redan ett konto? Tryck <router-link to="/components/LoginPage"> här</router-link> för att logga in</p>
@@ -53,6 +54,7 @@
   </section>
 </Body>
 </template>
+
 
 <script>
 export default {
@@ -62,6 +64,7 @@ export default {
   },
   data() {
     return {
+      isHidden: true,
       username: "",
       password: "",
       passwordCheck: "",
@@ -110,6 +113,19 @@ export default {
 <style scoped>
 .redButton {
   background: red;
+}
+
+.panel {
+  font: 16px "Open Sans", Helvetica, Arial, sans-serif;
+  border: 1px solid #22d;
+  padding: 12px;
+  width: 500px;
+  text-align: center;
+}
+
+.button {
+  font: 22px "Open Sans", Helvetica, Arial, sans-serif;
+  padding: 5px 36px;
 }
 
 .signup_container{
