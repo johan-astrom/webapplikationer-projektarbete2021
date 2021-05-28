@@ -21,9 +21,9 @@
               </div>
             </li>
           </ul>
-          <input style="margin-left: 21px" v-if="!checked" type="submit" value="Calculate" :disabled="!validated">
+          <input style="margin-left: 21px" v-if="!checked" type="submit" value="Rätta" :disabled="!validated">
           <button v-if="checked">
-            <router-link class="button_styling" to="/quizsettings">Nytt quiz</router-link>
+            <router-link class="button_styling" to="/quizsettings">Nytt spel</router-link>
           </button>
 
           <button style="margin: 10px" v-if="checked" @click="reload">
@@ -33,10 +33,10 @@
 
 
           <!--      <p>{{ message }}</p>-->
-          <p v-if="checked"> Din lösning:
+          <p v-if="checked"><b> Din lösning:</b>
             <span>{{ guess1 }}  </span>, poäng: {{ score }}</p>
-          <p v-if="checked">Korrekta svar:{{ results }}</p>
-          <p v-if="checked"> Test completed</p>
+          <p v-if="checked"><b>Korrekta svar:</b>{{ results }}</p>
+          <p v-if="checked"><b>Prov genomfört &#x1F44D;</b> </p>
         </fieldset>
       </form>
     </section>
