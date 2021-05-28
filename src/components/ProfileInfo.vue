@@ -2,29 +2,30 @@
   <body>
   <section class="grid_container">
     <div class="profile_container">
-      <b-card class="card" no-body>
-        <b-tabs pills card vertical>
-          <b-tab title="Visa Resultat" active>
-            <b-card-text>
-              <h3>Dina snittresultat av 5:</h3>
-              <table v-for="(average, index) in averages" :key="index">
-                <tr>
-                  <td>{{average.operation}},</td>
-                  <td>{{average.difficulty}}:</td>
-                  <td>{{average.average}}</td>
-                  <td v-if="average.average<4 && average.difficulty==='lätt'">Du borde öva vidare på lätt nivå!</td>
-                  <td v-else-if="average.average>4 && average.difficulty==='lätt'">Du borde gå vidare till svår nivå!</td>
-                  <td v-else-if="average.average<4 && average.difficulty==='svårt'">Du borde öva vidare på svår nivå!</td>
-                  <td v-else-if="average.average>4 && average.difficulty==='svårt'">Grattis! Du kan det här räknesättet riktigt bra.</td>
-                </tr>
-              </table>
+      <div>
+        <b-card no-body>
+          <b-tabs card>
+            <b-tab title="Resultat" active>
+              <b-card-text>
+                <h3>Dina snittresultat av 5:</h3>
+                <table v-for="(average, index) in averages" :key="index">
+                  <tr>
+                    <td>{{average.operation}},</td>
+                    <td>{{average.difficulty}}:</td>
+                    <td>{{average.average}}</td>
+                    <td v-if="average.average<4 && average.difficulty==='lätt'"> Du borde öva vidare på lätt nivå!</td>
+                    <td v-else-if="average.average>4 && average.difficulty==='lätt'"> Du borde gå vidare till svår nivå!</td>
+                    <td v-else-if="average.average<4 && average.difficulty==='svårt'"> Du borde öva vidare på svår nivå!</td>
+                    <td v-else-if="average.average>4 && average.difficulty==='svårt'"> Grattis! Du kan det här räknesättet riktigt bra.</td>
+                    <hr>
+                  </tr>
+                </table>
 
-            </b-card-text>
-          </b-tab>
+              </b-card-text>
+            </b-tab>
 
-          <b-tab title="Ändra Lösenord">
-            <b-card-text>
-              <div id="Ändra lösenord" class="tabcontent">
+            <b-tab title="Ändra lösenord">
+              <b-card-text>
                 <h3>Byt Lösenord</h3>
                 <label for="password">Ange ditt nya lösenord:</label>
                 <br>
@@ -41,39 +42,37 @@
                 <label for="password-check">Bekräfta ditt nya lösenord:</label>
                 <br>
                 <input
-                  type="password"
-                  id="password-check"
-                  name="password-check"
-                  v-model="passwordCheck"
-                  minlength="6"
-                  maxlength="15"
-                  required
+                    type="password"
+                    id="password-check"
+                    name="password-check"
+                    v-model="passwordCheck"
+                    minlength="6"
+                    maxlength="15"
+                    required
                 />
                 <p v-if="passwordCheck!==password && passwordCheck">Lösenorden stämmer inte överens!</p>
                 <br>
                 <br>
                 <input @click="postData" type="submit" v-show="passwordCheck===password" value="Skicka" />
+              </b-card-text>
+            </b-tab>
 
-              </div>
-            </b-card-text>
-          </b-tab>
+            <b-tab title="Radera konto">
+              <b-card-text>
+                <h4>Vill du radera ditt konto?</h4>
+                <button @click="deleteAccount">Radera</button>
+              </b-card-text>
+            </b-tab>
 
-          <b-tab title="Ta bort Konto">
-            <b-card-text>
-              <h4>Vill du radera ditt konto?</h4>
-              <button @click="deleteAccount">Radera</button>
-            </b-card-text>
-          </b-tab>
-          <b-tab title="Logga Ut">
-            <b-card-text>
-              <h4>Är du säker på att du vill logga ut?</h4>
-
-              <input type="submit" value="OK" v-on:click="logout" />
-
-            </b-card-text>
-          </b-tab>
-        </b-tabs>
-      </b-card>
+            <b-tab title="Logga ut">
+              <b-card-text>
+                <h4>Är du säker på att du vill logga ut?</h4>
+                <input type="submit" value="OK" v-on:click="logout" />
+              </b-card-text>
+            </b-tab>
+          </b-tabs>
+        </b-card>
+      </div>
     </div>
   </section>
   </body>
@@ -94,16 +93,16 @@ export default {
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/:id",
       averages: [
-        { average: 0 , operation: 'addition', difficulty: 'lätt'},
-        { average: 0 , operation: 'addition', difficulty: 'svårt'},
-        { average: 0 , operation: 'subtraktion', difficulty: 'lätt'},
-        { average: 0 , operation: 'subtraktion', difficulty: 'svårt'},
-        { average: 0 , operation: 'division', difficulty: 'lätt'},
-        { average: 0 , operation: 'division', difficulty: 'svårt'},
-        { average: 0 , operation: 'multiplikation', difficulty: 'lätt'},
-        { average: 0 , operation: 'multiplikation', difficulty: 'svårt'},
+        { average: 0 , operation: 'Addition', difficulty: 'Lätt'},
+        { average: 0 , operation: 'Addition', difficulty: 'Svårt'},
+        { average: 0 , operation: 'Subtraktion', difficulty: 'Lätt'},
+        { average: 0 , operation: 'Subtraktion', difficulty: 'Svårt'},
+        { average: 0 , operation: 'Division', difficulty: 'Lätt'},
+        { average: 0 , operation: 'Division', difficulty: 'Svårt'},
+        { average: 0 , operation: 'Multiplikation', difficulty: 'Lätt'},
+        { average: 0 , operation: 'Multiplikation', difficulty: 'Svårt'},
 
-    ]
+      ]
     };
   },
   methods: {
@@ -205,8 +204,8 @@ export default {
           this.averages[7].average = this.checkAverage(this.totalPoints(multiplicationTestsHard), multiplicationTestsHard.length);
 
         }).catch(err=>{
-          console.log('Fel!' + err.message)
-        });
+      console.log('Fel!' + err.message)
+    });
   }
 
 
@@ -216,65 +215,73 @@ export default {
 </script>
 
 <style scoped>
-.grid_container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 2.0fr;
-  grid-template-areas:
+/*Mobile*/
+
+  .grid_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2.0fr;
+    grid-template-areas:
     "header header "
     "Profile_Container"
     "footer footer";
-  grid-gap: 20px;
-  height: 55vh;
-  text-align: center;
-  font-family: "Comic Sans MS";
-}
+    grid-gap: 20px;
+    height: 55vh;
+    text-align: center;
+    font-family: "Comic Sans MS";
+  }
 
-.profile_container {
-  float: left;
-  background-color: #d6eef5;
-  height: 300px;
-  border-color: black;
-  border-style: solid;
-  border-radius: 10px;
-  width: 50%;
-  margin-left: 25%;
-}
+  .profile_container {
+    background-color: #d6eef5;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10px;
+  }
 
-.tab button {
-  display: block;
-  background-color: inherit;
-  color: black;
-  padding: 22px 16px;
-  width: 100%;
-  border: none;
-  outline: none;
-  text-align: left;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 17px;
-  border-radius: 25px;
-}
+  .tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+    border-radius: 25px;
+  }
 
-b-tab {
-  float: left;
-  padding: 0px 12px;
-  width: 30%;
-  height: 300px;
-  border-color: black;
-  border-style: solid;
-  border-radius: 25px;
-}
+  b-tab {
+    float: left;
+    padding: 0px 12px;
+    width: 30%;
+    height: 300px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 25px;
+  }
 
-active {
-  background-color: mediumslateblue;;
-}
+  active {
+    background-color: mediumslateblue;
+  }
 
-b-tab:hover {
-  background-color: cornflowerblue;
-}
+  b-tab:hover {
+    background-color: cornflowerblue;
+  }
 
-* {
-  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
+
+/*Tablet*/
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+
+}
+/*Desktop*/
+@media screen and (min-width: 1025px) {
+
 }
 </style>
