@@ -7,13 +7,13 @@
           <b-tab title="Visa Resultat" active>
             <b-card-text>
               <h3>Dina snittresultat:</h3>
-              <p>Addition: {{ avgAddition }}</p>
+              <p>Addition: {{ avgAddition }} av 5</p>
               <p v-if="avgAddition<3">Du skulle behöva öva mer på addition!</p>
-              <p>Subtraktion: {{ avgSubtraction }}</p>
+              <p>Subtraktion: {{ avgSubtraction }} av 5</p>
               <p v-if="avgSubtraction<3">Du skulle behöva öva mer på subtraktion!</p>
-              <p>Division: {{ avgDivision }}</p>
+              <p>Division: {{ avgDivision }} av 5</p>
               <p v-if="avgDivision<3">Du skulle behöva öva mer på division!</p>
-              <p>Multiplikation: {{ avgMultiplication }}</p>
+              <p>Multiplikation: {{ avgMultiplication }} av 5</p>
               <p v-if="avgAddition<3">Du skulle behöva öva mer på multiplikation!</p>
 
             </b-card-text>
@@ -57,7 +57,8 @@
 
           <b-tab title="Ta bort Konto">
             <b-card-text>
-              <h4>Är du säker på att du vill radera ditt konto?</h4>
+              <h4>Vill du radera ditt konto?</h4>
+              <button @click="deleteAccount">Radera</button>
             </b-card-text>
           </b-tab>
           <b-tab title="Logga Ut">
@@ -113,7 +114,6 @@ export default {
       }
     },
     postData: async function() {
-      console.log(this.activeUser.userId);
       const response = await fetch(`http://localhost:3000/users/${this.activeUser.userId}`, {
         method: "PATCH",
         mode: "cors",
@@ -128,6 +128,22 @@ export default {
       }).then((response) => {
         return response.json();
       });
+    },
+    deleteAccount: function(){
+      if(confirm("Är du säker på att du vill radera ditt konto?")){
+        const response = fetch(`http://localhost:3000/users/${this.activeUser.userId}`, {
+          method: "DELETE",
+          mode: "cors",
+          cache: "no-cache",
+          credentials: "same-origin",
+          headers: { "Content-Type": "application/json" },
+          redirect: "follow",
+          referrerPolicy: "no-referrer",
+        }).then((response) => {
+          return response.json();
+        });
+        this.logout();
+      }
     }
   }, mounted() {
     fetch(`http://localhost:3000/testResults/${this.activeUser.userId}`)
