@@ -12,7 +12,10 @@
                   <td>{{average.operation}},</td>
                   <td>{{average.difficulty}}:</td>
                   <td>{{average.average}}</td>
-                  <td v-if="average.average>4 && average.difficulty==='lätt'">Du borde gå vidare till svår nivå!</td>
+                  <td v-if="average.average<4 && average.difficulty==='lätt'">Du borde öva vidare på lätt nivå!</td>
+                  <td v-else-if="average.average>4 && average.difficulty==='lätt'">Du borde gå vidare till svår nivå!</td>
+                  <td v-else-if="average.average<4 && average.difficulty==='svårt'">Du borde öva vidare på svår nivå!</td>
+                  <td v-else-if="average.average>4 && average.difficulty==='svårt'">Grattis! Du kan det här räknesättet riktigt bra.</td>
                 </tr>
               </table>
 
