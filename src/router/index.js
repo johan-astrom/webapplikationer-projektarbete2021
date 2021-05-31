@@ -43,13 +43,13 @@ const routes = [
         name: "LoginPage",
         component: () =>
             import("../components/LoginPage.vue")
-    }/*,
+    },
     {
         path: "/ProfileInfo",
         name: "ProfileInfo",
         component: () =>
             import("../components/ProfileInfo.vue")
-    }*/
+    }
 ];
 
 const router = new VueRouter({

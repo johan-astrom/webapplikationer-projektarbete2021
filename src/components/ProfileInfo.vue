@@ -1,88 +1,96 @@
 <template>
   <body>
-  <section >
+  <section>
     <div class="grid_container">
-    <div class="profile_container">
+      <div class="profile_container">
 
-      <div>
-        <b-card no-body>
-          <b-tabs card>
-            <b-tab title="Resultat" active>
-              <b-card-text>
-                <h3>Dina snittresultat av 5:</h3>
-                <table v-for="(average, index) in averages" :key="index">
-                  <tr>
-                    <td>{{average.operation}},</td>
-                    <td>{{average.difficulty}}:</td>
-                    <td>{{average.average}}</td>
-                   <td v-if="average.average<4 && average.difficulty==='lätt'"> Du borde öva vidare på lätt nivå!</td>
-                    <td v-else-if="average.average>=4 && average.difficulty==='lätt' "> Du borde gå vidare till svår nivå!</td>
-                    <td v-else-if="(average.average<4 && average.difficulty==='svårt') && (average.average[0]<4)" > Du borde gå tillbaka till lätt nivå!</td>
-                    <td v-else-if="(average.average<4 && average.difficulty==='svårt') " > Du borde gå tillbaka till lätt nivå!</td>
-                    <td v-else-if="average.average>=4 && average.difficulty==='svårt'"> Grattis! Du kan det här räknesättet riktigt bra.</td>
-                    <td v-else-if="average.average<1 && average.difficulty==='lätt'"> Test</td>
-                    <hr>
-                  </tr>
-                </table>
+        <div>
+          <b-card no-body>
+            <b-tabs card>
+              <b-tab title="Resultat" active>
+                <b-card-text>
+                  <h3>Dina snittresultat av 5:</h3>
+                  <table v-for="(average, index) in averages" :key="index">
+                    <tr>
+                      <td>{{ average.operation }}</td>
+                      <td>{{ average.difficulty }}:</td>
+                      <td>{{ average.average }}</td>
+                      <td v-if="average.average<4 && average.difficulty==='Lätt'">| Du borde öva vidare på lätt nivå!
+                      </td>
+                      <td v-else-if="average.average>=4 && average.difficulty==='Lätt' ">| Du borde gå vidare till svår
+                        nivå!
+                      </td>
+                      <td v-else-if="(average.average<4 && average.difficulty==='Svårt') && (average.average[0]<4)">| Du
+                        borde gå tillbaka till lätt nivå!
+                      </td>
+                      <td v-else-if="(average.average<4 && average.difficulty==='Svårt') ">| Du borde gå tillbaka till
+                        lätt nivå!
+                      </td>
+                      <td v-else-if="average.average>=4 && average.difficulty==='Svårt'">| Grattis! Du kan det här
+                        räknesättet riktigt bra.
+                      </td>
+                      <td v-else-if="average.average<1 && average.difficulty==='Lätt'">| Test</td>
+                      <hr>
+                    </tr>
+                  </table>
 
+                </b-card-text>
+              </b-tab>
 
-              </b-card-text>
-            </b-tab>
+              <b-tab title="Ändra lösenord">
+                <b-card-text>
+                  <h3>Byt Lösenord</h3>
+                  <label for="password">Ange ditt nya lösenord:</label>
+                  <br>
+                  <input class="signup_password_container"
+                         type="password"
+                         id="password"
+                         name="password"
+                         v-model="password"
+                         minlength="6"
+                         maxlength="15"
+                         required
+                  />
+                  <br>
+                  <label for="password-check">Bekräfta ditt nya lösenord:</label>
+                  <br>
+                  <input
+                      type="password"
+                      id="password-check"
+                      name="password-check"
+                      v-model="passwordCheck"
+                      minlength="6"
+                      maxlength="15"
+                      required
+                  />
+                  <p v-if="passwordCheck!==password && passwordCheck">Lösenorden stämmer inte överens!</p>
+                  <br>
+                  <br>
+                  <input @click="postData" type="submit" v-show="passwordCheck===password" value="Skicka"/>
+                </b-card-text>
+              </b-tab>
 
-            <b-tab title="Ändra lösenord">
-              <b-card-text>
-                <h3>Byt Lösenord</h3>
-                <label for="password">Ange ditt nya lösenord:</label>
+              <b-tab title="Radera konto">
                 <br>
-                <input class="signup_password_container"
-                       type="password"
-                       id="password"
-                       name="password"
-                       v-model="password"
-                       minlength="6"
-                       maxlength="15"
-                       required
-                />
-                <br>
-                <label for="password-check">Bekräfta ditt nya lösenord:</label>
-                <br>
-                <input
-                    type="password"
-                    id="password-check"
-                    name="password-check"
-                    v-model="passwordCheck"
-                    minlength="6"
-                    maxlength="15"
-                    required
-                />
-                <p v-if="passwordCheck!==password && passwordCheck">Lösenorden stämmer inte överens!</p>
-                <br>
-                <br>
-                <input @click="postData" type="submit" v-show="passwordCheck===password" value="Skicka" />
-              </b-card-text>
-            </b-tab>
+                <b-card-text>
+                  <h4>Vill du radera ditt konto?</h4>
+                  <br>
+                  <button @click="deleteAccount">Radera</button>
+                </b-card-text>
+              </b-tab>
 
-            <b-tab title="Radera konto">
-              <br>
-              <b-card-text>
-                <h4>Vill du radera ditt konto?</h4>
+              <b-tab title="Logga ut">
                 <br>
-                <button @click="deleteAccount">Radera</button>
-              </b-card-text>
-            </b-tab>
-
-            <b-tab title="Logga ut">
-              <br>
-              <b-card-text>
-                <h4>Är du säker på att du vill logga ut?</h4>
-                <br>
-                <input type="submit" value="OK" v-on:click="logout" />
-              </b-card-text>
-            </b-tab>
-          </b-tabs>
-        </b-card>
+                <b-card-text>
+                  <h4>Är du säker på att du vill logga ut?</h4>
+                  <br>
+                  <input type="submit" value="OK" v-on:click="logout"/>
+                </b-card-text>
+              </b-tab>
+            </b-tabs>
+          </b-card>
+        </div>
       </div>
-    </div>
     </div>
   </section>
   </body>
@@ -91,7 +99,7 @@
 <script>
 export default {
   props: {
-    isLoggedIn: { type: String },
+    isLoggedIn: {type: String},
     activeUser: {
       type: Object
     }
@@ -103,14 +111,14 @@ export default {
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/:id",
       averages: [
-        { average: 0 , operation: 'addition', difficulty: 'lätt'},
-        { average: 0 , operation: 'addition', difficulty: 'svårt'},
-        { average: 0 , operation: 'subtraktion', difficulty: 'lätt'},
-        { average: 0 , operation: 'subtraktion', difficulty: 'svårt'},
-        { average: 0 , operation: 'division', difficulty: 'lätt'},
-        { average: 0 , operation: 'division', difficulty: 'svårt'},
-        { average: 0 , operation: 'multiplikation', difficulty: 'lätt'},
-        { average: 0 , operation: 'multiplikation', difficulty: 'svårt'},
+        {average: 0, operation: 'Addition | ', difficulty: 'Lätt'},
+        {average: 0, operation: 'Addition | ', difficulty: 'Svårt'},
+        {average: 0, operation: 'Subtraktion | ', difficulty: 'Lätt'},
+        {average: 0, operation: 'Subtraktion | ', difficulty: 'Svårt'},
+        {average: 0, operation: 'Division | ', difficulty: 'Lätt'},
+        {average: 0, operation: 'Division | ', difficulty: 'Svårt'},
+        {average: 0, operation: 'Multiplikation | ', difficulty: 'Lätt'},
+        {average: 0, operation: 'Multiplikation | ', difficulty: 'Svårt'},
 
       ]
     };
@@ -124,9 +132,9 @@ export default {
       this.postData(this.postUrl);
 
     },
-    getAverage: function(results, operation, difficulty){
+    getAverage: function (results, operation, difficulty) {
       let x = results.filter((testResult) => {
-        return testResult.operation ==operation && testResult.difficulty == difficulty;
+        return testResult.operation == operation && testResult.difficulty == difficulty;
       })
       let sum = 0;
       for (let i = 0; i < x.length; i++) {
@@ -137,7 +145,7 @@ export default {
       } else {
         return "Inga test gjorda";
       }
-      },
+    },
 
     /*checkAverage: function(sum, length) {
       if (length > 0) {
@@ -153,13 +161,13 @@ export default {
       }
       return sum;
     },*/
-    postData: async function() {
+    postData: async function () {
       const response = await fetch(`http://localhost:3000/users/${this.activeUser.userId}`, {
         method: "PATCH",
         mode: "cors",
         cache: "no-cache",
         credentials: "same-origin",
-        headers: { "Content-Type": "application/json" },
+        headers: {"Content-Type": "application/json"},
         redirect: "follow",
         referrerPolicy: "no-referrer",
         body: JSON.stringify({
@@ -169,14 +177,14 @@ export default {
         return response.json();
       });
     },
-    deleteAccount: function(){
-      if(confirm("Är du säker på att du vill radera ditt konto?")){
+    deleteAccount: function () {
+      if (confirm("Är du säker på att du vill radera ditt konto?")) {
         const response = fetch(`http://localhost:3000/users/${this.activeUser.userId}`, {
           method: "DELETE",
           mode: "cors",
           cache: "no-cache",
           credentials: "same-origin",
-          headers: { "Content-Type": "application/json" },
+          headers: {"Content-Type": "application/json"},
           redirect: "follow",
           referrerPolicy: "no-referrer",
         }).then((response) => {
@@ -222,16 +230,16 @@ export default {
           this.averages[5].average = this.checkAverage(this.totalPoints(divisionTestsHard), divisionTestsHard.length);
           this.averages[6].average = this.checkAverage(this.totalPoints(multiplicationTestsEasy), multiplicationTestsEasy.length);
           this.averages[7].average = this.checkAverage(this.totalPoints(multiplicationTestsHard), multiplicationTestsHard.length);*/
-          this.averages[0].average=this.getAverage(data.testResults, "addition", "lätt");
-          this.averages[1].average=this.getAverage(data.testResults, "addition", "svårt");
-          this.averages[2].average=this.getAverage(data.testResults, "subtraktion", "lätt");
-          this.averages[3].average=this.getAverage(data.testResults, "subtraktion", "svårt");
-          this.averages[4].average=this.getAverage(data.testResults, "division", "lätt");
-          this.averages[5].average=this.getAverage(data.testResults, "division", "svårt");
-          this.averages[6].average=this.getAverage(data.testResults, "multiplikation", "lätt");
-          this.averages[7].average=this.getAverage(data.testResults, "multiplikation", "svårt");
+          this.averages[0].average = this.getAverage(data.testResults, "addition", "lätt");
+          this.averages[1].average = this.getAverage(data.testResults, "addition", "svårt");
+          this.averages[2].average = this.getAverage(data.testResults, "subtraktion", "lätt");
+          this.averages[3].average = this.getAverage(data.testResults, "subtraktion", "svårt");
+          this.averages[4].average = this.getAverage(data.testResults, "division", "lätt");
+          this.averages[5].average = this.getAverage(data.testResults, "division", "svårt");
+          this.averages[6].average = this.getAverage(data.testResults, "multiplikation", "lätt");
+          this.averages[7].average = this.getAverage(data.testResults, "multiplikation", "svårt");
 
-        }).catch(err=>{
+        }).catch(err => {
       console.log('Fel!' + err.message)
     });
   }
@@ -245,79 +253,81 @@ export default {
 <style scoped>
 /*Mobile*/
 
-  .grid_container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 2.0fr;
-    grid-template-areas:
+.grid_container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2.0fr;
+  grid-template-areas:
     "header"
     "profile_container"
     "footer ";
-    grid-gap: 20px;
-    height: 55vh;
-    text-align: center;
-    font-family: "Comic Sans MS";
-    align-items: center;
-  }
-  .profile_container {
-    background-color: #d6eef5;
-    border-color: black;
-    border-style: solid;
-    border-radius: 10px;
-    height: auto;
-    background-color: white;
-  }
+  grid-gap: 20px;
+  height: 55vh;
+  text-align: center;
+  font-family: "Comic Sans MS";
+  align-items: center;
+}
 
-  .tab button {
-    display: block;
-    background-color: inherit;
-    color: black;
-    padding: 22px 16px;
-    width: 100%;
-    border: none;
-    outline: none;
-    text-align: left;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 17px;
-    border-radius: 25px;
-  }
+.profile_container {
+  background-color: #d6eef5;
+  border-color: black;
+  border-style: solid;
+  border-radius: 10px;
+  height: auto;
+  background-color: white;
+}
 
-  b-tab {
-    float: left;
-    padding: 0px 12px;
-    width: 30%;
-    height: 300px;
-    border-color: black;
-    border-style: solid;
-    border-radius: 25px;
-  }
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+  border-radius: 25px;
+}
 
-  active {
-    background-color: mediumslateblue;
-  }
+b-tab {
+  float: left;
+  padding: 0px 12px;
+  width: 30%;
+  height: 300px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
+}
 
-  b-tab:hover {
-    background-color: cornflowerblue;
-  }
+active {
+  background-color: mediumslateblue;
+}
 
-  * {
-    box-sizing: border-box;
-  }
+b-tab:hover {
+  background-color: cornflowerblue;
+}
+
+* {
+  box-sizing: border-box;
+}
 
 /*Tablet*/
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .grid_container {
-width: 60%;
+    width: 60%;
     margin-left: 20%;
   }
 
 }
+
 /*Desktop*/
 @media screen and (min-width: 1025px) {
   .grid_container {
     width: 50%;
-margin-left: 25%;
+    margin-left: 25%;
   }
 }
 </style>
