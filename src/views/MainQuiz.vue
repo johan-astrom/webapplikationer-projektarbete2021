@@ -27,16 +27,15 @@
           </button>
 
           <button style="margin: 10px" v-if="checked" @click="reload">
-            <router-link class="button_styling" to="/quiz"> Spela om</router-link>
+            Spela om
           </button>
-
 
 
           <!--      <p>{{ message }}</p>-->
           <p v-if="checked"><b> Din lösning:</b>
             <span>{{ guess1 }}  </span>, poäng: {{ score }}</p>
           <p v-if="checked"><b>Korrekta svar:</b>{{ results }}</p>
-          <p v-if="checked"><b>Prov genomfört &#x1F44D;</b> </p>
+          <p v-if="checked"><b>Prov genomfört &#x1F44D;</b></p>
         </fieldset>
       </form>
     </section>
@@ -57,6 +56,7 @@ export default {
       postUrl: "http://localhost:3000/testResults",
       date: new Date().toLocaleString(),
       y: [1, 1, 1, 1, 1],
+      y1: [1, 1, 1, 1, 1],
       /*x: [1, 1, 1, 1, 1],*/
       message: "",
       guess: [],
@@ -70,9 +70,10 @@ export default {
       operator: '',
       sign: '',
       difficulty: '',
-      componentKey:0
-
-
+      xDivEas1: [],
+      yDivEas1: [],
+      xDivDif1:[],
+      yDivDif1:[],
     }
   },
   computed: {
@@ -105,6 +106,8 @@ export default {
       }
       return y;
     },
+
+
     xDivDifficult: function () {
       let x = [];
       for (let i = 0; i < 5; i++) {
@@ -112,8 +115,9 @@ export default {
       }
       return x;
     },
-    xNumbers: function () {
 
+    xNumbers: function () {
+      //return Math.floor(Math.random() * 10) + 1
       if (this.operator == 'division' && this.difficulty == 'lätt') {
         return this.xDivEasy;
       } else if (this.operator == 'division' && this.difficulty == 'svårt') {
@@ -125,6 +129,7 @@ export default {
           while (x.size != 5) {
             x.add(Math.floor(Math.random() * 10) + 1)
           }
+
         } else {
 
           while (x.size != 5) {
@@ -137,22 +142,12 @@ export default {
         //x.forEach(value => array.push(value))
         return array;
 
-        /*return this.x.map((x) => {
-
-          if (this.difficulty == 'lätt') {
-             x = (Math.floor(Math.random() * 10) + 1);
-            if (this.x.indexOf(x) == -1) {
-              return x
-            } else {
-              return x * (Math.round(Math.random() * 100))
-            }
-          }
-        }
-        );*/
       }
-    },
-    yNumbers: function () {
 
+    },
+
+    yNumbers: function () {
+      //return Math.floor(Math.random() * 10) + 1
       if (this.operator == 'division' && this.difficulty == 'lätt') {
         return this.yDivEasy;
       } else if (this.operator == 'division' && this.difficulty == 'svårt') {
@@ -168,6 +163,13 @@ export default {
         });
       }
     },
+    /* xNumbers: function () {
+       return this.xNumbers1();
+     },
+
+     yNumbers: function () {
+    return this.yNumbers1();
+     },*/
     validated: function () {
       let counter = 0
       for (let i = 0; i < 5; i++) {
@@ -180,12 +182,129 @@ export default {
       }
       return false
     }
+
   },
   methods: {
-  
-    reload: function () {
-      this.$router.go(this.$router.currentRoute)
+
+    yDivEasy1: function () {
+
+      //let y = [];
+      while (this.yDivEas1.length < 5) {
+        let r = (Math.floor(Math.random() * 10) + 1);
+        if (this.yDivEas1.indexOf(r) == -1) this.yDivEas1.push(r);
+      }
+      /*let y1 = new Set();
+      while(y.size != 5){
+        y.add(Math.floor(Math.random() * 10) + 1);*/
+
+      return this.yDivEas1;
     },
+    xDivEasy1: function () {
+      //let x = [];
+
+      for (let i = 0; i < 5; i++) {
+        this.xDivEas1.push((Math.floor(Math.random() * 10) + 1) * this.yDivEas1[i]);
+      }
+      console.log(this.yDivEas1)
+      console.log(this.xDivEas1)
+
+      return this.xDivEas1;
+    },
+
+    yDivDifficult1: function () {
+
+      while (this.yDivDif1.length < 5) {
+        let r = (Math.floor(Math.random() * 100) + 1);
+        if (this.yDivDif1.indexOf(r) == -1) this.yDivDif1.push(r);
+      }
+      return this.yDivDif1;
+    },
+    xDivDifficult1: function () {
+
+      for (let i = 0; i < 5; i++) {
+        this.xDivDif1.push((Math.floor(Math.random() * 100) + 1) * this.yDivDif1[i]);
+      }
+      return this.xDivDif1;
+    },
+    xNumbers1: function () {
+      //return Math.floor(Math.random() * 10) + 1
+      if (this.operator == 'division' && this.difficulty == 'lätt') {
+
+        return this.xDivEasy1();
+
+      } else if (this.operator == 'division' && this.difficulty == 'svårt') {
+        return this.xDivDifficult1()
+      } else {
+        let x = new Set();
+        if (this.difficulty == 'lätt') {
+
+          while (x.size != 5) {
+            x.add(Math.floor(Math.random() * 10) + 1)
+          }
+
+        } else {
+
+          while (x.size != 5) {
+            x.add(Math.ceil(Math.random() * 90 + 10))
+            //x.add(this.getRandomInt(10,100));
+          }
+        }
+        let array = Array.from(x);
+        //let array=[...x];
+        //x.forEach(value => array.push(value))
+        return array;
+
+      }
+
+    },
+
+    yNumbers1: function () {
+      //return Math.floor(Math.random() * 10) + 1
+      if (this.operator == 'division' && this.difficulty == 'lätt') {
+
+        return this.yDivEasy1();
+
+      } else if (this.operator == 'division' && this.difficulty == 'svårt') {
+        return this.yDivDifficult1()
+      } else {
+        return this.y1.map((y1) => {
+          if (this.difficulty == 'lätt') {
+            return y1 * ((Math.floor(Math.random() * 10)) + 1)
+          } else {
+            return y1 * (Math.round(Math.random() * 100))
+          }
+
+        });
+      }
+    },
+
+    reload: function () {
+      this.yDivEas1 = [];
+      this.xDivEas1 = [];
+      this.xDivDif1=[];
+      this.xDivDif1=[];
+      let yArray = this.yNumbers1();
+      let xArray = this.xNumbers1();
+
+      console.log(xArray);
+      console.log(yArray)
+      //this.$router.go(this.$router.currentRoute)
+      this.checked = false;
+
+      this.guess = [];
+      this.right = [];
+      this.results = [];
+      this.resultColor = [];
+      this.guess1 = [];
+      for (let i = 0; i < 5; i++) {
+        this.xNumbers[i] = xArray[i];
+        this.yNumbers[i] = yArray[i];
+
+      }
+
+
+    }
+    ,
     check: function () {
 
       // this.showQuiz = false;
@@ -311,9 +430,12 @@ export default {
 h2 {
   height: auto;
 }
-.question_start{
-  margin-right: 40px; padding: 2px
+
+.question_start {
+  margin-right: 40px;
+  padding: 2px
 }
+
 .answers {
   display: flex;
   flex-direction: row;
@@ -359,7 +481,7 @@ ul li {
     width: 70%;
   }
 
-  .answers{
+  .answers {
     font-size: 17px;
   }
 }
@@ -369,9 +491,11 @@ ul li {
   button {
     width: 20%;
   }
-  .answers{
+
+  .answers {
     font-size: 18px;
   }
+
   .question_container {
     width: 50%;
   }

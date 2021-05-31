@@ -14,10 +14,12 @@
                     <td>{{average.operation}},</td>
                     <td>{{average.difficulty}}:</td>
                     <td>{{average.average}}</td>
-                    <td v-if="average.average<4 && average.difficulty==='lätt'"> Du borde öva vidare på lätt nivå!</td>
-                    <td v-else-if="average.average>4 && average.difficulty==='lätt'"> Du borde gå vidare till svår nivå!</td>
-                    <td v-else-if="average.average<4 && average.difficulty==='svårt'"> Du borde öva vidare på svår nivå!</td>
-                    <td v-else-if="average.average>4 && average.difficulty==='svårt'"> Grattis! Du kan det här räknesättet riktigt bra.</td>
+                   <td v-if="average.average<4 && average.difficulty==='lätt'"> Du borde öva vidare på lätt nivå!</td>
+                    <td v-else-if="average.average>=4 && average.difficulty==='lätt' "> Du borde gå vidare till svår nivå!</td>
+                    <td v-else-if="(average.average<4 && average.difficulty==='svårt') && (average.average[0]<4)" > Du borde gå tillbaka till lätt nivå!</td>
+                    <td v-else-if="(average.average<4 && average.difficulty==='svårt') " > Du borde gå tillbaka till lätt nivå!</td>
+                    <td v-else-if="average.average>=4 && average.difficulty==='svårt'"> Grattis! Du kan det här räknesättet riktigt bra.</td>
+                    <td v-else-if="average.average<1 && average.difficulty==='lätt'"> Test</td>
                     <hr>
                   </tr>
                 </table>
@@ -95,14 +97,14 @@ export default {
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/:id",
       averages: [
-        { average: 0 , operation: 'Addition', difficulty: 'Lätt'},
-        { average: 0 , operation: 'Addition', difficulty: 'Svårt'},
-        { average: 0 , operation: 'Subtraktion', difficulty: 'Lätt'},
-        { average: 0 , operation: 'Subtraktion', difficulty: 'Svårt'},
-        { average: 0 , operation: 'Division', difficulty: 'Lätt'},
-        { average: 0 , operation: 'Division', difficulty: 'Svårt'},
-        { average: 0 , operation: 'Multiplikation', difficulty: 'Lätt'},
-        { average: 0 , operation: 'Multiplikation', difficulty: 'Svårt'},
+        { average: 0 , operation: 'addition', difficulty: 'lätt'},
+        { average: 0 , operation: 'addition', difficulty: 'svårt'},
+        { average: 0 , operation: 'subtraktion', difficulty: 'lätt'},
+        { average: 0 , operation: 'subtraktion', difficulty: 'svårt'},
+        { average: 0 , operation: 'division', difficulty: 'lätt'},
+        { average: 0 , operation: 'division', difficulty: 'svårt'},
+        { average: 0 , operation: 'multiplikation', difficulty: 'lätt'},
+        { average: 0 , operation: 'multiplikation', difficulty: 'svårt'},
 
       ]
     };
@@ -116,8 +118,22 @@ export default {
       this.postData(this.postUrl);
 
     },
+    getAverage: function(results, operation, difficulty){
+      let x = results.filter((testResult) => {
+        return testResult.operation ==operation && testResult.difficulty == difficulty;
+      })
+      let sum = 0;
+      for (let i = 0; i < x.length; i++) {
+        sum += x[i].score;
+      }
+      if (x.length > 0) {
+        return sum / x.length;
+      } else {
+        return "Inga test gjorda";
+      }
+      },
 
-    checkAverage: function(sum, length) {
+    /*checkAverage: function(sum, length) {
       if (length > 0) {
         return sum / length;
       } else {
@@ -130,7 +146,7 @@ export default {
         sum += scoreArray[i].score;
       }
       return sum;
-    },
+    },*/
     postData: async function() {
       const response = await fetch(`http://localhost:3000/users/${this.activeUser.userId}`, {
         method: "PATCH",
@@ -167,7 +183,7 @@ export default {
     fetch(`http://localhost:3000/testResults/${this.activeUser.userId}`)
         .then(res => res.json())
         .then(data => {
-          let testResults = data.testResults;
+          /*let testResults = data.testResults;
           let additionTestsEasy = testResults.filter((testResult) => {
             return testResult.operation === "addition" && testResult.difficulty === "lätt";
           });
@@ -192,18 +208,22 @@ export default {
           let multiplicationTestsHard = testResults.filter((testResult) => {
             return testResult.operation === "multiplikation" && testResult.difficulty === "svårt";
           });
-
           this.averages[0].average = this.checkAverage(this.totalPoints(additionTestsEasy), additionTestsEasy.length);
           this.averages[1].average = this.checkAverage(this.totalPoints(additionTestsHard), additionTestsHard.length);
-
           this.averages[2].average = this.checkAverage(this.totalPoints(subtractionTestsEasy), subtractionTestsEasy.length);
           this.averages[3].average = this.checkAverage(this.totalPoints(subtractionTestsHard), subtractionTestsHard.length);
-
           this.averages[4].average = this.checkAverage(this.totalPoints(divisionTestsEasy), divisionTestsEasy.length);
           this.averages[5].average = this.checkAverage(this.totalPoints(divisionTestsHard), divisionTestsHard.length);
-
           this.averages[6].average = this.checkAverage(this.totalPoints(multiplicationTestsEasy), multiplicationTestsEasy.length);
-          this.averages[7].average = this.checkAverage(this.totalPoints(multiplicationTestsHard), multiplicationTestsHard.length);
+          this.averages[7].average = this.checkAverage(this.totalPoints(multiplicationTestsHard), multiplicationTestsHard.length);*/
+          this.averages[0].average=this.getAverage(data.testResults, "addition", "lätt");
+          this.averages[1].average=this.getAverage(data.testResults, "addition", "svårt");
+          this.averages[2].average=this.getAverage(data.testResults, "subtraktion", "lätt");
+          this.averages[3].average=this.getAverage(data.testResults, "subtraktion", "svårt");
+          this.averages[4].average=this.getAverage(data.testResults, "division", "lätt");
+          this.averages[5].average=this.getAverage(data.testResults, "division", "svårt");
+          this.averages[6].average=this.getAverage(data.testResults, "multiplikation", "lätt");
+          this.averages[7].average=this.getAverage(data.testResults, "multiplikation", "svårt");
 
         }).catch(err=>{
       console.log('Fel!' + err.message)

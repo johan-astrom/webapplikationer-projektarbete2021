@@ -45,8 +45,8 @@
       <p v-if="passwordCheck!==password && passwordCheck">Lösenorden stämmer inte överens!</p>
       <br>
       <br>
-      <input v-if="isHidden" type="submit" v-show="passwordCheck===password" value="Skicka" v-on:click="isHidden = false">
-      <router-link to="/"> <input v-if="!isHidden" type="submit"  value="Till startsida"> </router-link>
+      <input v-if="isHidden" type="submit" v-show="passwordCheck===password" value="Skicka" >
+      <router-link to="/"> <button v-if="!isHidden" >Till startsida </button></router-link>
     </form>
       <br>
       <p>Har du redan ett konto? Tryck <router-link to="/components/LoginPage"> här</router-link> för att logga in</p>
@@ -81,6 +81,7 @@ export default {
         alert("Användarnamnet innehåller fula ord!");
       } else {
         this.postData(this.postUrl);
+        this.isHidden=false
       }
     },
     postData: async function(url = "") {
