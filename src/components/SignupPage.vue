@@ -49,7 +49,7 @@
       <router-link to="/"> <button v-if="!isHidden" >Till startsida </button></router-link>
     </form>
       <br>
-      <p>Har du redan ett konto? Tryck <router-link to="/components/LoginPage"> här</router-link> för att logga in</p>
+      <p>Har du redan ett konto? Tryck <router-link to="/konto"> här</router-link> för att logga in</p>
     </div>
   </section>
 </Body>
