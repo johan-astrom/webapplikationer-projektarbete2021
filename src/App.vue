@@ -21,6 +21,7 @@
       <router-link to="/" class="grid-item1">Hem</router-link>
       <router-link to="/quizsettings" class="grid-item">Starta Quiz</router-link>
       <router-link  to="/konto" class="grid-item3">Mitt konto</router-link>
+
 <!--      <router-link v-if="loggedIn" to="/ProfileInfo" class="grid-item3">Mitt konto</router-link>-->
     </div>
     <router-view @logout-from-account="loggedInButtonFalse" :isLoggedIn="loggedIn"  @user-login-step3="login2"  @user-login-step2="login" :activeUser="activeUser"/>
@@ -187,6 +188,7 @@ h1 {
   margin: auto;
   width: 75%;
   padding: 10px;
+
 }
 
 #nav a:hover {
@@ -239,6 +241,9 @@ footer ul {
     margin: auto;
     width: 100%;
     padding: 20px;
+    background-image: url("assets/120px-Noto_Emoji_Oreo_1f3e1.svg.png");
+    background-size: auto;
+    background-repeat: no-repeat;
   }
   .grid-item{
     text-align: center;
@@ -248,6 +253,9 @@ footer ul {
     margin: auto;
     width: 100%;
     padding: 20px;
+    background-image: url("assets/1024px-Gnome-joystick.svg.png");
+    background-size: auto;
+    background-repeat: no-repeat;
 
   }
   .grid-item3 {
@@ -256,6 +264,9 @@ footer ul {
     margin: auto;
     width: 100%;
     padding: 20px;
+    background-image: url("assets/TT_-_Booker_300.gif");
+    background-size: auto;
+    background-repeat: no-repeat;
   }
   .footer_list {
     width: auto;
@@ -278,6 +289,9 @@ footer ul {
     margin: auto;
     width: 100%;
     padding: 20px;
+    background-image: url("assets/120px-Noto_Emoji_Oreo_1f3e1.svg.png");
+    background-size: auto;
+    background-repeat: no-repeat;
   }
   .grid-item{
     text-align: center;
@@ -287,6 +301,9 @@ footer ul {
     margin: auto;
     width: 100%;
     padding: 20px;
+    background-image: url("assets/1024px-Gnome-joystick.svg.png");
+    background-size: auto;
+    background-repeat: no-repeat;
   }
 
   .grid-item3 {
@@ -295,7 +312,11 @@ footer ul {
     margin: auto;
     width: 100%;
     padding: 20px;
+    background-image: url("assets/TT_-_Booker_300.gif");
+    background-size: auto;
+    background-repeat: no-repeat;
   }
+
   .logInButton {
     text-align: right;
     padding-right: 15%;

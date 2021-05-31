@@ -16,10 +16,10 @@
       <article class="right">
         <div>
 
-          <router-link v-if="isLoggedIn" to="/ProfileInfo"> <h2>Välkommen {{activeUser.username}}</h2></router-link>
+          <router-link v-if="isLoggedIn" to="/konto"> <h2>Välkommen {{activeUser.username}}</h2></router-link>
           <router-link v-if="!isLoggedIn" to="/konto"><h2>Logga in/ Registrera</h2></router-link>
 
-          <router-link v-if="isLoggedIn" to="/ProfileInfo"><img src="../assets/kugghjul.jpg" alt=""></router-link>
+          <router-link v-if="isLoggedIn" to="/konto"><img src="../assets/kugghjul.jpg" alt=""></router-link>
           <router-link v-if="!isLoggedIn" to="/konto"><img src="../assets/kugghjul.jpg" alt=""></router-link>
         </div>
       </article>
