@@ -36,7 +36,7 @@
 <!--          <p v-if="checked"><b> Din lösning:</b>-->
 <!--            <span>{{ guess1 }}  </span>, poäng: {{ score }}</p>-->
 <!--          <p v-if="checked"><b>Korrekta svar:</b>{{ results }}</p>-->
-          <p v-if="checked" class="Point"> Poäng: {{score}}</p>
+          <p v-if="checked" class="point"><b>Poäng: </b> {{score}}</p>
           <p v-if="checked"><b>Prov genomfört &#x1F44D;</b> </p>
         </fieldset>
       </form>
@@ -311,7 +311,7 @@ export default {
 ul{
   padding: 0px 0px 0px 0px
 }
-.Point{
+.point{
   font-size: 24px;
   margin-top: 10px;
 }

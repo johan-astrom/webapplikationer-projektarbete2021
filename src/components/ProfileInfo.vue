@@ -229,7 +229,7 @@ export default {
     grid-template-rows: 2.0fr;
     grid-template-areas:
     "header"
-    "Profile_Container"
+    "profile_container"
     "footer ";
     grid-gap: 20px;
     height: 55vh;
