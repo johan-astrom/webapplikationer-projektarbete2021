@@ -337,6 +337,7 @@ h2 {
 .wrong_comment {
   margin-left: 25px;
   color: red;
+  margin-top: 15px;
 }
 .right_comment {
   margin-left: 25px;
