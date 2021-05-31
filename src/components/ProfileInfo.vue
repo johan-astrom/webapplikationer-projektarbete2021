@@ -3,37 +3,6 @@
   <section>
     <div class="grid_container">
       <div class="profile_container">
-
-        <div>
-          <b-card no-body>
-            <b-tabs card>
-              <b-tab title="Resultat" active>
-                <b-card-text>
-                  <h3>Dina snittresultat av 5:</h3>
-                  <table v-for="(average, index) in averages" :key="index">
-                    <tr>
-                      <td>{{ average.operation }}</td>
-                      <td>{{ average.difficulty }}:</td>
-                      <td>{{ average.average }}</td>
-                      <td v-if="average.average<4 && average.difficulty==='Lätt'">| Du borde öva vidare på lätt nivå!
-                      </td>
-                      <td v-else-if="average.average>=4 && average.difficulty==='Lätt' ">| Du borde gå vidare till svår
-                        nivå!
-                      </td>
-                      <td v-else-if="(average.average<4 && average.difficulty==='Svårt') && (average.average[0]<4)">| Du
-                        borde gå tillbaka till lätt nivå!
-                      </td>
-                      <td v-else-if="(average.average<4 && average.difficulty==='Svårt') ">| Du borde gå tillbaka till
-                        lätt nivå!
-                      </td>
-                      <td v-else-if="average.average>=4 && average.difficulty==='Svårt'">| Grattis! Du kan det här
-                        räknesättet riktigt bra.
-                      </td>
-                      <td v-else-if="average.average<1 && average.difficulty==='Lätt'">| Test</td>
-                      <hr>
-                    </tr>
-                  </table>
-      <div>
         <b-card no-body>
           <b-tabs card>
             <b-tab title="Resultat" active>
@@ -109,7 +78,6 @@
               </b-tab>
             </b-tabs>
           </b-card>
-        </div>
       </div>
     </div>
   </section>
