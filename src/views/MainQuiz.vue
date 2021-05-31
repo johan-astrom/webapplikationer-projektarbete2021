@@ -16,8 +16,8 @@
                     v-model='guess[n-1]'
                     v-bind:style="{border:resultColor[n-1]}"
                 >
-                <p class="wrong_right_comment" v-if="right[n-1]==false">Rätt svar {{ results[n - 1] }}</p>
-                <p class="wrong_right_comment" v-if="right[n-1]==true">Bra jobbat!</p>
+                <p class="wrong_comment" v-if="right[n-1]==false">Rätt svar {{ results[n - 1] }}</p>
+                <p class="right_comment" v-if="right[n-1]==true">Bra jobbat!</p>
               </div>
             </li>
           </ul>
@@ -33,9 +33,10 @@
 
 
           <!--      <p>{{ message }}</p>-->
-          <p v-if="checked"><b> Din lösning:</b>
-            <span>{{ guess1 }}  </span>, poäng: {{ score }}</p>
-          <p v-if="checked"><b>Korrekta svar:</b>{{ results }}</p>
+<!--          <p v-if="checked"><b> Din lösning:</b>-->
+<!--            <span>{{ guess1 }}  </span>, poäng: {{ score }}</p>-->
+<!--          <p v-if="checked"><b>Korrekta svar:</b>{{ results }}</p>-->
+          <p v-if="checked" class="Point"> Poäng: {{score}}</p>
           <p v-if="checked"><b>Prov genomfört &#x1F44D;</b> </p>
         </fieldset>
       </form>
@@ -307,7 +308,13 @@ export default {
   padding-top: 40px;
   text-align: center;
 }
-
+ul{
+  padding: 0px 0px 0px 0px
+}
+.Point{
+  font-size: 24px;
+  margin-top: 10px;
+}
 h2 {
   height: auto;
 }
@@ -325,8 +332,13 @@ h2 {
 }
 
 
-.wrong_right_comment {
+.wrong_comment {
   margin-left: 25px;
+  color: red;
+}
+.right_comment {
+  margin-left: 25px;
+  color: green;
 }
 
 .button_styling {
