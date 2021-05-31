@@ -312,7 +312,9 @@ h2 {
   height: auto;
 }
 .question_start{
-  margin-right: 40px; padding: 2px
+  margin-right: 40px;
+  padding: 2px;
+  margin-top: 15px;
 }
 .answers {
   display: flex;
@@ -327,6 +329,7 @@ h2 {
 
 .wrong_right_comment {
   margin-left: 25px;
+  margin-top: 15px;
 }
 
 .button_styling {
