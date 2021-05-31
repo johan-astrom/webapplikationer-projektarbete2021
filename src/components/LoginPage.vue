@@ -80,22 +80,25 @@ export default {
 </script>
 
 <style scoped>
+
+
+/*Mobile*/
+
 button {
   margin: 8px;
 }
-
 .login_container {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 2.0fr;
   grid-template-areas:
-    "header header "
-    "login_container login_container"
-    "password_containe password_containerr"
-    "footer footer";
+    "header "
+    "login_container "
+    "password_container "
+    "footer";
   grid-gap: 20px;
   height: auto;
-  width: 35%;
+  width: 55%;
   font-family: "Comic Sans MS";
   border-color: black;
   border-style: solid;
@@ -104,10 +107,27 @@ button {
   alignment: center;
   background-color: #d6eef5;
   text-align: center;
+  justify-content: center;
 }
 
 body {
   width: auto;
   height: 55vh;
 }
+
+/*Tablet*/
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .login_container {
+    width: 40%;
+  }
+
+}
+
+/*Desktop*/
+@media screen and (min-width: 1025px) {
+  .login_container {
+    width: 40%;
+  }
+}
+
 </style>
