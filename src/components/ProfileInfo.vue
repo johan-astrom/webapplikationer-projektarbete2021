@@ -1,6 +1,7 @@
 <template>
   <body>
-  <section class="grid_container">
+  <section >
+    <div class="grid_container">
     <div class="profile_container">
       <div>
         <b-card no-body>
@@ -58,21 +59,26 @@
             </b-tab>
 
             <b-tab title="Radera konto">
+              <br>
               <b-card-text>
                 <h4>Vill du radera ditt konto?</h4>
+                <br>
                 <button @click="deleteAccount">Radera</button>
               </b-card-text>
             </b-tab>
 
             <b-tab title="Logga ut">
+              <br>
               <b-card-text>
                 <h4>Är du säker på att du vill logga ut?</h4>
+                <br>
                 <input type="submit" value="OK" v-on:click="logout" />
               </b-card-text>
             </b-tab>
           </b-tabs>
         </b-card>
       </div>
+    </div>
     </div>
   </section>
   </body>
@@ -222,20 +228,22 @@ export default {
     grid-template-columns: 1fr;
     grid-template-rows: 2.0fr;
     grid-template-areas:
-    "header header "
+    "header"
     "Profile_Container"
-    "footer footer";
+    "footer ";
     grid-gap: 20px;
     height: 55vh;
     text-align: center;
     font-family: "Comic Sans MS";
+    align-items: center;
   }
-
   .profile_container {
     background-color: #d6eef5;
     border-color: black;
     border-style: solid;
     border-radius: 10px;
+    height: auto;
+    background-color: white;
   }
 
   .tab button {
@@ -277,11 +285,17 @@ export default {
 
 /*Tablet*/
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-
+  .grid_container {
+width: 60%;
+    margin-left: 20%;
+  }
 
 }
 /*Desktop*/
 @media screen and (min-width: 1025px) {
-
+  .grid_container {
+    width: 50%;
+margin-left: 25%;
+  }
 }
 </style>

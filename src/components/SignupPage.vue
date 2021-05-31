@@ -140,7 +140,7 @@ export default {
     "footer footer";
   grid-gap: 20px;
   height: auto;
-  width: 35%;
+  width: 70%;
   text-align: center;
   font-family: "Comic Sans MS";
   border-color: black;
@@ -156,4 +156,19 @@ body{
   width: auto;
   height: 65vh;
 }
+
+/*Tablet*/
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .signup_container{
+    width: 60%;
+  }
+}
+
+/*Desktop*/
+@media screen and (min-width: 1025px) {
+  .signup_container{
+    width: 40%;
+  }
+}
+
 </style>
