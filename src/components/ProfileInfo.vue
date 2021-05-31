@@ -12,7 +12,7 @@
                 <h3>Dina snittresultat av 5:</h3>
                 <table v-for="(average, index) in averages" :key="index">
                   <tr>
-                    <td>{{average.operation}},</td>
+                    <td>{{average.operation}}</td>
                     <td>{{average.difficulty}}:</td>
                     <td>{{average.average}}</td>
                    <td v-if="average.average<4 && average.difficulty==='lätt'"> Du borde öva vidare på lätt nivå!</td>
