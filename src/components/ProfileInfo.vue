@@ -318,9 +318,9 @@ b-tab:hover {
 }
 table{
   background-color: white;
-  border-spacing: 6px;
   border: 2px solid black;
-  margin-left: 11%;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 th{
   background-color: #007bff;
@@ -344,12 +344,15 @@ td,th{
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .grid_container {
     width: 60%;
+    margin-bottom: 10%;
     margin-left: 20%;
+
   }
   table{
-    margin-left: 10px
+    margin-right: 10%;
+    margin-left: 5%;
+    width: 90%;
   }
-
 }
 
 /*Desktop*/
@@ -357,6 +360,12 @@ td,th{
   .grid_container {
     width: 50%;
     margin-left: 25%;
+    margin-bottom: 5%;
+  }
+  table{
+    margin-right: 11%;
+    margin-left: 11%;
+    margin-bottom: 5%;
   }
 }
 </style>
