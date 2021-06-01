@@ -9,7 +9,8 @@
             <li v-for='n in 5' :key='n'>
 
               <div class="answers">
-                <p class="question_start"> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} = </p>
+                <label class="question_start"> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} = </label>
+<!--                <p class="question_start"> {{ xNumbers[n - 1] }} {{ sign }} {{ yNumbers[n - 1] }} = </p>-->
                 <input
                     :disabled="checked"
                     class="field"
@@ -430,7 +431,7 @@ export default {
   text-align: center;
 }
 ul{
-  padding: 0px 0px 0px 0px
+ margin:auto;
 }
 .point{
   font-size: 24px;
@@ -441,9 +442,10 @@ h2 {
 }
 
 .question_start{
-  margin-right: 40px;
-  padding: 2px;
+  margin-right: 4px;
+  padding: 0px;
   margin-top: 15px;
+
 
 }
 
@@ -451,20 +453,22 @@ h2 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  box-sizing: border-box;
+  box-sizing: content-box;
   margin-bottom: 15px;
   font-size: 15px;
 
 }
-
+fieldset{
+ margin:auto;
+}
 
 .wrong_comment {
-  margin-left: 25px;
+  margin-left: 4px;
   color: red;
   margin-top: 15px;
 }
 .right_comment {
-  margin-left: 25px;
+  margin-left: 4px;
   color: green;
   margin-top: 15px;
 
@@ -492,6 +496,7 @@ ul li {
   height: auto;
   text-align: center;
   font-family: "Comic Sans MS";
+  justify-content: center;
 }
 
 /*Tablet*/
