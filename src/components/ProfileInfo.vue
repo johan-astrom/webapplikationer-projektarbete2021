@@ -159,6 +159,9 @@ export default {
           password: this.password
         })
       }).then((response) => {
+        alert("Lösenordet ändrat!");
+        this.password="";
+        this.passwordCheck="";
         return response.json();
       });
     },
