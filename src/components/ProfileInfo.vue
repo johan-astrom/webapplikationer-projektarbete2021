@@ -10,10 +10,10 @@
                 <h3>Dina snittresultat av 5:</h3>
                 <table>
                   <thead>
-                  <th>Räktesätt</th>
-                  <th>Nivå</th>
-                  <th>Poäng</th>
-                  <th>Kommentar</th>
+                  <th>Räktesätt:</th>
+                  <th>Nivå:</th>
+                  <th>Poäng:</th>
+                  <th>Kommentar:</th>
                   </thead>
                   <tbody v-for="(average, index) in averages" :key="index">
                   <tr>
