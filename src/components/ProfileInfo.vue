@@ -8,16 +8,26 @@
             <b-tab title="Resultat" active>
               <b-card-text>
                 <h3>Dina snittresultat av 5:</h3>
-                <table v-for="(average, index) in averages" :key="index">
+                <table>
+                  <thead>
+                  <th>Nivå</th>
+                  <th>Poäng</th>
+                  <th>Kommentar</th>
+                  </thead>
+                  <tbody v-for="(average, index) in averages" :key="index">
                   <tr>
-                    <td>{{average.operation}}</td>
-                    <td>{{average.difficulty}}:</td>
-                    <td>{{average.average}}</td>
-                   <td v-if="average.average<4">Öva vidare!</td>
+                    <td>
+                      {{average.operation}}
+                    </td>
+                    <td>
+                      {{average.difficulty}}:
+                    </td>
+                    <td v-if="average.average<4">Öva vidare!</td>
                     <td v-else-if="average.average>=4 && average.difficulty==='lätt' ">Bra jobbat! Nu är du redo för svår nivå!</td>
                     <td v-else-if="average.average>=4 && average.difficulty==='svårt'"> Grattis! Du kan det här räknesättet riktigt bra.</td>
-                    <hr>
+                    <td>-</td>
                   </tr>
+                  </tbody>
                 </table>
 
                 </b-card-text>
@@ -96,14 +106,14 @@ export default {
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/:id",
       averages: [
-        {average: 0, operation: 'addition | ', difficulty: 'lätt'},
-        {average: 0, operation: 'addition | ', difficulty: 'svårt'},
-        {average: 0, operation: 'subtraktion | ', difficulty: 'lätt'},
-        {average: 0, operation: 'subtraktion | ', difficulty: 'svårt'},
-        {average: 0, operation: 'division | ', difficulty: 'lätt'},
-        {average: 0, operation: 'division | ', difficulty: 'svårt'},
-        {average: 0, operation: 'multiplikation | ', difficulty: 'lätt'},
-        {average: 0, operation: 'multiplikation | ', difficulty: 'svårt'},
+        {average: 0, operation: 'addition ', difficulty: 'lätt'},
+        {average: 0, operation: 'addition ', difficulty: 'svårt'},
+        {average: 0, operation: 'subtraktion ', difficulty: 'lätt'},
+        {average: 0, operation: 'subtraktion ', difficulty: 'svårt'},
+        {average: 0, operation: 'division ', difficulty: 'lätt'},
+        {average: 0, operation: 'division ', difficulty: 'svårt'},
+        {average: 0, operation: 'multiplikation  ', difficulty: 'lätt'},
+        {average: 0, operation: 'multiplikation ', difficulty: 'svårt'},
 
       ]
     };
@@ -300,6 +310,29 @@ b-tab:hover {
 
 * {
   box-sizing: border-box;
+}
+table{
+  background-color: white;
+  border-spacing: 6px;
+  border: 2px solid black;
+  margin-left: 25%;
+}
+th{
+  background-color: #007bff;
+  border: 0px solid white;
+}
+tr{
+  background-color: pink;
+  border: 0px black;
+}
+td{
+  border: 0px solid white;
+  background-color: pink;
+}
+td,th{
+  border: 0px solid white;
+  padding: 5px;
+  text-align: center;
 }
 
 /*Tablet*/
