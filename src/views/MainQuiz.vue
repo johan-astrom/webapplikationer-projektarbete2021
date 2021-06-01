@@ -507,6 +507,7 @@ ul li {
 
 /*Desktop*/
 @media screen and (min-width: 1025px) {
+
   button {
     width: 20%;
   }

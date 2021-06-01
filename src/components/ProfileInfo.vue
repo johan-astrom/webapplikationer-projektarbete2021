@@ -10,6 +10,7 @@
                 <h3>Dina snittresultat av 5:</h3>
                 <table>
                   <thead>
+                  <th>Räktesätt</th>
                   <th>Nivå</th>
                   <th>Poäng</th>
                   <th>Kommentar</th>
@@ -22,10 +23,13 @@
                     <td>
                       {{average.difficulty}}:
                     </td>
-                    <td v-if="average.average<4">Öva vidare!</td>
-                    <td v-else-if="average.average>=4 && average.difficulty==='lätt' ">Bra jobbat! Nu är du redo för svår nivå!</td>
-                    <td v-else-if="average.average>=4 && average.difficulty==='svårt'"> Grattis! Du kan det här räknesättet riktigt bra.</td>
-                    <td>-</td>
+                    <td>
+                      {{average.average}}
+                    </td>
+                    <td v-if="average.average>=1 && average.average<=4">Öva vidare!</td>
+                    <td v-else-if="average.average>=4 && average.difficulty==='Lätt' ">Bra jobbat! Nu är du redo för svår nivå!</td>
+                    <td v-else-if="average.average>=4 && average.difficulty==='Svårt'"> Grattis! Du kan det här räknesättet riktigt bra.</td>
+                    <td v-else-if="average.average<1">-</td>
                   </tr>
                   </tbody>
                 </table>
@@ -106,14 +110,14 @@ export default {
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/:id",
       averages: [
-        {average: 0, operation: 'addition ', difficulty: 'lätt'},
-        {average: 0, operation: 'addition ', difficulty: 'svårt'},
-        {average: 0, operation: 'subtraktion ', difficulty: 'lätt'},
-        {average: 0, operation: 'subtraktion ', difficulty: 'svårt'},
-        {average: 0, operation: 'division ', difficulty: 'lätt'},
-        {average: 0, operation: 'division ', difficulty: 'svårt'},
-        {average: 0, operation: 'multiplikation  ', difficulty: 'lätt'},
-        {average: 0, operation: 'multiplikation ', difficulty: 'svårt'},
+        {average: 0, operation: 'Addition ', difficulty: 'Lätt'},
+        {average: 0, operation: 'Addition ', difficulty: 'Svårt'},
+        {average: 0, operation: 'Subtraktion ', difficulty: 'Lätt'},
+        {average: 0, operation: 'Subtraktion ', difficulty: 'Svårt'},
+        {average: 0, operation: 'Division ', difficulty: 'Lätt'},
+        {average: 0, operation: 'Division ', difficulty: 'Svårt'},
+        {average: 0, operation: 'Multiplikation  ', difficulty: 'Lätt'},
+        {average: 0, operation: 'Multiplikation ', difficulty: 'Svårt'},
 
       ]
     };
@@ -138,7 +142,7 @@ export default {
       if (x.length > 0) {
         return sum / x.length;
       } else {
-        return "Inga test gjorda";
+        return 0;
       }
     },
 
@@ -315,7 +319,7 @@ table{
   background-color: white;
   border-spacing: 6px;
   border: 2px solid black;
-  margin-left: 25%;
+  margin-left: 12%;
 }
 th{
   background-color: #007bff;
