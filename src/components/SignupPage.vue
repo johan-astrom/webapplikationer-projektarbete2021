@@ -46,7 +46,7 @@
       <br>
       <br>
       <input v-if="isHidden" type="submit" v-show="passwordCheck===password" value="Skicka" >
-      <p v-if="!isHidden">Användaren registrerad!</p>
+      <p v-if="!isHidden">Användare {{username1}} registrerad!</p>
       <router-link to="/"> <button v-if="!isHidden" >Till startsida </button></router-link>
     </form>
       <br>
@@ -67,6 +67,7 @@ export default {
     return {
       isHidden: true,
       username: "",
+      username1: "",
       password: "",
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/"
@@ -107,6 +108,10 @@ export default {
           alert("Användarnamnet är upptaget.");
         } else {
           this.isHidden=false
+          this.username1=this.username;
+          this.username="";
+          this.password="";
+          this.passwordCheck="";
           return response.json();
         }
       });
