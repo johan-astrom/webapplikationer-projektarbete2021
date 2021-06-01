@@ -99,14 +99,14 @@ export default {
       passwordCheck: "",
       postUrl: "http://localhost:3000/users/:id",
       averages: [
-        {average: 0, operation: 'Addition | ', difficulty: 'Lätt'},
-        {average: 0, operation: 'Addition | ', difficulty: 'Svårt'},
-        {average: 0, operation: 'Subtraktion | ', difficulty: 'Lätt'},
-        {average: 0, operation: 'Subtraktion | ', difficulty: 'Svårt'},
-        {average: 0, operation: 'Division | ', difficulty: 'Lätt'},
-        {average: 0, operation: 'Division | ', difficulty: 'Svårt'},
-        {average: 0, operation: 'Multiplikation | ', difficulty: 'Lätt'},
-        {average: 0, operation: 'Multiplikation | ', difficulty: 'Svårt'},
+        {average: 0, operation: 'addition | ', difficulty: 'lätt'},
+        {average: 0, operation: 'addition | ', difficulty: 'svårt'},
+        {average: 0, operation: 'subtraktion | ', difficulty: 'lätt'},
+        {average: 0, operation: 'subtraktion | ', difficulty: 'svårt'},
+        {average: 0, operation: 'division | ', difficulty: 'lätt'},
+        {average: 0, operation: 'division | ', difficulty: 'svårt'},
+        {average: 0, operation: 'multiplikation | ', difficulty: 'lätt'},
+        {average: 0, operation: 'multiplikation | ', difficulty: 'svårt'},
 
       ]
     };
