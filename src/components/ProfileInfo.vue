@@ -24,7 +24,7 @@
                       {{average.difficulty}}:
                     </td>
                     <td>
-                      {{average.average}}
+                      {{average.average.toFixed(2)}}
                     </td>
                     <td v-if="average.average>=1 && average.average<=4">Öva vidare!</td>
                     <td v-else-if="average.average>=4 && average.difficulty==='Lätt' ">Bra jobbat! Nu är du redo för svår nivå!</td>
@@ -138,6 +138,7 @@ export default {
       let sum = 0;
       for (let i = 0; i < x.length; i++) {
         sum += x[i].score;
+
       }
       if (x.length > 0) {
         return sum / x.length;
@@ -319,7 +320,7 @@ table{
   background-color: white;
   border-spacing: 6px;
   border: 2px solid black;
-  margin-left: 12%;
+  margin-left: 11%;
 }
 th{
   background-color: #007bff;
@@ -344,6 +345,9 @@ td,th{
   .grid_container {
     width: 60%;
     margin-left: 20%;
+  }
+  table{
+    margin-left: 10px
   }
 
 }
